@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Graph with Balance Adjustment</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Strait&display=swap');
+*{
+    color: white;
+    font-family: "Red Hat Display", sans-serif;
+    list-style: none;
+}
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #001180, #000000);
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 90%;
+    max-width: 600px;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 50px;
+    text-align: center;
+    position: fixed;
+    top: 65px;
+        }
+        h1 {
+            position: fixed;
+    top: 10px;
+    left: 30px;
+    z-index: 100;
+            color: #a2a2a2;
+        }
+        .balance {
+            font-size: 20px;
+    margin-bottom: 10px;
+    color: #afafaf;
+    overflow: hidden;
+    text-overflow: ellipsis;
+        }
+        .extra{
+            position: fixed;
+    left: 30px;
+    display: grid
+;    top: 350px;
+
+    gap: 40px;
+        }
+        canvas {
+            margin-top: 10px;
+            height: 300px;
+        }
+        .balancebox {
+            border-bottom: solid 1px #3c3c3c;
+    padding: 20px;
+    display: flex
+;    width: 80%;
+    gap: 25px;
+    align-items: baseline;
+}
+.fa-solid, .fas {
+    font-weight: 900;
+    color: #afafaf;
+}
+    </style>
+</head>
+<body>
+    <h1>lokesh</h1>
+    <div class="container">
+        <canvas id="balanceChart"></canvas>
+    </div>
+
+    <script>
+        let userBalance = 500; // Starting balance
+        const INTERVAL_MS = 500; // Graph update interval
+        const MAX_DATA_POINTS = 100; // Max points on the graph
+        const TARGET_RESET_DATE = new Date('2024-12-18T00:00:00'); // Target date for balance reset
+
+        const labels = [];
+        const dataPoints = [];
+        let lastTimestamp = Date.now();
+
+        // Initialize state
+        function initializeData() {
+            for (let i = 0; i < MAX_DATA_POINTS; i++) {
+                labels.push('');
+                dataPoints.push(randomStartingPoint());
+            }
+        }
+
+        // Generate random starting position
+        function randomStartingPoint() {
+            return Math.floor(Math.random() * 21) - 10; // Random between -10 and 10
+        }
+
+        // Update graph data and balance
+        function updateGraphData() {
+            const now = new Date();
+
+            // Check if the date has arrived; reset balance to zero
+            if (now >= TARGET_RESET_DATE) {
+                userBalance = 0;
+            } else {
+                let lastValue = dataPoints[dataPoints.length - 1] || 0;
+                let newValue = lastValue + randomDirection();
+
+                // Clamp graph movement
+                newValue = Math.max(-20, Math.min(20, newValue));
+
+                // Update balance based on movement
+                if (newValue > 0) {
+                    userBalance += 0.1; // Above 0: Add 20
+                } else if (newValue < 0) {
+                    userBalance -= 2; // Below 0: Subtract 20
+                }
+
+                dataPoints.push(newValue);
+                labels.push('');
+
+                if (dataPoints.length > MAX_DATA_POINTS) {
+                    dataPoints.shift();
+                    labels.shift();
+                }
+            }
+        }
+
+        // Generate random direction for graph movement
+        function randomDirection() {
+            return Math.floor(Math.random() * 5) - 0.1; // Random movement between -2 and +2
+        }
+
+        // Update the graph and balance display
+        function updateGraph() {
+            updateGraphData();
+            chart.data.datasets[0].data = dataPoints;
+            chart.update();
+            document.getElementById("balanceDisplay").textContent = `Balance: $${userBalance}`;
+        }
+
+        // Initialize Chart.js
+        const ctx = document.getElementById("balanceChart").getContext("2d");
+        const chart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Graph Movement",
+                    data: dataPoints,
+                    borderColor: "#4CAF50",
+                    backgroundColor: "rgba(76, 175, 80, 0.2)",
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                animation: false,
+                scales: {
+                    x: { display: false },
+                    y: {
+                        min: -20,
+                        max: 20,
+                        grid: { color: "#333" },
+                        ticks: { color: "#ccc", stepSize: 5 },
+                        title: {
+                            display: true,
+                            text: 'Value (Centered at 0)',
+                            color: '#FFD700'
+                        }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Start updates
+        initializeData();
+        setInterval(updateGraph, INTERVAL_MS);
+    </script>
+    <div class="extra">
+        <div class="balancebox">
+            <i class="fa-solid fa-money-bill-trend-up"></i>
+            <div id="balanceDisplay" class="balance">
+                Balance: $500
+            </div>
+        </div>
+        <div class="balancebox">
+            <i class="fa-solid fa-calendar-check"></i>
+            <div class="balance">
+               Taken plan : 6 months 
+            </div>
+        </div>
+    </div>
+    <div class="menu" style="position: fixed;
+    bottom: 20px;
+    display: flex
+;
+    gap: 43px;
+    font-size: 20px;
+    background: #242424;
+    padding: 8px 30px;
+    border-radius: 300px;
+">
+        <a href="https://mfi0212.github.io/swan/home"><i class="fa-solid fa-house"></i></a>
+        <a href="https://mfi0212.github.io/swan/plan"><i class="fa-solid fa-arrow-up-wide-short"></i></a>
+    </div>
+</body>
+</html>
