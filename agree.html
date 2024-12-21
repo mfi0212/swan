@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2P Lending Platform</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+    .logo img {
+      width: 80%;
+      position: fixed;
+      top: 12%;
+      left: 10%;
+    }
+    header p {
+      position: fixed;
+      top: 48%;
+      text-align: center;
+      font-size: 12px;
+      width: 50%;
+      left: 25%;
+      color: blue;
+    }
+    footer p {
+      position: fixed;
+      text-align: justify;
+      font-size: 13px;
+      width: 80%;
+      top: 75%;
+      left: 30px;
+    }
+    button {
+      position: fixed;
+      width: 100%;
+      display: block;
+      padding: 40px;
+      bottom: 0px;
+      border-radius: 25px 25px 0px 0px;
+      border: solid 1px #252525;
+      background: #252525;
+      color: white;
+      font-size: 16px;
+      cursor: not-allowed;
+    }
+    button.enabled {
+      cursor: pointer;
+      background: #0048ff;
+      border-color: #0048ff;
+    }
+  </style>
+</head>
+<body>
+<div class="logo">
+    <img src="linklogo.png" alt="Logo">
+</div>
+<header>
+  <p>Welcome to LendLink, a premier peer-to-peer platform that facilitates connections between users.</p>
+</header>
+<footer>
+    <p>
+      <input type="checkbox" id="termsCheckbox">
+      By tapping continue, you confirm that you have read our <a href="terms.html" style="color: black;">Terms and Uses</a> and agree to our conditions.
+    </p>
+</footer>
+<button id="continueButton" disabled>Continue</button>
+
+<script>
+  const checkbox = document.getElementById('termsCheckbox');
+  const button = document.getElementById('continueButton');
+
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      button.disabled = false;
+      button.classList.add('enabled');
+    } else {
+      button.disabled = true;
+      button.classList.remove('enabled');
+    }
+  });
+
+  button.addEventListener('click', () => {
+    if (!button.disabled) {
+      window.location.href = 'home.html';
+    }
+  });
+</script>
+</body>
+</html>
