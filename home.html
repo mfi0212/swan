@@ -6,21 +6,69 @@
   <title>Leadlink</title>
   <link rel="icon" type="image/x-icon" href="linklogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-    </style>
-  <style>
     body {
       margin: 0;
       padding: 0;
       background-color: #ffffff;
     }
-*{
-  color: white;
-  font-family: "Roboto", serif;
-}
+
+    * {
+      font-family: "Roboto", serif;
+    }
+
+    .logo img {
+      width: 80%;
+      position: fixed;
+      top: 12%;
+      left: 10%;
+    }
+
+    header p {
+      position: fixed;
+      top: 48%;
+      text-align: center;
+      font-size: 12px;
+      width: 50%;
+      left: 25%;
+      color: blue;
+    }
+
+    footer p {
+        position: fixed;
+    text-align: left;
+    font-size: 13px;
+    width: 80%;
+    bottom: 15%;
+    left: 30px;
+    line-height: 18px;
+    letter-spacing: 0.45px;
+
+    }
+
+    button {
+      position: fixed;
+      width: 100%;
+      display: block;
+      padding: 40px;
+      bottom: 0px;
+      border-radius: 25px 25px 0px 0px;
+      border: solid 1px #252525;
+      background: #252525;
+      color: white;
+      font-size: 16px;
+      cursor: not-allowed;
+    }
+
+    button.enabled {
+      cursor: pointer;
+      background: #0048ff;
+      border-color: #0048ff;
+    }
+
     .container {
+      display: none;
       max-width: 400px;
       margin: 0 auto;
       padding: 20px;
@@ -37,8 +85,7 @@
     }
 
     .header h1 {
-      
-    color: black;
+      color: black;
       font-size: 1.5em;
     }
 
@@ -58,32 +105,12 @@
       font-size: 1em;
     }
 
-    .search-bar svg {
-      fill: white;
-      margin-right: 10px;
-    }
-
-    .filter-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .filter-buttons button {
-      flex: 1;
-      padding: 10px;
-      margin: 0 5px;
-      background-color: #3c3c3c;
+    .navigation {
+      background-color: #282828;
+      border-radius: 25px;
+      text-align: center;
+      font-size: 14px;
       color: white;
-      border: none;
-      border-radius: 20px;
-      font-size: 0.9em;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .filter-buttons button:hover {
-      background-color: #333;
     }
 
     .job-card {
@@ -111,10 +138,12 @@
       color: #000000;
       font-weight: 400;
     }
-a{
-  text-decoration: none;
-  color: white;
-}
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
     .job-card .salary {
       font-size: 1em;
       margin: 10px 0;
@@ -122,54 +151,61 @@ a{
 
     .job-card .time {
       font-size: 13px;
-    color: #565656;
+      color: #565656;
     }
 
-    .navigation {
+    .time {
       background-color: #282828;
-    border-radius: 25px;
-    /* padding: 10px; */
-    text-align: center;
-    font-size: 14px;
+      text-align: center;
+      padding: 8px;
+      color: white;
+      font-family: 'Roboto', serif;
+      border-radius: 300px;
+      width: 36%;
+      left: 30%;
+      position: relative;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <p>Lendlink</p>
-      <h1>EF(Emergency Funds)</h1>
-    </div>
-    <div class="search-bar">
-      <div class="navigation">
-        Pay the BTF before taking the amount.
-      </div>
-    </div>
-    <div class="job-card">
-      <h3>Borrower</h3>
-      <p class="details"> Age Requirement: 18+ <br><br> BTF(Before Taking Fee): 150rs<br><br>Return on time</p>
-    </div>
-    <p style="text-align: center;"><a href="terms.html" style="color: #000000;text-decoration: underline;">Term and conditions</a></p>
-    <div class="job-card">
-      <p class="details">Please read all the terms and conditions before applying for the Borrower. After applying wait few hours to verify your submission. Barrowers get money from your cordinator.<br><br>
-      </p>
-    </div>
-    <div class="job-card" style="color: #000000;">
-      <span style="color: #000000;    font-weight: 600;">Why to wait few hours?</span>
-      <br><br>To provide you with the emergency funds, we need to collect the required amount first. It will take a few hours to arrange the funds, so we kindly ask for your patience during this time to get your funds. 
-    </div>
-  <p class="salary"><a href="https://forms.gle/KWhMZCAXbxrmVFsW8" style="    color: white;"><p class="time" style="    background-color: #282828;
-    text-align: center;
-    padding: 8px;
-    color: white;
-    font-family: 'Roboto', serif;
-    border-radius: 300px;
-    width: 36%;
-    left: 30%;
-    position: relative;
-">Apply Now</p></a></p>
-  <p class="time">Borrower can not get amount 5,000rs above.</p>
+<div class="logo">
+    <img src="linklogo.png" alt="Logo">
+</div>
+<header>
+  <p>Welcome to LendLink, a premier peer-to-peer platform that facilitates connections between users.</p>
+</header>
+<footer>
+    <p>
+      <input type="checkbox" id="termsCheckbox">
+      By tapping continue, you confirm that you have read our <a href="terms.html" style="color: black;text-decoration: underline;">Terms and Uses</a> and agree to our conditions.
+    </p>
+</footer>
+<button id="continueButton" disabled>Continue</button>
+
+<div class="container" id="mainContent">
+  <div class="header">
+    <p>Lendlink</p>
+    <h1>EF(Emergency Funds)</h1>
   </div>
+  <div class="search-bar">
+    <div class="navigation">
+      Pay the BTF before taking the amount.
+    </div>
+  </div>
+  <div class="job-card">
+    <h3>Borrower</h3>
+    <p class="details"> Age Requirement: 18+ <br><br> BTF(Before Taking Fee): 150rs<br><br>Return on time</p>
+  </div>
+  <p style="text-align: center;"><a href="terms.html" style="color: #000000;text-decoration: underline;">Term and conditions</a></p>
+  <div class="job-card">
+    <p class="details">Please read all the terms and conditions before applying for the Borrower. After applying wait few hours to verify your submission. Barrowers get money from your cordinator.<br><br>
+    </p>
+  </div>
+  <div class="job-card" style="color: #000000;">
+    <span style="color: #000000; font-weight: 600;">Why to wait few hours?</span>
+    <br><br>To provide you with the emergency funds, we need to collect the required amount first. It will take a few hours to arrange the funds, so we kindly ask for your patience during this time to get your funds. 
+  </div>
+  <p class="salary"><a href="https://forms.gle/KWhMZCAXbxrmVFsW8" style="color: white;"><p class="time">Apply Now</p></a></p>
   <style>
     .account {
       cursor: pointer;
@@ -183,7 +219,7 @@ a{
     border-radius: 10px;
 
     }
-    .modal {
+    .modals {
         display: none;
         position: fixed;
     top: 50%;
@@ -197,7 +233,7 @@ a{
     text-align: center;
     filter: drop-shadow(21px 41px 106px black);
     }
-    .modal input {
+    .modals input {
         margin-bottom: 10px;
         padding: 8px;
         width: 90%;
@@ -206,7 +242,7 @@ a{
         position: relative;
         color: #000000;
     }
-    .modal button {
+    .modals button {
         padding: 10px 20px;
         background: #007bff;
         color: white;
@@ -214,7 +250,7 @@ a{
         border-radius: 4px;
         cursor: pointer;
     }
-    .modal button:hover {
+    .modals button:hover {
         background: #0056b3;
     }
     .message {
@@ -227,10 +263,14 @@ a{
     <i class="fa-regular fa-circle-user" style="color: #000000;"></i>
 </div>
 
-<div class="modal" id="passwordModal">
-    <p>Enter your password:</p>
+<div class="modals" id="passwordModal">
+    <p style="color: white;">Enter your password:</p>
     <input type="text" id="passwordInput" placeholder="Password">
-    <button id="verifyButton">Verify</button>
+    <button style="text-align: center;
+    left: 0px;
+    margin-bottom: 15px;
+    width: 100%;
+    background: #282828;" id="verifyButton">Verify</button>
     <div class="message" id="message"></div>
 </div>
 <script>
@@ -274,5 +314,34 @@ a{
         }
     });
 </script>
+</div>
+
+<script>
+    const checkbox = document.getElementById('termsCheckbox');
+    const button = document.getElementById('continueButton');
+    const mainContent = document.getElementById('mainContent');
+    const logo = document.querySelector('.logo');
+  
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        button.disabled = false;
+        button.classList.add('enabled');
+      } else {
+        button.disabled = true;
+        button.classList.remove('enabled');
+      }
+    });
+  
+    button.addEventListener('click', () => {
+      if (!button.disabled) {
+        document.querySelector('header').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+        button.style.display = 'none';
+        logo.style.display = 'none'; // Hide the logo
+        mainContent.style.display = 'block';
+      }
+    });
+  </script>
+  
 </body>
 </html>
