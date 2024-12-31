@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leadlink</title>
   <link rel="icon" type="image/x-icon" href="linklogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
@@ -145,7 +147,7 @@ a{
     </div>
     <div class="job-card">
       <h3>Borrower</h3>
-      <p class="details"> Age Requirement: 18+ <br><br> BTF(Before Taking Fee): 159rs<br><br>Return Time: 2 months</p>
+      <p class="details"> Age Requirement: 18+ <br><br> BTF(Before Taking Fee): 159rs<br><br>Return Time: 1 months</p>
     </div>
     <p style="text-align: center;"><a href="terms.html" style="color: #000000;text-decoration: underline;">Term and conditions</a></p>
     <div class="job-card">
@@ -161,8 +163,108 @@ a{
     padding: 10px;
     color: white;
     font-family: 'Roboto', serif;
-    border-radius: 300px;">I want emergency fund now</p></a></p>
+    border-radius: 300px;">Apply</p></a></p>
   <p class="time">Borrower can not get amount 5,000rs above.</p>
   </div>
+  <style>
+    .account {
+        cursor: pointer;
+    font-size: 21px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: #000000;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #282828;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 65%;
+    text-align: center;
+    filter: drop-shadow(21px 41px 106px black);
+    }
+    .modal input {
+        margin-bottom: 10px;
+        padding: 8px;
+        width: 90%;
+        outline: none;
+        z-index: 110000;
+        position: relative;
+        color: #000000;
+    }
+    .modal button {
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .modal button:hover {
+        background: #0056b3;
+    }
+    .message {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="account">
+    <i class="fa-regular fa-circle-user" style="color: #000000;"></i>
+</div>
+
+<div class="modal" id="passwordModal">
+    <p>Enter your password:</p>
+    <input type="text" id="passwordInput" placeholder="Password">
+    <button id="verifyButton">Verify</button>
+    <div class="message" id="message"></div>
+</div>
+<script>
+    // JavaScript for functionality
+    const accountIcon = document.querySelector('.account');
+    const modal = document.getElementById('passwordModal');
+    const verifyButton = document.getElementById('verifyButton');
+    const passwordInput = document.getElementById('passwordInput');
+    const messageDiv = document.getElementById('message');
+
+    // Predefined user data
+    const userData = {
+        name: "Chaitanya",
+        password: "9693",
+        plan: "4000rs",
+        monthlyPay: "300rs"
+    };
+
+    accountIcon.addEventListener('click', () => {
+        modal.style.display = 'block';
+        passwordInput.value = '';
+        messageDiv.textContent = '';
+    });
+
+    verifyButton.addEventListener('click', () => {
+        const enteredPassword = passwordInput.value;
+        if (enteredPassword === userData.password) {
+            modal.style.display = 'none';
+            alert(`Welcome to Lendlink, ${userData.name}!`);
+            alert(`Barrower Details:\n\n\nName: ${userData.name}\n\nPassword: ${userData.password}\n\nAmount Taken: ${userData.plan}\n\nInterest : ${userData.monthlyPay}\n\nInterest Paid : No\n`);
+        } else {
+            messageDiv.textContent = "Incorrect password. Try again.";
+            messageDiv.style.color = 'red';
+        }
+    });
+
+    // Optional: Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
