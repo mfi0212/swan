@@ -226,7 +226,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: #282828;
-    padding: 25px;
+    padding: 24px 25px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     width: 65%;
@@ -270,7 +270,8 @@
     left: 0px;
     margin-bottom: 15px;
     width: 100%;
-    background: #282828;" id="verifyButton">Verify</button>
+    background: #282828;
+    top: 120px;" id="verifyButton">Verify</button>
     <div class="message" id="message"></div>
 </div>
 <script>
@@ -299,8 +300,7 @@
         const enteredPassword = passwordInput.value;
         if (enteredPassword === userData.password) {
             modal.style.display = 'none';
-            alert(`Welcome to Lendlink, ${userData.name}!`);
-            alert(`Barrower Details:\n\n\nName: ${userData.name}\n\nPassword: ${userData.password}\n\nAmount Taken: ${userData.plan}\n\nInterest : ${userData.monthlyPay}\n\nInterest Paid : No\n`);
+            alert(`\nBarrower Details:\n\n\nName: ${userData.name}\n\nPassword: ${userData.password}\n\nAmount Taken: ${userData.plan}\n\nInterest : ${userData.monthlyPay}\n\nInterest Paid : No\n`);
         } else {
             messageDiv.textContent = "Incorrect password. Try again.";
             messageDiv.style.color = 'red';
