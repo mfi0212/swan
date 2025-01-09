@@ -49,23 +49,14 @@
       font-weight: bold;
       color: #0048ff;
     }
-
-    /* Button Styling */
-    .go-back-button {
-      display: inline-block;
-      background-color: #0048ff;
-      color: white;
-      font-size: 16px;
-      padding: 12px 30px;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-top: 30px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .go-back-button:hover {
-      background-color: #003bb5;
+    button {
+      background-color: #282828;
+    text-align: center;
+    padding: 11px 30px;
+    color: white;
+    border-radius: 300px;
+    white-space: nowrap;
+    border: none;
     }
 
     /* Responsive Design */
@@ -102,9 +93,6 @@
     <p><strong>Days Passed:</strong> <span id="daysPassed"></span></p>
     <p><strong>Interest:</strong> ₹<span id="interestAmount"></span></p>
     <p><strong>Total Amount:</strong> ₹<span id="totalAmount"></span></p>
-    
-    <!-- Go Back Button -->
-    <a href="index.html" class="go-back-button">Go Back</a>
   </div>
 
   <script>
@@ -122,5 +110,10 @@
       document.body.innerHTML = "<h2 style='text-align:center;color:red;'>User data not found. Please try again.</h2>";
     }
   </script>
+  <div class="options" style="text-align: center;
+    POSITION: relative;">
+    <a href="terms.html"><button>Terms and conditions</button></a>
+    <a href="https://forms.gle/KWhMZCAXbxrmVFsW8"><button>Apply Now</button></a>
+  </div>
 </body>
 </html>
