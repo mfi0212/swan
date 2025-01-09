@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Details</title>
+  <style>
+    /* General Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    /* Container Styling */
+    .user-details-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 25px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+
+    /* Styling for the Paragraphs */
+    p {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    /* Details Styling */
+    .details {
+      font-size: 16px;
+      color: #444444;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .details span {
+      font-weight: bold;
+      color: #0048ff;
+    }
+
+    /* Button Styling */
+    .go-back-button {
+      display: inline-block;
+      background-color: #0048ff;
+      color: white;
+      font-size: 16px;
+      padding: 12px 30px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .go-back-button:hover {
+      background-color: #003bb5;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .user-details-container {
+        padding: 15px;
+        margin: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .details {
+        font-size: 14px;
+      }
+
+      .go-back-button {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="user-details-container">
+    <h1>User Details</h1>
+    <p><strong>Name:</strong> <span id="userName"></span></p>
+    <p><strong>Amount Taken:</strong> ₹<span id="amountTaken"></span></p>
+    <p><strong>Days Passed:</strong> <span id="daysPassed"></span></p>
+    <p><strong>Interest:</strong> ₹<span id="interestAmount"></span></p>
+    <p><strong>Total Amount:</strong> ₹<span id="totalAmount"></span></p>
+    
+    <!-- Go Back Button -->
+    <a href="index.html" class="go-back-button">Go Back</a>
+  </div>
+
+  <script>
+    // Retrieve the user details from localStorage
+    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+
+    if (userDetails) {
+      document.getElementById('userName').textContent = userDetails.name;
+      document.getElementById('amountTaken').textContent = userDetails.plan;
+      document.getElementById('daysPassed').textContent = userDetails.daysElapsed;
+      document.getElementById('interestAmount').textContent = userDetails.additionalAmount;
+      document.getElementById('totalAmount').textContent = userDetails.totalAmount;
+    } else {
+      // Handle the case where no user data is found (e.g., invalid access)
+      document.body.innerHTML = "<h2 style='text-align:center;color:red;'>User data not found. Please try again.</h2>";
+    }
+  </script>
+</body>
+</html>
