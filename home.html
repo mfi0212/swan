@@ -198,7 +198,7 @@
   </div>
   <p style="text-align: center;"><a href="terms.html" style="color: #000000;text-decoration: underline;">Term and conditions</a></p>
   <div class="job-card">
-    <p class="details">Please read all the terms and conditions before applying for the Borrower. After applying wait few hours to verify your submission. Barrowers get money from your cordinator.<br><br>
+    <p class="details">Please read all the terms and conditions before applying for the Borrower. After applying wait few hours to verify your submission. Borrowers get money from your coordinator.<br><br>
     </p>
   </div>
   <div class="job-card" style="color: #000000;">
@@ -209,119 +209,133 @@
   <style>
     .account {
       cursor: pointer;
-    font-size: 21px;
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    color: #000000;
-    background: white;
-    padding: 8px;
-    border-radius: 10px;
-
+      font-size: 21px;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      color: #000000;
+      background: white;
+      padding: 8px;
+      border-radius: 10px;
     }
     .modals {
-        display: none;
-        position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #282828;
-    padding: 24px 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    width: 65%;
-    text-align: center;
-    filter: drop-shadow(21px 41px 106px black);
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #282828;
+      padding: 24px 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      width: 65%;
+      text-align: center;
+      filter: drop-shadow(21px 41px 106px black);
     }
     .modals input {
-        margin-bottom: 10px;
-        padding: 8px;
-        width: 90%;
-        outline: none;
-        z-index: 110000;
-        position: relative;
-        color: #000000;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 90%;
+      outline: none;
+      z-index: 110000;
+      position: relative;
+      color: #000000;
     }
     .modals button {
-        padding: 10px 20px;
-        background: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
     .modals button:hover {
-        background: #0056b3;
+      background: #0056b3;
     }
     .message {
-        margin-top: 20px;
+      margin-top: 20px;
     }
-</style>
-</head>
-<body>
-<div class="account">
-    <i class="fa-regular fa-circle-user" style="color: #000000;"></i>
-</div>
+  </style>
 
-<div class="modals" id="passwordModal">
+  <div class="account">
+    <i class="fa-regular fa-circle-user" style="color: #000000;"></i>
+  </div>
+
+  <div class="modals" id="passwordModal">
     <p style="color: white;">Enter your password:</p>
     <input type="text" id="passwordInput" placeholder="Password">
-    <button style="text-align: center;
-    left: 0px;
-    margin-bottom: 15px;
-    width: 100%;
-    background: #282828;
-    top: 120px;" id="verifyButton">Verify</button>
+    <button style="text-align: center; left: 0px; margin-bottom: 15px; width: 100%; background: #282828; top: 120px;" id="verifyButton">Verify</button>
     <div class="message" id="message"></div>
-</div>
-<script>
-    // JavaScript for functionality
+  </div>
+
+  <script>
     const accountIcon = document.querySelector('.account');
     const modal = document.getElementById('passwordModal');
     const verifyButton = document.getElementById('verifyButton');
     const passwordInput = document.getElementById('passwordInput');
     const messageDiv = document.getElementById('message');
 
-    // Predefined user data
-    const userData = {
+    // User data with different daily rates
+    const users = [
+      {
         name: "Chaitanya",
         password: "9693",
-        plan: "4000rs",
-        monthlyPay: "300rs"
-    };
+        plan: 4000, // Initial amount in ₹
+        dailyRate: 30, // ₹ per day for this user
+        monthlyPay: 300, // Monthly interest in ₹
+        startDate: "2024-12-31" // Start date for this user
+      }
+    ];
 
     accountIcon.addEventListener('click', () => {
-        modal.style.display = 'block';
-        passwordInput.value = '';
-        messageDiv.textContent = '';
+      modal.style.display = 'block';
+      passwordInput.value = '';
+      messageDiv.textContent = '';
     });
 
     verifyButton.addEventListener('click', () => {
-        const enteredPassword = passwordInput.value;
-        if (enteredPassword === userData.password) {
-            modal.style.display = 'none';
-            alert(`\nBarrower Details:\n\n\nName: ${userData.name}\n\nPassword: ${userData.password}\n\nAmount Taken: ${userData.plan}\n\nInterest : ${userData.monthlyPay}\n\nInterest Paid : No\n`);
-        } else {
-            messageDiv.textContent = "Incorrect password. Try again.";
-            messageDiv.style.color = 'red';
-        }
+      const enteredPassword = passwordInput.value;
+
+      // Find user by password
+      const user = users.find(user => user.password === enteredPassword);
+
+      if (user) {
+        // Calculate the total amount owed for this user
+        const currentDate = new Date();
+        const startDate = new Date(user.startDate);
+        const daysElapsed = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)); // Days difference
+        const additionalAmount = daysElapsed * user.dailyRate; // Total extra amount for this user
+        const totalAmount = user.plan + additionalAmount; // Total owed
+
+        // Store user details in localStorage
+        localStorage.setItem('userDetails', JSON.stringify({
+          name: user.name,
+          plan: user.plan,
+          daysElapsed: daysElapsed,
+          additionalAmount: additionalAmount,
+          totalAmount: totalAmount
+        }));
+
+        // Redirect to the new page to show user details
+        window.location.href = "user-details.html"; // Redirect to the user details page
+      } else {
+        messageDiv.textContent = "Incorrect password. Try again.";
+        messageDiv.style.color = 'red';
+      }
     });
 
     // Optional: Close modal when clicking outside
     window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
     });
-</script>
-</div>
 
-<script>
     const checkbox = document.getElementById('termsCheckbox');
     const button = document.getElementById('continueButton');
     const mainContent = document.getElementById('mainContent');
     const logo = document.querySelector('.logo');
-  
+
     checkbox.addEventListener('change', () => {
       if (checkbox.checked) {
         button.disabled = false;
@@ -331,7 +345,7 @@
         button.classList.remove('enabled');
       }
     });
-  
+
     button.addEventListener('click', () => {
       if (!button.disabled) {
         document.querySelector('header').style.display = 'none';
@@ -342,6 +356,6 @@
       }
     });
   </script>
-  
+
 </body>
 </html>
