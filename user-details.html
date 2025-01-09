@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Details</title>
   <style>
-    /* General Body Styling */
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      background-color: #ffffff;
     }
+
+    * {
+      font-family: "Roboto", serif;
+    }
+
 
     /* Container Styling */
     .user-details-container {
@@ -87,12 +91,12 @@
 </head>
 <body>
   <div class="user-details-container">
-    <h1>User Details</h1>
+    <h1>Borrower details</h1>
     <p><strong>Name:</strong> <span id="userName"></span></p>
     <p><strong>Amount Taken:</strong> ₹<span id="amountTaken"></span></p>
     <p><strong>Days Passed:</strong> <span id="daysPassed"></span></p>
-    <p><strong>Interest:</strong> ₹<span id="interestAmount"></span></p>
-    <p><strong>Total Amount:</strong> ₹<span id="totalAmount"></span></p>
+    <p><strong>Interest till today:</strong> ₹<span id="interestAmount"></span></p>
+    <p><strong>Total Amount to return:</strong> ₹<span id="totalAmount"></span></p>
   </div>
 
   <script>
