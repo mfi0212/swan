@@ -15,6 +15,13 @@
           color: #f0f0f0;
       }
     body {
+      background-color: #000000;
+      display: none;
+    }
+
+    @media(max-width: 600px){
+      body {
+        display: block;
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -27,8 +34,7 @@
       height: 100vh;
       letter-spacing: 0.3px;
     }
-
-    .job-card {
+      .job-card {
       background-color: #1e1e1e;
     color: #727272;
     border: 1px solid #333;
@@ -123,6 +129,7 @@ outline: none;
     cursor: pointer;
     color: #424242;
     display: contents;
+    }
     }
   </style>
 </head>
@@ -222,6 +229,24 @@ outline: none;
       alert("Thank you for applying! We're redirecting you to the form.");
       // Add additional functionality for the "Apply Now" button if needed
     }
+    
+document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+
   </script>
 </body>
 </html>
