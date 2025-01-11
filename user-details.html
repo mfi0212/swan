@@ -5,31 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Details</title>
   <style>
-   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+      * {
+          font-family: "Red Hat Display", sans-serif;
+          color: #f0f0f0;
+      }
     body {
       margin: 0;
       padding: 0;
-      background-color: #ffffff;
+      background-color: #000000;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      letter-spacing: 0.3px;
     }
-
-    * {
-      font-family: "Roboto", serif;
-    }
-
-
     /* Container Styling */
     .user-details-container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 25px;
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
     }
 
     h1 {
       font-size: 28px;
-      color: #333333;
+      color: #e0e0e0;
       margin-bottom: 20px;
     }
 
@@ -37,30 +43,35 @@
     p {
       font-size: 18px;
       margin-bottom: 15px;
-      color: #555555;
+      color: #cccccc;
       line-height: 1.5;
+      text-align: left;
+      width: 100%;
     }
 
     /* Details Styling */
     .details {
       font-size: 16px;
-      color: #444444;
+      color: #bbbbbb;
       text-align: left;
       margin-top: 20px;
     }
 
     .details span {
       font-weight: bold;
-      color: #0048ff;
+      color: #81a1c1;
     }
+
     button {
-      background-color: #282828;
-    text-align: center;
-    padding: 11px 30px;
-    color: white;
-    border-radius: 300px;
-    white-space: nowrap;
-    border: none;
+      padding: 10px 25px;
+    background-color: #323232;
+    color: #ffffff;
+    border-radius: 106px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #626262;
+    margin: 15px;
+
     }
 
     /* Responsive Design */
@@ -97,6 +108,9 @@
     <p><strong>Days Passed:</strong> <span id="daysPassed"></span></p>
     <p><strong>Interest till today:</strong> ₹<span id="interestAmount"></span></p>
     <p><strong>Total Amount to return:</strong> ₹<span id="totalAmount"></span></p>
+    <div class="options">
+      <a href="https://forms.gle/KWhMZCAXbxrmVFsW8"><button>Apply Now</button></a>
+    </div>
   </div>
 
   <script>
@@ -114,10 +128,5 @@
       document.body.innerHTML = "<h2 style='text-align:center;color:red;'>User data not found. Please try again.</h2>";
     }
   </script>
-  <div class="options" style="text-align: center;
-    POSITION: relative;">
-    <a href="terms.html"><button>Terms and conditions</button></a>
-    <a href="https://forms.gle/KWhMZCAXbxrmVFsW8"><button>Apply Now</button></a>
-  </div>
 </body>
 </html>
