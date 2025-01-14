@@ -128,6 +128,30 @@
       // Handle the case where no user data is found (e.g., invalid access)
       document.body.innerHTML = "<h2 style='text-align:center;color:red;'>User data not found. Please try again.</h2>";
     }
+    document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+
   </script>
+    <div class="mfi" style="position: fixed;
+    bottom: 10px;
+    font-size: 11px;
+    color: gray;
+    z-index: 10;">
+          From BS/MFI
+        </div>
 </body>
 </html>
