@@ -54,7 +54,7 @@
     }
 
     .apply-button {
-      bottom: 20px;
+      bottom: 40px;
     padding: 10px 25px;
     background-color: #1e1e1e;
     color: #ffffff;
@@ -146,7 +146,7 @@ outline: none;
 " src="linklogo.png" alt="">
   <!-- Job Card -->
   <div class="job-card" style="position: fixed;
-    bottom: 50px">
+    bottom: 70px">
     <span style="    font-size: 16px;">After filling wait few hours..!</span>
     <br><br>
     To provide you with the emergency funds, we need to collect the required amount first. 
@@ -230,23 +230,30 @@ outline: none;
       // Add additional functionality for the "Apply Now" button if needed
     }
     
-document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+// document.addEventListener("DOMContentLoaded", () => {
+//     const customMenu = document.querySelector(".custom-menu");
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+//     // Show custom menu on right-click
+//     document.addEventListener("contextmenu", (event) => {
+//         event.preventDefault();
+//         customMenu.style.display = "block";
+//         customMenu.style.top = `${event.pageY}px`;
+//         customMenu.style.left = `${event.pageX}px`;
+//     });
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+//     // Hide the menu when clicking elsewhere
+//     document.addEventListener("click", () => {
+//         customMenu.style.display = "none";
+//     });
+// });
 
   </script>
+  <div class="mfi" style="position: fixed;
+  bottom: 10px;
+  font-size: 11px;
+  color: gray;
+  z-index: 10;">
+        From BS/MFI
+      </div>
 </body>
 </html>
