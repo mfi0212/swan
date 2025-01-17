@@ -33,7 +33,10 @@
     text-align: center;
     font-size: 14px;
     }
-
+ a{
+  text-decoration: none;
+  color: white;
+ }
     h1 {
       font-size: 28px;
       color: #e0e0e0;
@@ -102,6 +105,11 @@
   </style>
 </head>
 <body>
+  <div class="options" style="position: fixed;
+  top: 10px;
+  left: 10px;">
+    <button style="padding: 5px 20px;"><a href="home.html">< Home</a> </button>
+  </div>
   <div class="user-details-container">
     <h1>Borrower details</h1>
     <p><strong>Name:</strong> <span id="userName"></span></p>
@@ -110,7 +118,7 @@
     <p><strong>Interest till today:</strong> ₹<span id="interestAmount"></span></p>
     <p><strong>Total Amount to return:</strong> ₹<span id="totalAmount"></span></p>
     <div class="options">
-      <a href="https://forms.gle/KweeUEe2YAvuzHUBA"><button>Apply Now</button></a>
+      <button><a href="https://forms.gle/KweeUEe2YAvuzHUBA">Apply Now</a></button>
     </div>
   </div>
 
