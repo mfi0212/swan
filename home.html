@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
       @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
       * {
           font-family: "Red Hat Display", sans-serif;
-          color: #f0f0f0;
+          color: #000000;
       }
     body {
       background-color: #000000;
@@ -25,7 +26,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #000000;
+      background-color: #ffffff;
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -35,21 +36,21 @@
       letter-spacing: 0.3px;
     }
       .job-card {
-        background-color: #1e1e1e;
-        color: #727272;
-        border: 1px solid #333;
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #b1b1b1;
         border-radius: 8px;
         padding: 10px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 10px rgb(0 0 0 / 48%);
         max-width: 300px;
         text-align: center;
         font-size: 12px;
     }
 
     .job-card span {
-      font-weight: 400;
-      color: #afafaf;
+      font-weight: 700;
+        color: #000000;
     }
 
     .apply-button {
@@ -131,17 +132,17 @@ outline: none;
     }
     }
   </style>
+
 </head>
 <body>
   <!-- <h1 style="    position: fixed;
   top: 100px;
   font-size: 40px;">Lendlink</h1> -->
-  <img style="    width: 80%;
-  filter: invert(1);
+  <img style="width: 80%;
+  filter: grayscale(1);
   position: fixed;
   top: 10px;
   z-index: -1;
-
 " src="linklogo.png" alt="">
   <!-- Job Card -->
   <div class="job-card" style="position: fixed;
@@ -155,10 +156,10 @@ outline: none;
   <!-- Account Icon -->
   <div id="accountIcon" style="    line-height: 10px;
 "><i class="fa-solid fa-circle-user"></i><br><span style="    font-weight: 400;
-    color: #b4b4b4;
+    color: #000000;
     font-size: 18px;
 ">Account</span></div>
-  <button class="apply-button" onclick="applyNow()"><a href="https://forms.gle/KweeUEe2YAvuzHUBA" style="text-decoration: none;">Apply Now</a></button>
+  <button class="apply-button" onclick="applyNow()"><a href="https://forms.gle/KweeUEe2YAvuzHUBA" style="text-decoration: none;color: white;">Apply Now</a></button>
   <!-- Modal -->
   <div class="modal" id="passwordModal">
     <div class="modal-content">
