@@ -1,182 +1,244 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Take Money</title>
-    <link rel="icon" type="image/x-icon" href="logo.png">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-        body {
-            background-color: #00288c;
-            color: rgb(255, 255, 255);
-            display: flex;
-            font-family: "Josefin Sans", serif;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100vh;
-            margin: 0;
-        }
-        a {
-            text-decoration: none;
-        }
-        button {
-            padding: 14px;
-    border: none;
-    background: rgb(255 255 255);
-    color: #00288c;
-    font-family: "Josefin Sans", serif;
-    border-radius: 100px;
-    font-size: 15px;
-    width: 15em;
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lendlink</title>
+  <link rel="icon" type="image/x-icon" href="linklogo.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+      * {
+          font-family: "Red Hat Display", sans-serif;
+          color: #000000;
+      }
+    body {
+      background-color: #000000;
+      display: none;
+    }
+
+    @media(max-width: 600px){
+      body {
+        display: block;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      letter-spacing: 0.3px;
+    }
+      .job-card {
+        background-color: #eeeef2;
+        color: #000000;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+        max-width: 300px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .job-card span {
+      font-weight: 600;
+        color: #000000;
+    }
+
+    .apply-button {
+      bottom: 40px;
+    padding: 10px 25px;
+    background-color: #0042ff;
+    color: #ffffff;
+    border-radius: 600px;
+    font-size: 14px;
     cursor: pointer;
-        }
-        .logo {
-            line-height: 8px;
-            position: fixed;
-            top: 15%;
-        }
-        .options {
-            display: grid;
-            gap: 10px;
-            position: fixed;
-            top: 65%;
-        }
-        a{
-            text-decoration: none;
-            color: white;
-        }
-        footer {
-            position: fixed;
-    bottom: 20px;
-    font-size: 10px;
-    color: #a0a0a0;
-    font-weight: 300;
-        }
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 300px;
-            width: 80%;
-        }
-        .modal-content h2 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #0048ff;
-        }
-        .modal-content input {
-            padding: 10px;
-            text-align: center;
-            margin-bottom: 15px;
-            outline: none;
-            font-family: "Josefin Sans", serif;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .modal-content button {
-            padding: 10px;
-    background-color: #0048ff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    position: fixed;
+border: none;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     width: 100%;
-        }
-    </style>
+    max-width: 300px;
+
+    }
+
+    .modal-content h3 {
+      margin-bottom: 20px;
+    }
+
+    .modal-content input {
+      padding: 7px 15px;
+    margin: 10px 0;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 15px;
+outline: none;
+    }
+
+    .modal-content input::placeholder {
+      color: #888;
+    }
+
+    .modal-content button {
+      padding: 9px 15px;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid #333;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ff4d4d;
+    }
+
+    #accountIcon {
+      font-size: 22px;
+    cursor: pointer;
+    color: #424242;
+    display: contents;
+    }
+    }
+  </style>
+
 </head>
 <body>
-    <a style="position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 13px;
-    font-weight: 300;text-decoration: underline;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
-    <div class="logo">
-        <h1 style="font-weight: 400;">
-            <img style="width: 15%;
-            padding: 10px;
-            filter: drop-shadow(0px 4px 16px #ffffff);
-            border-radius: 15px;" src="logo.png" alt="">
-        </h1>
-        <p style="font-size: 11px; letter-spacing: 5px; font-weight: 400;">TAKE MONEY</p>
+  <!-- <h1 style="    position: fixed;
+  top: 100px;
+  font-size: 40px;">Lendlink</h1> -->
+  <img style="width: 80%;
+  filter: grayscale(1);
+  position: fixed;
+  top: 10px;
+  z-index: -1;
+" src="linklogo.png" alt="">
+  <!-- Job Card -->
+  <div class="job-card" style="position: fixed;
+    bottom: 70px">
+    <span style="    font-size: 16px;">After filling wait few hours..!</span>
+    <br><br>
+    To provide the fund, we need to collect the amount first. It takes few hours to arrange the fund, so be patience during this time to get the fund.<br><br><span>NOTE: Barrower should take money for atleast 15 days.</span>
+    <br>
+  </div>
+  <a style="position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  background: #0045ff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
+  <!-- Account Icon -->
+  <div id="accountIcon" style="    line-height: 10px;
+"><i class="fa-solid fa-circle-user"></i><br><span style="    font-weight: 400;
+    color: #000000;
+    font-size: 18px;
+">Account</span></div>
+  <button class="apply-button" onclick="applyNow()"><a href="https://forms.gle/KweeUEe2YAvuzHUBA" style="text-decoration: none;color: white;">Apply Now</a></button>
+  <!-- Modal -->
+  <div class="modal" id="passwordModal">
+    <div class="modal-content">
+      <h3>Enter Password</h3>
+      <input type="text" id="passwordInput" placeholder="Password">
+      <button id="verifyButton">Verify</button>
+      <div class="message" id="message"></div>
     </div>
-    <div class="options">
-        <a onclick="openModal()"><button>My account</button></a>
-        <a href="https://forms.gle/dRrGhAexUTYgENYc7"><button>Apply now</button></a>
-    </div>
-    <footer>From BS/MFI</footer>
+  </div>
 
-    <!-- Modal -->
-    <div class="modal" id="passwordModal">
-        <div class="modal-content">
-            <h2>Enter Your Password</h2>
-            <input type="text" id="passwordInput" placeholder="Password">
-            <button onclick="validatePassword()">Submit</button>
-            <p id="modalMessage" style="margin-top: 10px; color: red; font-size: 14px;"></p>
-        </div>
-    </div>
+  <script>
+    const users = [
+      {
+        name: "Cherish",
+        password: "4321",
+        plan: 3000, // Initial amount in ₹
+        dailyRate: 44, // ₹ per day for this user
+        startDate: "2025-1-09" // Start date for this user
+      }
+    ];
 
-    <script>
-        const users = [
-            {
-                name: "Charan sai.v",
-                password: "1010",
-                plan: 10000, // Initial amount in ₹
-                dailyRate: 43, // ₹ per day for this user
-                startDate: "2025-1-21" // Start date for this user
-            }
-        ];
+    const accountIcon = document.getElementById('accountIcon');
+    const modal = document.getElementById('passwordModal');
+    const passwordInput = document.getElementById('passwordInput');
+    const messageDiv = document.getElementById('message');
+    const verifyButton = document.getElementById('verifyButton');
+
+    accountIcon.addEventListener('click', () => {
+      modal.style.display = 'flex';
+      passwordInput.value = '';
+      messageDiv.textContent = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    verifyButton.addEventListener('click', () => {
+      const enteredPassword = passwordInput.value;
+
+      // Find user by password
+      const user = users.find(user => user.password === enteredPassword);
+
+      if (user) {
+        // Calculate the total amount owed for this user
+        const currentDate = new Date();
+        const startDate = new Date(user.startDate);
+        const daysElapsed = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24)); // Days difference
+        const additionalAmount = daysElapsed * user.dailyRate; // Total extra amount for this user
+        const totalAmount = user.plan + additionalAmount; // Total owed
+
+        // Store user details in localStorage
+        localStorage.setItem('userDetails', JSON.stringify({
+          name: user.name,
+          plan: user.plan,
+          daysElapsed: daysElapsed,
+          additionalAmount: additionalAmount,
+          totalAmount: totalAmount
+        }));
+
+        // Redirect to the user details page
+        window.location.href = "user-details.html";
+      } else {
+        messageDiv.textContent = "Incorrect password. Try again.";
+      }
+    });
+
+    function applyNow() {
+      alert("Thank you for applying! We're redirecting you to the form.");
+      // Add additional functionality for the "Apply Now" button if needed
+    }
     
-        function openModal() {
-            document.getElementById('passwordModal').style.display = 'flex';
-        }
-    
-        function closeModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-        }
-    
-        function validatePassword() {
-            const password = document.getElementById('passwordInput').value;
-            const modalMessage = document.getElementById('modalMessage');
-    
-            // Find the user by password
-            const user = users.find(user => user.password === password);
-    
-            if (user) {
-                modalMessage.style.color = '#00288c';
-                modalMessage.textContent = "Welcome..!";
-                
-                // Redirect to user.html with user details in query parameters
-                const queryString = `?name=${user.name}&plan=${user.plan}&dailyRate=${user.dailyRate}&startDate=${user.startDate}`;
-                setTimeout(() => {
-                    window.location.href = `user.html${queryString}`;
-                }, 1000);
-            } else {
-                modalMessage.style.color = 'red';
-                modalMessage.textContent = "We can't find any account.";
-            }
-        }
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
     // Show custom menu on right-click
@@ -192,14 +254,14 @@
         customMenu.style.display = "none";
     });
 });
-        // Close modal if clicked outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('passwordModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-    </script>
-    
+
+  </script>
+  <div class="mfi" style="position: fixed;
+  bottom: 10px;
+  font-size: 11px;
+  color: gray;
+  z-index: 10;">
+        From BS/MFI
+      </div>
 </body>
 </html>
