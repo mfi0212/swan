@@ -141,9 +141,9 @@ button:hover{
       document.getElementById('interestAmount').textContent = userDetails.additionalAmount;
       document.getElementById('totalAmount').textContent = userDetails.totalAmount;
     } else {
-      // Handle the case where no user data is found (e.g., invalid access)
-      document.body.innerHTML = "<h2 style='text-align:center;color:red;'>User data not found. Please try again.</h2>";
-    }
+            alert("No user data found. Redirecting...");
+            window.location.href = "home.html";
+        } 
     document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
