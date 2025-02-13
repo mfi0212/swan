@@ -11,7 +11,7 @@
           font-family: "Red Hat Display", sans-serif;
           color: #000000;
       }body { 
-            background: rgb(255 255 255);
+        background: linear-gradient(to bottom, rgb(0, 42, 255), #000000);
       margin: 0;
       padding: 0;
       color: #000000;
@@ -27,7 +27,7 @@
     }
     /* Container Styling */
     .user-details-container {
-      background: #262626;
+      background: #ffffff2e;
     border: none;
     border-radius: 20px;
     width: 100%;
@@ -37,6 +37,7 @@
     padding: 10px 30px;
     border: none;
     max-width: 500px;
+    backdrop-filter: blur(100px);
     }
  a{
   text-decoration: none;
@@ -94,7 +95,10 @@ button:hover{
     @media (max-width: 768px) {
       .user-details-container {
         padding: 15px;
-        margin: 5px;
+        margin: 0px;
+        position: fixed;
+        width: 89%;
+        bottom: 14%;
       }
 
       h1 {
