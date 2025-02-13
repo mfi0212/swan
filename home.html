@@ -13,14 +13,14 @@
       @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
       * {
           font-family: "Red Hat Display", sans-serif;
-          color: #000000;
+          color: #ffffff;
       }
       body {
         display: block;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, rgb(0, 42, 255), #000000);
     color: #ffffff;
     display: flex
 ;
@@ -28,14 +28,13 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     }
     img{
       width: 20%;
     }
       .job-card {
-       
-        color: #6a6a6a;
+        color: #b1b1b1;
         border: none;
         border-radius: 10px;
         padding: 20px;
@@ -44,14 +43,14 @@
         text-align: center;
         font-size: 13px;
         backdrop-filter: blur(100px);
-        /* border: solid 1px #00000033; */
-        filter: drop-shadow(2px 4px 6px #0000003d); 
-        background: #ffffff;
+        filter: drop-shadow(2px 4px 6px #0000003d);
+        background: #ffffff4a;
+        font-weight: 100;
     }
 
     .job-card span {
       font-weight: 600;
-        color: #000000;
+        color: #ffffff;
     }
 
     .apply-button {
@@ -152,13 +151,13 @@ outline: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     }
     img{
       width: 68%;
     }
       .job-card {
-        color: #6a6a6a;
+        color: #b1b1b1;
         border: none;
         border-radius: 10px;
         padding: 12px;
@@ -168,7 +167,8 @@ outline: none;
         font-size: 12px;
         backdrop-filter: blur(100px);
         filter: drop-shadow(2px 4px 6px #0000003d);
-        background: #ffffff;
+        background: #ffffff4a;
+        font-weight: 100;
     }
 
     
@@ -183,7 +183,7 @@ outline: none;
   <img style="
   position: fixed;
   top: 10px;
-  z-index: -1;
+  z-index: -1;filter: invert(1);
 " src="linklogo.png" alt="">
   <!-- Job Card -->
   <div class="job-card" style="position: fixed;
@@ -205,7 +205,7 @@ outline: none;
   <!-- Account Icon -->
   <div id="accountIcon" style="    line-height: 10px;
 "><i class="fa-solid fa-circle-user"></i><br><span style="    font-weight: 400;
-    color: #000000;
+    color: #ffffff;
     font-size: 18px;
 ">Account</span></div>
   <button class="apply-button" onclick="applyNow()"><a href="https://forms.gle/PjssBodtdo9iW1xn7" style="text-decoration: none;color: white;">Take Money</a></button>
