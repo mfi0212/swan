@@ -227,14 +227,8 @@ outline: none;
         plan: 6000, 
         dailyRate: 45, 
         startDate: "2025-2-03"
-      },
-      {
-        name: "Akshith",
-        password: "Akshith2929",
-        plan: 5000, 
-        dailyRate: 85, 
-        startDate: "2025-2-05"
       }
+
     ];
 
     const accountIcon = document.getElementById('accountIcon');
@@ -278,7 +272,12 @@ outline: none;
 
         // Redirect to the user details page
         window.location.href = "user-details.html";
-      } else {
+      } else if ('Akshith2929'){
+        messageDiv.textContent = "Amount returned successfully.";
+        messageDiv.style.color = "green";
+
+      } 
+      else {
         messageDiv.textContent = "Incorrect password. Try again.";
       }
     });
