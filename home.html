@@ -221,7 +221,7 @@ outline: none;
   </div>
 
   <script>
-     document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     // List of users
     const users = [
         {
@@ -229,14 +229,14 @@ outline: none;
             password: "Mahesh888*",
             plan: 6000,
             dailyRate: 45,
-            startDate: "2025-02-03" // Corrected date format
+            startDate: "2025-02-03" // Ensures proper date handling
         },
         {
             name: "Charan sai",
             password: "4800",
             plan: 5000,
             dailyRate: 100,
-            startDate: "2025-02-19" // Corrected date format
+            startDate: "2025-02-19"
         }
     ];
 
@@ -249,10 +249,6 @@ outline: none;
 
     // Debugging logs
     console.log("Script loaded successfully");
-    console.log("Account Icon:", accountIcon);
-    console.log("Modal:", modal);
-    console.log("Password Input:", passwordInput);
-    console.log("Verify Button:", verifyButton);
 
     // Open modal when clicking account icon
     accountIcon.addEventListener('click', () => {
@@ -279,15 +275,16 @@ outline: none;
         if (user) {
             console.log("User found:", user.name);
 
-            // Get today's date
+            // Get today's date (set time to midnight to avoid timezone issues)
             const currentDate = new Date();
+            const currentDateUTC = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
 
-            // Parse startDate properly to ensure mobile compatibility
-            const dateParts = user.startDate.split("-");
-            const startDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+            // Parse start date correctly
+            const startDate = new Date(user.startDate + "T00:00:00");
+            const startDateUTC = new Date(Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()));
 
             // Calculate the number of days elapsed
-            const daysElapsed = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
+            const daysElapsed = Math.floor((currentDateUTC - startDateUTC) / (1000 * 60 * 60 * 24));
             console.log("Days Elapsed:", daysElapsed);
 
             // Calculate additional amount based on the daily rate
@@ -305,17 +302,18 @@ outline: none;
                 totalAmount: totalAmount
             }));
 
-            // Redirect to the user details page
-            window.location.href = "user-details.html";
+            // Add small delay to ensure storage is updated before redirect
+            setTimeout(() => {
+                window.location.href = "user-details.html";
+            }, 300);
         } 
-        // else if (enteredPassword === "Akshith2929") { 
-        //      window.location.href = "https://mfi0212.github.io/MFI/sucess";
-        // } 
         else {
             messageDiv.textContent = "Incorrect password. Try again.";
             messageDiv.style.color = "red";
         }
     });
+});
+
     document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
@@ -333,7 +331,6 @@ outline: none;
     });
 });
 
-});
 
   </script>
   <div class="mfi" style="position: fixed;
