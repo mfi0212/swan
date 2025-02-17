@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lendlink | User</title>
   <link rel="icon" type="image/x-icon" href="linklogo.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <style>
    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
       * {
@@ -142,39 +140,19 @@ button:hover{
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    // Retrieve user details from localStorage
+    // Retrieve the user details from localStorage
     const userDetails = JSON.parse(localStorage.getItem('userDetails'));
 
     if (userDetails) {
-        console.log("User details found:", userDetails);
-
-        // Get elements safely
-        const userNameElem = document.getElementById('userName');
-        const amountTakenElem = document.getElementById('amountTaken');
-        const daysPassedElem = document.getElementById('daysPassed');
-        const interestAmountElem = document.getElementById('interestAmount');
-        const totalAmountElem = document.getElementById('totalAmount');
-
-        // Check if elements exist before updating to prevent errors
-        if (userNameElem) userNameElem.textContent = userDetails.name;
-        if (amountTakenElem) amountTakenElem.textContent = formatCurrency(userDetails.plan);
-        if (daysPassedElem) daysPassedElem.textContent = userDetails.daysElapsed;
-        if (interestAmountElem) interestAmountElem.textContent = formatCurrency(userDetails.additionalAmount);
-        if (totalAmountElem) totalAmountElem.textContent = formatCurrency(userDetails.totalAmount);
+      document.getElementById('userName').textContent = userDetails.name;
+      document.getElementById('amountTaken').textContent = userDetails.plan;
+      document.getElementById('daysPassed').textContent = userDetails.daysElapsed;
+      document.getElementById('interestAmount').textContent = userDetails.additionalAmount;
+      document.getElementById('totalAmount').textContent = userDetails.totalAmount;
     } else {
-        console.warn("No user data found in localStorage.");
-        alert("No user data found. Redirecting...");
-        window.location.href = "home.html";
-    }
-});
-
-// Function to format numbers as currency (e.g., 6,000 instead of 6000)
-function formatCurrency(amount) {
-    return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(amount);
-}
-
-
+            alert("No user data found. Redirecting...");
+            window.location.href = "home.html";
+        } 
     document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
 
