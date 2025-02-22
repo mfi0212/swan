@@ -127,52 +127,54 @@ button:hover{
   <div class="options" style="position: fixed;
   top: 10px;
   left: 10px;">
-    <button style="padding: 10px 15px"><a href="home.html">< Home</a> </button>
-  </div>
-  <div class="user-details-container">
+    <button style="padding: 10px 15px"><a href="home.html">< Home</a></button>
+</div>
+<div class="user-details-container">
     <h1>Borrower details</h1>
     <p><strong>Name:</strong> <span id="userName"></span></p>
     <p><strong>Amount Taken:</strong> ₹<span id="amountTaken"></span></p>
     <p><strong>Days Passed:</strong> <span id="daysPassed"></span></p>
+    <p><strong>Days Taken For:</strong> <span id="daysTakenFor"></span></p> <!-- Added this -->
     <p><strong>Interest till today:</strong> ₹<span id="interestAmount"></span></p>
     <p style="background-color: white;"><strong>Total Amount to return:</strong> ₹<span id="totalAmount"></span></p>
     <div class="options">
       <button><a href="https://forms.gle/PjssBodtdo9iW1xn7">Take money</a></button>
     </div>
-  </div>
+</div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Retrieve user details from localStorage
+    const userDetails = localStorage.getItem('userDetails');
 
-    if (userDetails) {
-        document.getElementById('userName').textContent = userDetails.name;
-        document.getElementById('amountTaken').textContent = userDetails.plan;
-        document.getElementById('daysPassed').textContent = userDetails.daysElapsed;
-        document.getElementById('interestAmount').textContent = userDetails.additionalAmount;
-        document.getElementById('totalAmount').textContent = userDetails.totalAmount;
-    } else {
+    if (!userDetails) {
+        console.warn("No user data found in localStorage.");
         alert("No user data found. Redirecting...");
         window.location.href = "home.html";
+        return;
     }
+
+    const parsedDetails = JSON.parse(userDetails);
+    console.log("User details found:", parsedDetails);
+
+    updateUI(parsedDetails);
 });
 
-    document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+// Function to update UI
+function updateUI(userDetails) {
+    document.getElementById('userName').textContent = userDetails.name || "N/A";
+    document.getElementById('amountTaken').textContent = formatCurrency(userDetails.plan);
+    document.getElementById('daysPassed').textContent = userDetails.daysElapsed || "0";
+    document.getElementById('daysTakenFor').textContent = userDetails.takenFor || "N/A"; // Added this
+    document.getElementById('interestAmount').textContent = formatCurrency(userDetails.additionalAmount);
+    document.getElementById('totalAmount').textContent = formatCurrency(userDetails.totalAmount);
+}
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+// Function to format numbers as currency (e.g., 6,000 instead of 6000)
+function formatCurrency(amount) {
+    return amount ? new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(amount) : "0";
+}
+</script>
 
   </script>
     <div class="mfi" style="position: fixed;
