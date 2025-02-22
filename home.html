@@ -229,21 +229,24 @@ outline: none;
             password: "Mahesh888*",
             plan: 6000,
             dailyRate: 45,
-            startDate: "2025-02-03" // Corrected date format
+            startDate: "2025-02-03",
+            takenFor: 30
         },
         {
-            name: "Charan sai",
+            name: "Charan Sai",
             password: "4800",
             plan: 5000,
             dailyRate: 100,
-            startDate: "2025-02-17"
+            startDate: "2025-02-17",
+            takenFor: 10
         },
         {
-            name: "Charan sai",
+            name: "Charan Sai",
             password: "1818",
             plan: 5000,
             dailyRate: 0,
-            startDate: "2025-02-18"
+            startDate: "2025-02-18",
+            takenFor: 10
         }
     ];
 
@@ -254,7 +257,6 @@ outline: none;
     const messageDiv = document.getElementById('message');
     const verifyButton = document.getElementById('verifyButton');
 
-    // Debugging logs
     console.log("Script loaded successfully");
 
     // Open modal when clicking account icon
@@ -286,7 +288,7 @@ outline: none;
             const currentDate = new Date();
             const currentUTC = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
 
-            // Parse startDate in a way that works across all devices (including mobile)
+            // Parse startDate correctly
             const startDateParts = user.startDate.split("-");
             const startDateUTC = new Date(Date.UTC(
                 parseInt(startDateParts[0]), // Year
@@ -307,6 +309,7 @@ outline: none;
             const totalAmount = user.plan + additionalAmount;
 
             console.log("Total Amount Owed:", totalAmount);
+            console.log("Taken For (days):", user.takenFor);
 
             // Store user details in localStorage
             localStorage.setItem('userDetails', JSON.stringify({
@@ -314,7 +317,8 @@ outline: none;
                 plan: user.plan,
                 daysElapsed: daysElapsed,
                 additionalAmount: additionalAmount,
-                totalAmount: totalAmount
+                totalAmount: totalAmount,
+                takenFor: user.takenFor // Added this
             }));
 
             // Delay redirect to ensure data is stored properly
@@ -327,6 +331,7 @@ outline: none;
         }
     });
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
