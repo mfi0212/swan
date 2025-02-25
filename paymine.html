@@ -16,6 +16,7 @@
             height: 100vh;
             background-color: #f4f4f4;
             text-align: center;
+    line-height: 25px;
         }
         table {
             width: 100%;
@@ -37,6 +38,8 @@
             margin: 40px;
     font-size: 14px;
     color: #000000;
+    width: 100%;
+    max-width: 800px;
         }
     </style>
 </head>
@@ -47,7 +50,7 @@
 ">
         Paymine
     </div>
-        <p class="info">We pay your interest. Simply take a plan and apply for the amount you are taking.</p>
+        <p class="info">We pay the interest of yours first then you can pay the interest along with the amount while returing.</p>
     <table>
         <tr>
             <th>Plan cost</th>
@@ -66,13 +69,31 @@
             <td>4 amounts</td>
         </tr>
     </table>
-    <p class="info">We will help you to pay interest payments based on the plan you select in paylater. We pay the interest of yours, allowing you to pay the interest along with the amount.</p>
+    <p class="info"><strong>EXAMPLE:</strong> If you take 5000₹ from any MFI services, You have to pay the interest first but you want amount with out cutting, Then if you take a 1 amount plan with 119₹ from <strong>Paymine</strong> we will pay your interest for 1 amount then you can pay interest later with amount.</p>
     <p style="    background: black;
     color: white;
     padding: 10px;
-    font-size: 12px;">NOTE: You have to pay to take a plan</p>
+    font-size: 12px;">NOTE: You have to pay first to take a plan</p>
     <div class="option">
         <a href="https://forms.gle/tcvhD84vJEraaXB57">Apply</a>
     </div>
+    <script>
+                document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+        
+            // Show custom menu on right-click
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                customMenu.style.display = "block";
+                customMenu.style.top = `${event.pageY}px`;
+                customMenu.style.left = `${event.pageX}px`;
+            });
+        
+            // Hide the menu when clicking elsewhere
+            document.addEventListener("click", () => {
+                customMenu.style.display = "none";
+            });
+        });
+            </script>
 </body>
 </html>
