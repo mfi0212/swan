@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STO | User</title>
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+        body {
+            background: rgb(0, 0, 0);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 90%;
+            width: 335px;
+            position: fixed;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            position: fixed;
+            color: #ffffff;
+            top: 5px;
+            left: 15px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background: rgb(40 40 40);
+            padding: 20px;
+        }
+
+        .input-container input {
+            flex: 1;
+            min-width: 150px;
+            padding: 8px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            
+            background: transparent;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input::placeholder {
+            color: rgb(223, 223, 223);
+        }
+
+        input:focus {
+            border-color: #ffffff;
+        }
+
+        .button {
+            padding: 8px 15px;
+            background-color: #ffffff;
+            border: none;
+            color: black;
+            
+            cursor: pointer;
+            font-weight: 400;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background-color: rgba(66, 66, 66, 0.49);
+            color: white;
+        }
+
+        /* Popup Modal */
+        .modal {
+            display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 350px;
+    background: rgb(37 37 37);
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 8px 100em rgb(0 0 0 / 78%);
+    line-height: 35px;
+        }
+
+        .modal h4 {
+            text-align: center;
+            border-bottom: solid 1px #ffffff;
+            padding-bottom: 10px;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .modal p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .modal strong {
+            color: #00ceff;
+            font-weight: 400;
+            font-size: 15px;
+        }
+
+        .close-btn {
+            position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+    background: transparent;
+    border: none;
+        }
+
+        .options a {
+            position: fixed;
+            top: 10px;
+            right: 5px;
+            font-size: 11px;
+            background: rgb(40 40 40);
+            padding: 5px 8px;
+           
+            color: #d9d9d9;
+            text-decoration: none;
+        }
+
+        .fro {
+            position: fixed;
+            bottom: 10px;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.57);
+        }
+    </style>
+</head>
+<body>
+    <div class="options">
+        <a href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
+        <a style="position: fixed; right: 65px;" href="https://forms.gle/2voLBF9jZ4Hc1ARRA">Take money</a>
+    </div>
+    <div class="fro">From BS/MFI</div>
+    <div class="logo">
+        <h6 style="position: fixed;
+        top: 35px;
+        left: 15px;">Short term offers</h6>
+        <h1>STO</h1>
+    </div>
+    <div class="container">
+        <img width="100%" src="offer.jpg" alt="">
+        <p style="margin: 10px;
+        background: #ffffff;
+        color: black;
+        padding: 5px;
+        border-radius: 1000px;
+        font-weight: 700;
+        text-align: center;">Valid</p>
+        <div class="input-container">
+            <input type="text" id="password" placeholder="Enter Password">
+            <button class="button" onclick="verifyUser()">Search</button>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="userModal" class="modal">
+        <button class="close-btn" onclick="closeModal()">×</button>
+        <div id="userDetails"></div>
+    </div>
+
+    <script>
+        function verifyUser() {
+            var password = document.getElementById('password').value;
+            var userDatabase = {
+                "m": { name: "Laxman", amount: 15000, takenDate: "2025-02-13", takenFor: 30, dailyInterest: 85 },
+            };
+
+            if (userDatabase[password]) {
+                var user = userDatabase[password];
+                var takenDate = new Date(user.takenDate);
+                var today = new Date();
+                var daysPassed = Math.ceil((today - takenDate) / (1000 * 60 * 60 * 24));
+                var totalInterest = daysPassed * user.dailyInterest;
+                var totalAmount = user.amount + totalInterest;
+
+                document.getElementById('userDetails').innerHTML = `
+                    <h4>Borrower Details</h4>
+                    <p><strong>Name:</strong> ${user.name}</p>
+                    <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
+                    <p><strong>Days Passed:</strong> ${daysPassed}</p>
+                    <p><strong>Taken For:</strong> ${user.takenFor} days</p>
+                    <p><strong>Interest Till Today:</strong> ${totalInterest}rs</p>
+                    <p><strong>Total Amount to Return:</strong> ${totalAmount}rs</p>
+                `;
+                document.getElementById('userModal').style.display = 'block';
+            } else {
+                alert("Invalid password!");
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('userModal').style.display = 'none';
+        }
+
+//           document.addEventListener("DOMContentLoaded", () => {
+//     const customMenu = document.querySelector(".custom-menu");
+
+//     // Show custom menu on right-click
+//     document.addEventListener("contextmenu", (event) => {
+//         event.preventDefault();
+//         customMenu.style.display = "block";
+//         customMenu.style.top = `${event.pageY}px`;
+//         customMenu.style.left = `${event.pageX}px`;
+//     });
+
+//     // Hide the menu when clicking elsewhere
+//     document.addEventListener("click", () => {
+//         customMenu.style.display = "none";
+//     });
+// });
+    </script>
+</body>
+</html>
