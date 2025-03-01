@@ -160,8 +160,7 @@
 </head>
 <body>
     <div class="options">
-        <a href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
-        <a style="position: fixed; right: 65px;" href="https://forms.gle/2voLBF9jZ4Hc1ARRA">Take money</a>
+        <a style="position: fixed; right: 5px;" href="https://forms.gle/2voLBF9jZ4Hc1ARRA">Take money</a>
     </div>
     <div class="fro">From BS/MFI</div>
     <div class="logo">
@@ -225,22 +224,22 @@
             document.getElementById('userModal').style.display = 'none';
         }
 
-//           document.addEventListener("DOMContentLoaded", () => {
-//     const customMenu = document.querySelector(".custom-menu");
+          document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
 
-//     // Show custom menu on right-click
-//     document.addEventListener("contextmenu", (event) => {
-//         event.preventDefault();
-//         customMenu.style.display = "block";
-//         customMenu.style.top = `${event.pageY}px`;
-//         customMenu.style.left = `${event.pageX}px`;
-//     });
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
 
-//     // Hide the menu when clicking elsewhere
-//     document.addEventListener("click", () => {
-//         customMenu.style.display = "none";
-//     });
-// });
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
     </script>
 </body>
 </html>
