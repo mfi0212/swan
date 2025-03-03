@@ -181,8 +181,8 @@
         <img width="100%" src="offer.png" alt=""
 
 
-        style="    filter: blur(6px);">
-        <p>Offer Closed</p>
+        style="    filter: blur(0px);">
+        <p>Offer Valid</p>
 
 
 
@@ -202,6 +202,7 @@
         function verifyUser() {
             var password = document.getElementById('password').value;
             var userDatabase = {
+                "Cherry@1": { name: "Deepak", amount: 5000, takenDate: "2025-3-2", takenFor: 20, dailyInterest: 45 },
                 "Deepak@11": { name: "Deepak", amount: 2000, takenDate: "2025-2-21", takenFor: 15, dailyInterest: 40 },
                 "Mahesh888*": { name: "Mahesh M", amount: 5000, takenDate: "2025-3-2", takenFor: 30, dailyInterest:33.5 },
             };
@@ -233,22 +234,22 @@
             document.getElementById('userModal').style.display = 'none';
         }
 
-//           document.addEventListener("DOMContentLoaded", () => {
-//     const customMenu = document.querySelector(".custom-menu");
+          document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
 
-//     // Show custom menu on right-click
-//     document.addEventListener("contextmenu", (event) => {
-//         event.preventDefault();
-//         customMenu.style.display = "block";
-//         customMenu.style.top = `${event.pageY}px`;
-//         customMenu.style.left = `${event.pageX}px`;
-//     });
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
 
-//     // Hide the menu when clicking elsewhere
-//     document.addEventListener("click", () => {
-//         customMenu.style.display = "none";
-//     });
-// });
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
     </script>
 </body>
 </html>
