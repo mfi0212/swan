@@ -21,16 +21,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             padding: 20px;
-            overflow: hidden;
         }
 
         .container {
             text-align: center;
-            max-width: 90%;
-            width: 335px;
-            position: fixed;
+    width: 335px;
+    line-height: 40px;
+    margin: 60px 0px;
         }
 
         h1 {
@@ -49,7 +47,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            background: rgb(40 40 40);
+            background: linear-gradient(45deg, #121212, #3a3a3a);
             padding: 15px;
         }
 
@@ -156,13 +154,39 @@
             font-size: 9px;
             color: rgba(255, 255, 255, 0.57);
         }
+        h2 {
+    font-weight: 600;
+    border-bottom: solid 1px;
+}
         .container p{
             margin: 10px 0px;
     background: #ffffff;
     color: black;
-    padding: 5px;
     font-weight: 600;
     text-align: center;
+        }
+        .offer-container {
+            padding: 20px;
+    max-width: 400px;
+    margin: 10% auto;
+    background: linear-gradient(45deg, #3a3a3a, #121212);
+    line-height: 40px;
+        }
+        .offer-button {
+            background-color: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: 400;
+        }
+        .offer-container p{
+            background-color: transparent;
+    color: #a4a4a4;
+    font-weight: 100;
+    line-height: 25px;
+    font-size: 15px;
+    padding: 9px;
         }
     </style>
 </head>
@@ -178,6 +202,13 @@
         <h1>STO</h1>
     </div>
     <div class="container">
+        <div class="offer-container">
+            <h2>Introducing Pre-saver!</h2>
+            <p>By Pre-saver, You can pre-save the upcoming next offer.</p>
+            <p>For ₹139 now to automatically secure the next upcoming offers before it goes public.</p>
+            <p>Never miss any offer again!</p>
+            <a href="#" class="offer-button">Pre-save now</a>
+        </div>
         <img width="100%" src="offer.png" alt=""
 
 
