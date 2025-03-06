@@ -218,8 +218,8 @@
         <img width="100%" src="offer.png" alt=""
 
 
-        style="filter: blur(6px);">
-        <p>Offer Closed</p>
+        style="filter: blur(0px);">
+        <p>Offer Valid</p>
 
 
 
@@ -236,13 +236,13 @@
     </div>
 
     <script>
-        function verifyUser() {
+       function verifyUser() {
     var password = document.getElementById('password').value;
     var userDatabase = {
-        "Cherry@1": { name: "Deepak", amount: 5000, takenDate: "2025-3-2", returnDate: "2025-3-22", interest: 600 },
-        "Deepak@11": { name: "Deepak", amount: 2000, takenDate: "2025-2-20", returnDate: "2025-3-6", interest: 650 },
-        "Mahesh888*": { name: "Mahesh M", amount: 5000, takenDate: "2025-3-2", returnDate: "2025-4-1", interest: 1000 },
-        "8400": { name: "Charan sai", amount: 5000, takenDate: "2025-3-4", returnDate: "2025-3-14", interest: 900 },
+        "Cherry@1": { name: "Deepak", amount: 5000, takenDate: "02-03-2025", returnDate: "22-03-2025", interest: 600 },
+        "Deepak@11": { name: "Deepak", amount: 2000, takenDate: "06-03-2025", returnDate: "06-04-2025", interest: 650 },
+        "Mahesh888*": { name: "Mahesh M", amount: 5000, takenDate: "02-03-2025", returnDate: "01-04-2025", interest: 1000 },
+        "8400": { name: "Charan sai", amount: 5000, takenDate: "04-03-2025", returnDate: "14-03-2025", interest: 900 },
     };
 
     if (userDatabase[password]) {
@@ -265,6 +265,7 @@
 function closeModal() {
     document.getElementById('userModal').style.display = 'none';
 }
+
 
 
           document.addEventListener("DOMContentLoaded", () => {
