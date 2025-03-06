@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>STO | User</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -205,8 +206,8 @@
     <div class="container">
         <div class="offer-container">
             <h2>Introducing Pre-saver!</h2>
-            <p>By Pre-saver program, You can buy the upcoming offers.</p>
-            <p>For ₹149 now you can pre-save the next offers before it goes public.</p>
+            <p>By Pre-saver program, You can buy the upcoming next offer.</p>
+            <p>For ₹149 now you can pre-save the next upcoming offers before it goes public.</p>
             <p style="    color: #00b6ff;
             font-weight: 600;
             font-size: 15px;
@@ -238,7 +239,7 @@
             var password = document.getElementById('password').value;
             var userDatabase = {
                 "Cherry@1": { name: "Deepak", amount: 5000, takenDate: "2025-3-2", takenFor: 20, dailyInterest: 45 },
-                "Deepak@11": { name: "Deepak", amount: 2000, takenDate: "2025-2-20", takenFor: 15, dailyInterest: 40 },
+                "Deepak@11": { name: "Deepak", amount: 2000, takenDate: "2025-2-21", takenFor: 15, dailyInterest: 40 },
                 "Mahesh888*": { name: "Mahesh M", amount: 5000, takenDate: "2025-3-2", takenFor: 30, dailyInterest:33.5 },
                 "8400": { name: "Charan sai", amount: 5000, takenDate: "2025-3-4", takenFor: 10, dailyInterest:90 },
             };
@@ -255,14 +256,14 @@
                     <h4>Borrower Details</h4>
                     <p><strong>Name:</strong> ${user.name}</p>
                     <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
-                    <p><strong>Days Passed:</strong> ${daysPassed}</p>
+                    <p><strong>Days Passed:</strong> ${daysPassed} days</p>
                     <p><strong>Taken For:</strong> ${user.takenFor} days</p>
-                    <p><strong>Interest Till Today:</strong> ${totalInterest}rs</p>
+                    <p><strong>Interest till Today:</strong> ${totalInterest}rs</p>
                     <p><strong>Total Amount to Return:</strong> ${totalAmount}rs</p>
                 `;
                 document.getElementById('userModal').style.display = 'block';
             } else {
-                alert("Invalid password!");
+                alert("Amount returned (or) Invalid password!");
             }
         }
 
