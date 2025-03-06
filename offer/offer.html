@@ -236,40 +236,35 @@
 
     <script>
         function verifyUser() {
-            var password = document.getElementById('password').value;
-            var userDatabase = {
-                "Cherry@1": { name: "Deepak", amount: 5000, takenDate: "2025-3-2", takenFor: 20, dailyInterest: 45 },
-                "Deepak@11": { name: "Deepak", amount: 2000, takenDate: "2025-2-21", takenFor: 15, dailyInterest: 27 },
-                "Mahesh888*": { name: "Mahesh M", amount: 5000, takenDate: "2025-3-2", takenFor: 30, dailyInterest:33.5 },
-                "8400": { name: "Charan sai", amount: 5000, takenDate: "2025-3-4", takenFor: 10, dailyInterest:90 },
-            };
+    var password = document.getElementById('password').value;
+    var userDatabase = {
+        "Cherry@1": { name: "Deepak", amount: 5000, takenDate: "2025-3-2", returnDate: "2025-3-22", interest: 600 },
+        "Deepak@11": { name: "Deepak", amount: 2000, takenDate: "2025-2-20", returnDate: "2025-3-6", interest: 400 },
+        "Mahesh888*": { name: "Mahesh M", amount: 5000, takenDate: "2025-3-2", returnDate: "2025-4-1", interest: 1000 },
+        "8400": { name: "Charan sai", amount: 5000, takenDate: "2025-3-4", returnDate: "2025-3-14", interest: 900 },
+    };
 
-            if (userDatabase[password]) {
-                var user = userDatabase[password];
-                var takenDate = new Date(user.takenDate);
-                var today = new Date();
-                var daysPassed = Math.ceil((today - takenDate) / (1000 * 60 * 60 * 24));
-                var totalInterest = daysPassed * user.dailyInterest;
-                var totalAmount = user.amount + totalInterest;
+    if (userDatabase[password]) {
+        var user = userDatabase[password];
 
-                document.getElementById('userDetails').innerHTML = `
-                    <h4>Borrower Details</h4>
-                    <p><strong>Name:</strong> ${user.name}</p>
-                    <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
-                    <p><strong>Days Passed:</strong> ${daysPassed} days</p>
-                    <p><strong>Taken For:</strong> ${user.takenFor} days</p>
-                    <p><strong>Interest till Today:</strong> ${totalInterest}rs</p>
-                    <p><strong>Total Amount to Return:</strong> ${totalAmount}rs</p>
-                `;
-                document.getElementById('userModal').style.display = 'block';
-            } else {
-                alert("Amount returned (or) Invalid password!");
-            }
-        }
+        document.getElementById('userDetails').innerHTML = `
+            <h4>Borrower Details</h4>
+            <p><strong>Name:</strong> ${user.name}</p>
+            <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
+            <p><strong>Taken Date:</strong> ${user.takenDate}</p>
+            <p><strong>Return Date:</strong> ${user.returnDate}</p>
+            <p><strong>Interest:</strong> ${user.interest}rs</p>
+        `;
+        document.getElementById('userModal').style.display = 'block';
+    } else {
+        alert("Amount returned (or) Invalid password!");
+    }
+}
 
-        function closeModal() {
-            document.getElementById('userModal').style.display = 'none';
-        }
+function closeModal() {
+    document.getElementById('userModal').style.display = 'none';
+}
+
 
           document.addEventListener("DOMContentLoaded", () => {
     const customMenu = document.querySelector(".custom-menu");
