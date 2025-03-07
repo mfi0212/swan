@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>STO | User</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -22,7 +25,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
+            letter-spacing: 0.2px;
         }
 
         .container {
@@ -43,27 +47,32 @@
         }
 
         .input-container {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            background: linear-gradient(45deg, #121212, #3a3a3a);
-            padding: 15px;
+            display: flex
+;
+    flex-direction: row;
+    gap: 0px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    position: fixed;
+    bottom: 35px;
+    border-radius: 100px;
+    width: 69%;
+    backdrop-filter: blur(10px);
+    background: #4b4b4b91;
+    max-width: 250px;
         }
 
         .input-container input {
             flex: 1;
-            min-width: 150px;
-            padding: 8px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            
-            background: transparent;
-            color: white;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.3s;
+    min-width: 150px;
+    padding: 8px 15px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
         }
 
         input::placeholder {
@@ -101,12 +110,14 @@
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 350px;
-    background: linear-gradient(195deg, #1f1f1f, #363636);
+    background: #000000b5;
     padding: 20px;
     text-align: left;
-    box-shadow: 0 4px 8px 100em rgb(0 0 0 / 82%);
-    line-height: 35px;
+    box-shadow: 0 4px 8px 100em rgb(0 0 0 / 89%);
+    line-height: 45px;
     border: none;
+    backdrop-filter: blur(100px);
+    border-radius: 14px;
         }
 
         .modal h4 {
@@ -123,9 +134,9 @@
         }
 
         .modal strong {
-            color: #00b6ff;
-            font-weight: 400;
-            font-size: 15px;
+            color: #00cdff;
+    font-weight: 400;
+    font-size: 15px;
         }
 
         .close-btn {
@@ -138,19 +149,28 @@
     background: transparent;
     border: none;
         }
-
+        .offer {
+    padding: 35px;
+    border: solid 1px #232323;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
         .options a {
             position: fixed;
-            top: 10px;
-            right: 5px;
-            font-size: 11px;
-            background: rgb(40 40 40);
-            padding: 5px 8px;
-           
-            color: #d9d9d9;
-            text-decoration: none;
+    top: 10px;
+    right: 5px;
+    font-size: 10px;
+    background: rgb(70 70 70);
+    padding: 5px 15px;
+    color: #d9d9d9;
+    text-decoration: none;
+    border-radius: 100px;
         }
-
+    
+.title {
+    margin: 0px 0px 15px 0px;
+    text-align: justify;
+}
         .fro {
             position: fixed;
             bottom: 10px;
@@ -159,7 +179,6 @@
         }
         h2 {
     font-weight: 600;
-    border-bottom: solid 1px;
 }
         .container p{
             margin: 10px 0px;
@@ -172,7 +191,6 @@
             padding: 15px;
     max-width: 400px;
     margin: 10% auto;
-    background: linear-gradient(45deg, #3a3a3a, #121212);
     line-height: 40px;
         }
         .offer-button {
@@ -195,7 +213,7 @@
 </head>
 <body>
     <div class="options">
-        <a style="position: fixed; right: 5px;" href="https://forms.gle/2voLBF9jZ4Hc1ARRA">Take money</a>
+        <a style="position: fixed; right: 5px;" href="https://forms.gle/2voLBF9jZ4Hc1ARRA">Apply</a>
     </div>
     <div class="fro">From BS/MFI</div>
     <div class="logo">
@@ -206,27 +224,42 @@
     </div>
     <div class="container">
         <div class="offer-container">
-            <h2>Introducing Pre-saver!</h2>
-            <p>By Pre-saver program, You can buy the upcoming next offer.</p>
-            <p>For ₹149 now you can pre-save the next upcoming offers before it goes public.</p>
-            <p style="    color: #00b6ff;
+            <h6 style="color: #8a8a8a;
+    font-weight: 400;">Pre-Saver</h6>
+            <h2>By Pre-saver program</h2>
+            <p>You can buy the upcoming next offer. For ₹149 you can pre-save the next upcoming offers before it goes public.</p>
+            <!-- <p style="    color: #00b6ff;
             font-weight: 600;
             font-size: 15px;
         
-        ">To apply for "Pre-saver" click on <br>"Take Money" option and fill the form now!</p>
+        ">To apply for "Pre-saver" click on <br>"Take Money" option and fill the form now!</p> -->
         </div>
-        <img width="100%" src="offer.png" alt=""
+        <div class="offer">
+            <div class="title">
+                Offer
+            </div>
+            <img width="100%" src="offer.png" alt=""
 
 
-        style="filter: blur(6px);">
-        <p>Offer Closed</p>
-
-
-
-        <div class="input-container">
-            <input type="text" id="password" placeholder="Enter Password">
-            <button class="button" onclick="verifyUser()">Search</button>
+            style="filter: opacity(0.)">
+            <p style="background: transparent;
+            color: white;
+            font-weight: 100;
+            line-height: 20px;
+            font-size: 12px;
+            text-align: left;
+            margin: 20px 0px;">Try to take before the offer closed (or) Use pre-saver to buy the upcoming next offer.</p>
         </div>
+    </div>
+    <div class="input-container">
+        <input type="text" id="password" placeholder="Enter Password" autocomplete="off">
+        <i class="fa-solid fa-arrow-right" onclick="verifyUser()" style="cursor: pointer;
+        font-size: 20px;
+        color: rgb(0, 0, 0);
+        background: #ffffff;
+        padding: 10px 11px;
+        border-radius: 1000px;
+        rotate: 270deg;"></i>
     </div>
 
     <!-- Popup Modal -->
