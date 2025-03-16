@@ -317,9 +317,12 @@
             <p><strong>Interest:</strong> ${user.interest}rs</p>
         `;
         document.getElementById('userModal').style.display = 'block';
-    } else {
-        alert("Invalid password!(or) Try this");
+    } else if(password == 'Mahesh888*' || '8400' || 'Deepak@1'){
+        alert("You can only view your details in Vintage Lender. Redirecting...")
         window.location.href = "https://mfi0212.github.io/MFI/vntglndr";
+    }
+    else{
+        alert("Invalid password!(or) Try this");
     }
 }
 
