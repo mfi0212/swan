@@ -302,10 +302,6 @@
        function verifyUser() {
     var password = document.getElementById('password').value;
     var userDatabase = {
-        "Cherry@1": { name: "Deepak", amount: 5000, takenDate: "02-03-2025", returnDate: "22-03-2025", interest: 600 },
-        "Deepak@111": { name: "Deepak", amount: 2000, takenDate: "11-03-2025", returnDate: "31-03-2025", interest: 300 },
-        "Deepak@11": { name: "Deepak Tallapudi", amount: 2000, takenDate: "06-03-2025", returnDate: "06-04-2025", interest: 650 },
-        "Mahesh888*": { name: "Mahesh M", amount: 5000, takenDate: "02-03-2025", returnDate: "01-04-2025", interest: 1000 },
         "4211": { name: "Chaitanya Harsha ", amount: 3000, takenDate: "11-03-2025", returnDate: "26-03-2025", interest: 800 },
     };
 
@@ -322,7 +318,8 @@
         `;
         document.getElementById('userModal').style.display = 'block';
     } else {
-        alert("Amount returned (or) Invalid password!");
+        alert("Invalid password!(or) Try this");
+        window.location.href = "https://mfi0212.github.io/MFI/vntglndr";
     }
 }
 
