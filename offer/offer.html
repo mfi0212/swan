@@ -27,6 +27,7 @@
             align-items: center;
             padding: 10px;
             letter-spacing: 0.5px;
+            height: 100vh;
         }
 
         .container {
@@ -50,19 +51,22 @@
             display: flex
 ;
     flex-direction: row;
-    gap: 0px;
+    gap: 55px;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    padding: 1px;
     position: fixed;
     bottom: 35px;
     border-radius: 100px;
-    width: 69%;
-    backdrop-filter: blur(10px);
-    background: #4b4b4b91;
-    max-width: 250px;
+    width: 100%;
+    background: #00000000;
+    max-width: 255px;
+    border: solid 1.5px #3f3f3f;
         }
-
+        img {
+            width: 100%;
+            max-width: 450px;
+}
         .input-container input {
             flex: 1;
     min-width: 150px;
@@ -228,13 +232,17 @@
     font-size: 13px;
     padding: 9px;
         }
-
+.input-container a{
+    text-decoration: none;
+    color: white;
+    padding: 6px;
+}
     </style>
 </head>
 <body>
     <div class="options">
         <a style="position: fixed; right: 10px;color: rgb(255, 255, 255);" href="https://mfi0212.github.io/swan/offer/wait">Apply</a>
-        <a style="right: 85px;color: rgb(255, 255, 255);" class="helper-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform">Problem</a>
+        <a style="right: 85px;color: rgb(255, 255, 255);" href="https://mfi0212.github.io/swan/offer/programs">Programs</a>
     </div>
     <div class="fro">By BsLends</div>
     <div class="logo">
@@ -244,45 +252,7 @@
         left: 15px;">Short term offers</h6>
     </div>
     <div class="container">
-        <div class="offer-container">
-            <h6 style="color: #8a8a8a;
-    font-weight: 400;">Pre-Saver</h6>
-            <h2>By Pre-saver</h2>
-            <p>You can buy the upcoming next offer. For ₹149 you can pre-save the next upcoming offers before it goes public.</p>
-            <p style="    color: #00ddff;
-            font-weight: 100;
-            font-size: 13px;
         
-        ">Click on "Apply Now" to pre-save!</p>
-            <p style="    color: #00ddff;
-            font-weight: 100;
-            font-size: 13px;
-        
-        "><a style="text-decoration: none;
-    color: #000000;
-    font-size: 13px;
-    background: white;
-    padding: 4px 20px;
-    border-radius: 100px;
-    font-weight: 400;" href="https://forms.gle/rtcayowFYw48u94PA">Apply Now</a></p>
-        </div>
-        <div class="offer-container">
-            <h6 style="color: #8a8a8a;
-    font-weight: 400;">Delay it</h6>
-            <h2>By Delay it</h2>
-            <p>It was a program by which you can change the returning date.</p>
-            <p style="    color: #00ddff;
-            font-weight: 100;
-            font-size: 13px;
-        
-        "><a style="text-decoration: none;
-    color: #000000;
-    font-size: 13px;
-    background: white;
-    padding: 4px 20px;
-    border-radius: 100px;
-    font-weight: 400;" href="https://mfi0212.github.io/MFI/delayit">Explore</a></p>
-        </div>
         <div class="offer">
             <div class="title">
                 Offer
@@ -303,14 +273,8 @@
         </div>
     </div>
     <div class="input-container">
-        <input type="text" id="password" placeholder="Enter Password" autocomplete="off">
-        <i class="fa-solid fa-arrow-right" onclick="verifyUser()" style="cursor: pointer;
-        font-size: 20px;
-        color: rgb(0, 0, 0);
-        background: #ffffff;
-        padding: 10px 11px;
-        border-radius: 1000px;
-        rotate: 270deg;"></i>
+       <a href="https://mfi0212.github.io/swan/offer/wait">Apply</a>
+       <a href="https://mfi0212.github.io/MFI/accverify">My account</a>
     </div>
 
     <!-- Popup Modal -->
@@ -338,10 +302,8 @@
             <p><strong>Interest:</strong> ${user.interest}rs</p>
         `;
         document.getElementById('userModal').style.display = 'block';
-    } else if(password == 'Mahesh888*' || '8400' || 'Deepak@1'){
-        alert("You can only view your details in Vintage Lender. Redirecting...")
-        window.location.href = "https://mfi0212.github.io/MFI/accverify";
-    }
+    } 
+    
     else{
         alert("Invalid password!(or) Try this");
     }
