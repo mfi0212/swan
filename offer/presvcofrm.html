@@ -65,15 +65,14 @@
         }
         .note {
             margin-top: 20px;
-    font-size: 14px;
-    color: #000000;
-    background-color: #f0f0f0;
+    font-size: 13px;
     padding: 10px;
-
+    text-align: left;
         }
         .success {
-            color: #0029ff;
-    background-color: #e4f0ff;
+            color: #0040ff;
+    font-weight: 500;
+    background-color: #eaf3ff;
         }
         .error {
             color: #ff0000;
@@ -99,7 +98,7 @@
         messageDiv.innerHTML = "Enter the password first!";
         messageDiv.className = "error";
     } else if (password === 'Amma@11') {
-        messageDiv.innerHTML = "Welcome 9550530460, your pre-saved application at 3/21/2025 17:18:40s has been received. We will confirm your pre-saver amount on the 23rd of this month.";
+        messageDiv.innerHTML = "Welcome 9550530460, <br><br> your pre-saved application at 3/21/2025 17:18:40s has been received. <br><br> We will confirm your pre-saver amount on the 23rd of this month.";
         messageDiv.className = "success";
     } else {
         messageDiv.innerHTML = "We don't find your pre-saved application";
