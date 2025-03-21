@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Password Entry</title>
+    <style>
+                @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Red Hat Display", sans-serif;
+        }
+        body {
+            background-color: #f5f6f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #message {
+            margin-top: 20px;
+    font-size: 15px;
+    padding: 10px;
+    text-align: left;
+        }
+        .note {
+            margin-top: 20px;
+    font-size: 14px;
+    color: #000000;
+    background-color: #f0f0f0;
+    padding: 10px;
+
+        }
+        .success {
+            color: #0029ff;
+    background-color: #e4f0ff;
+        }
+        .error {
+            color: #ff0000;
+            background-color: #f9ebea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Secure Password Entry</h2>
+        <input type="password" id="passwordInput" placeholder="Enter your password">
+        <button onclick="checkPassword()">Submit</button>
+        <div id="message"></div>
+        <div class="note">Note: Pay the pre-saver fee once your amount has confirmed.</div>
+    </div>
+
+    <script>
+       function checkPassword() {
+    const password = document.getElementById("passwordInput").value;
+    const messageDiv = document.getElementById("message");
+    
+    if (password.length === 0) {
+        messageDiv.innerHTML = "Enter the password first!";
+        messageDiv.className = "error";
+    } else if (password === 'Amma@11') {
+        messageDiv.innerHTML = "Welcome Deepak Tallapudi, your pre-saved application has been received. We will confirm your pre-saver amount on the 23rd of this month.";
+        messageDiv.className = "success";
+    } else {
+        messageDiv.innerHTML = "We don't find your pre-saved application";
+        messageDiv.className = "error";
+    }
+    
+    // Clear the input field
+    document.getElementById("passwordInput").value = "";
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+    </script>
+</body>
+</html>
