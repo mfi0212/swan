@@ -70,7 +70,7 @@
     text-align: left;
         }
         .success {
-            color: #0040ff;
+            color: #000000;
     font-weight: 500;
     background-color: #eaf3ff;
         }
@@ -79,7 +79,8 @@
             background-color: #f9ebea;
         }
         strong{
-            color: #009608;
+            color: #0044ff;
+    font-weight: 600;
         }
     </style>
 </head>
@@ -100,8 +101,8 @@
         messageDiv.innerHTML = "Enter the password first!";
         messageDiv.className = "error";
     } else if (password === 'Amma@11') {
-        messageDiv.innerHTML = "<p style='color: red;background: #ffd3d3;padding: 11px;'>Welcome 9550530460, <br><br>Your pre-saver application has Declined.!<br><br></p>";
-        // messageDiv.innerHTML = "Welcome 9550530460, <br><br>Your pre-saver application amount for <strong>01-04-2025</strong> is conformed!<br><br> Pre-saver fee : <strong>333.33 Rupees</strong><br><br> Fee paid : <strong>No</strong>";
+        // messageDiv.innerHTML = "<p style='color: red;background: #ffd3d3;padding: 11px;'>Welcome 9550530460, <br><br>Your pre-saver application has Declined.!<br><br></p>";
+        messageDiv.innerHTML = "Welcome <strong>9550530460</strong>, <br><br>Your pre-saver application amount for <strong>01-04-2025</strong> is conformed!<br><br> Pre-saver fee : <strong>319.33 Rupees</strong><br><br> Fee paid : <strong>No</strong>";
         messageDiv.className = "success";
     } else {
         messageDiv.innerHTML = "We don't find your pre-saved application";
@@ -126,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", () => {
         customMenu.style.display = "none";
     });
-});
+// });
     </script>
 </body>
 </html>
