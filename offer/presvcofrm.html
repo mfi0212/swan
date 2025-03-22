@@ -90,7 +90,7 @@
         <input type="password" id="passwordInput" placeholder="Enter your password">
         <button onclick="checkPassword()">Submit</button>
         <div id="message"></div>
-        <div class="note">Note: Pay the pre-saver fee first. Your amount will not be arranged until the fee is paid and conformed.</div>
+        <div class="note">NOTE : Pay the pre-saver fee first. Your amount will not be arranged until the fee is paid and conformed.</div>
     </div>
     <script>
        function checkPassword() {
@@ -101,7 +101,6 @@
         messageDiv.innerHTML = "Enter the password first!";
         messageDiv.className = "error";
     } else if (password === 'Amma@11') {
-        // messageDiv.innerHTML = "<p style='color: red;background: #ffd3d3;padding: 11px;'>Welcome 9550530460, <br><br>Your pre-saver application has Declined.!<br><br></p>";
         messageDiv.innerHTML = "Welcome <strong>9550530460</strong>, <br><br>Your pre-saver application amount for <strong>01-04-2025</strong> is conformed!<br><br> Pre-saver fee : <strong>319.33 Rupees</strong><br><br> Fee paid : <strong>No</strong>";
         messageDiv.className = "success";
     } else {
