@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>STO | User</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
-    
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -32,11 +31,11 @@
 
         .container {
             text-align: center;
-    width: 85%;
-    line-height: 15px;
-    max-width: 650px;
-    position: fixed;
-    top: 100px;
+            width: 85%;
+            line-height: 15px;
+            max-width: 650px;
+            position: fixed;
+            top: 100px;
         }
 
         h1 {
@@ -49,35 +48,34 @@
         }
 
         .input-container {
-            display: flex
-;
-    flex-direction: row;
-    gap: 50px;
-    justify-content: center;
-    align-items: center;
-    padding: 1px;
-    position: fixed;
-    bottom: 35px;
-    border-radius: 100px;
-    width: 100%;
-    background: #00000000;
-    max-width: 300px;
-    border: solid 1.5px #3f3f3f;
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+            padding: 1px;
+            position: fixed;
+            bottom: 35px;
+            border-radius: 100px;
+            width: 100%;
+            background: #00000000;
+            max-width: 300px;
+            border: solid 1.5px #3f3f3f;
         }
         img {
             width: 100%;
             max-width: 450px;
-}
+        }
         .input-container input {
             flex: 1;
-    min-width: 150px;
-    padding: 8px 25px;
-    border: none;
-    background: transparent;
-    color: white;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.3s;
+            min-width: 150px;
+            padding: 8px 25px;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
         }
 
         input::placeholder {
@@ -93,7 +91,6 @@
             background-color: #ffffff;
             border: none;
             color: black;
-            
             cursor: pointer;
             font-weight: 400;
             font-size: 15px;
@@ -105,24 +102,23 @@
             color: white;
         }
 
-        /* Popup Modal */
         .modal {
             display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 350px;
-    background: #000000b5;
-    padding: 20px;
-    text-align: left;
-    box-shadow: 0 4px 8px 100em rgb(0 0 0 / 93%);
-    line-height: 45px;
-    border: solid 2px #1a1a1a;
-    backdrop-filter: blur(50px);
-    border-radius: 14px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 350px;
+            background: #000000b5;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 4px 8px 100em rgb(0 0 0 / 93%);
+            line-height: 45px;
+            border: solid 2px #1a1a1a;
+            backdrop-filter: blur(50px);
+            border-radius: 14px;
         }
 
         .modal h4 {
@@ -134,137 +130,127 @@
         }
 
         .modal p {
-    margin: 10px 0;
-    font-size: 14px;
-    color: #00ddff;
-    font-weight: 400;
-}
+            margin: 10px 0;
+            font-size: 14px;
+            color: #00ddff;
+            font-weight: 400;
+        }
 
         .modal strong {
             color: #ffffff;
-    font-weight: 400;
-    font-size: 14px;
+            font-weight: 400;
+            font-size: 14px;
         }
 
         .close-btn {
             position: fixed;
-    top: 10px;
-    right: 15px;
-    font-size: 25px;
-    cursor: pointer;
-    color: white;
-    background: #cacaca21;
-    border: none;
-    border-radius: 100px;
-    font-weight: 100;
-    width: 36px;
-    height: 36px;
+            top: 10px;
+            right: 15px;
+            font-size: 25px;
+            cursor: pointer;
+            color: white;
+            background: #cacaca21;
+            border: none;
+            border-radius: 100px;
+            font-weight: 100;
+            width: 36px;
+            height: 36px;
         }
         .offer {
             padding: 20px;
-    border: solid 1.5px #292929;
-    border-radius: 15px;
-    margin-bottom: 65px;
-}
+            border: solid 1.5px #292929;
+            border-radius: 15px;
+            margin-bottom: 65px;
+        }
         .options a {
             position: fixed;
-    top: 10px;
-    font-size: 11px;
-    background: rgb(0 0 0);
-    padding: 5px 18px;
-    color: #d9d9d9;
-    text-decoration: none;
-    border-radius: 100px;
-    font-weight: 400;
-    border: solid 1.4px gray;
+            top: 10px;
+            font-size: 11px;
+            background: rgb(0 0 0);
+            padding: 5px 18px;
+            color: #d9d9d9;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 400;
+            border: solid 1.4px gray;
         }
     
-.title {
-    margin: 0px 0px 15px 0px;
-    text-align: justify;
-}
+        .title {
+            margin: 0px 0px 15px 0px;
+            text-align: justify;
+        }
         .fro {
             position: fixed;
-    bottom: 0px;
-    font-size: 9px;
-    color: rgba(255, 255, 255, 0.57);
-    z-index: 0;
-    width: 100%;
-    text-align: center;
-    padding: 13px;
+            bottom: 0px;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.57);
+            z-index: 0;
+            width: 100%;
+            text-align: center;
+            padding: 13px;
         }
         h2 {
             font-weight: 400;
-    text-transform: capitalize;
-    text-decoration: overline 0.1px gray;
-}
-        .container p{
+            text-transform: capitalize;
+            text-decoration: overline 0.1px gray;
+        }
+        .container p {
             margin: 10px 0px;
-    background: #ffffff;
-    color: black;
-    font-weight: 600;
-    text-align: center;
+            background: #ffffff;
+            color: black;
+            font-weight: 600;
+            text-align: center;
         }
         .offer-container {
             max-width: 650px;
-    margin: 10% auto;
-    line-height: 35px;
-    padding: 20px;
-
-    border: solid 1px #000000;
-    border-radius: 15px;
-    margin-bottom: 50px;
-    width: 100%;
-    background: #151515;
+            margin: 10% auto;
+            line-height: 35px;
+            padding: 20px;
+            border: solid 1px #000000;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            width: 100%;
+            background: #151515;
         }
         .offer-button {
             background-color: #ffffff;
-    color: #000000;
-    padding: 10px 20px;
-    text-decoration: none;
-    margin-top: 10px;
-    font-weight: 400;
+            color: #000000;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-weight: 400;
         }
-        .offer-container p{
+        .offer-container p {
             background-color: transparent;
-    color: #a4a4a4;
-    font-weight: 100;
-    line-height: 25px;
-    font-size: 13px;
-    padding: 9px;
+            color: #a4a4a4;
+            font-weight: 100;
+            line-height: 25px;
+            font-size: 13px;
+            padding: 9px;
         }
-.input-container a{
-    text-decoration: none;
-    color: white;
-    padding: 6px;
-}
+        .input-container a {
+            text-decoration: none;
+            color: white;
+            padding: 6px;
+        }
     </style>
 </head>
 <body>
     <div class="options">
         <a style="right: 105px;color: rgb(255, 255, 255);" href="https://mfi0212.github.io/swan/offer/programs">Programs</a>
         <a style="position: fixed; right: 10px;color: rgb(255, 255, 255);" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform">Problem</a>
-        
     </div>
     <div class="fro">By BsLends</div>
     <div class="logo">
         <h1>STO</h1>
-        <h6 style="position: fixed;
-        top: 35px;
-        left: 15px;">Short term offers</h6>
+        <h6 style="position: fixed; top: 35px; left: 15px;">Short term offers</h6>
     </div>
     <div class="container">
-        
         <div class="offer">
             <div class="title">
                 Offer
             </div>
-            <img width="100%" src="offer.png" alt=""
-
-
-            style="filter: blur(0px)">
-
-            
+            <img id="offerImage" width="100%" src="offer.png" alt="">
             <p style="background: transparent;
             color: white;
             font-weight: 100;
@@ -272,11 +258,20 @@
             font-size: 12px;
             text-align: left;
             margin: 20px 0px;">Try to take before the offer closed (or) Use pre-saver to buy the upcoming next offer.</p>
+            <div id="countdown" style="color: #000000;
+            font-size: 12px;
+            margin-top: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 1000px;
+            font-weight: 600;
+            width: 45%;
+            letter-spacing: 0px;"></div>
         </div>
     </div>
     <div class="input-container">
-       <a href="https://mfi0212.github.io/swan/offer/wait">Apply</a>
-       <a href="https://mfi0212.github.io/MFI/accverify">My account</a>
+        <a href="https://mfi0212.github.io/swan/offer/wait">Apply</a>
+        <a href="https://mfi0212.github.io/MFI/accverify">My account</a>
     </div>
 
     <!-- Popup Modal -->
@@ -286,53 +281,64 @@
     </div>
 
     <script>
-       function verifyUser() {
-    var password = document.getElementById('password').value;
-    var userDatabase = {
-        "4211": { name: "Chaitanya Harsha ", amount: 3000, takenDate: "11-03-2025", returnDate: "26-03-2025", interest: 800 },
-    };
+        
+        const offerEndTime = new Date("March 25, 2025 11:00:00").getTime();
 
-    if (userDatabase[password]) {
-        var user = userDatabase[password];
+        // Get the image element and countdown display
+        const offerImage = document.getElementById("offerImage");
+        const countdownElement = document.getElementById("countdown");
 
-        document.getElementById('userDetails').innerHTML = `
-            <h4>Borrower Details</h4>
-            <p><strong>Name:</strong> ${user.name}</p>
-            <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
-            <p><strong>Taken Date:</strong> ${user.takenDate}</p>
-            <p><strong>Return Date:</strong> ${user.returnDate}</p>
-            <p><strong>Interest:</strong> ${user.interest}rs</p>
-        `;
-        document.getElementById('userModal').style.display = 'block';
-    } 
-    
-    else{
-        alert("Invalid password!(or) Try this");
-    }
-}
+        // Update the countdown every second
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const timeLeft = offerEndTime - now;
 
-function closeModal() {
-    document.getElementById('userModal').style.display = 'none';
-}
+            // Calculate time components
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
+            // Display the countdown
+            countdownElement.innerHTML = `Offer ends in: ${hours}h ${minutes}m ${seconds}s`;
 
+            // Check if the offer is still active
+            if (timeLeft > 0) {
+                // Offer is active - remove blur
+                offerImage.style.filter = "blur(0px)";
+            } else {
+                // Offer has ended - apply blur
+                offerImage.style.filter = "blur(100px)";
+                countdownElement.innerHTML = "Offer has ended";
+                clearInterval(timer); // Stop the timer
+            }
+        }, 1000);
 
-          document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+        function verifyUser() {
+            var password = document.getElementById('password').value;
+            var userDatabase = {
+                "4211": { name: "Chaitanya Harsha ", amount: 3000, takenDate: "11-03-2025", returnDate: "26-03-2025", interest: 800 },
+            };
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+            if (userDatabase[password]) {
+                var user = userDatabase[password];
+                document.getElementById('userDetails').innerHTML = `
+                    <h4>Borrower Details</h4>
+                    <p><strong>Name:</strong> ${user.name}</p>
+                    <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
+                    <p><strong>Taken Date:</strong> ${user.takenDate}</p>
+                    <p><strong>Return Date:</strong> ${user.returnDate}</p>
+                    <p><strong>Interest:</strong> ${user.interest}rs</p>
+                `;
+                document.getElementById('userModal').style.display = 'block';
+            } else {
+                alert("Invalid password!(or) Try this");
+            }
+        }
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+        function closeModal() {
+            document.getElementById('userModal').style.display = 'none';
+        }
     </script>
 </body>
 </html>
