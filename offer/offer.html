@@ -265,7 +265,7 @@
             padding: 10px;
             border-radius: 1000px;
             font-weight: 600;
-            width: 45%;
+            width: 65%;
             letter-spacing: 0px;"></div>
         </div>
     </div>
@@ -339,6 +339,22 @@
         function closeModal() {
             document.getElementById('userModal').style.display = 'none';
         }
+        document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
     </script>
 </body>
 </html>
