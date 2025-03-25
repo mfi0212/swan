@@ -26,215 +26,213 @@
             margin: 0;
             letter-spacing: 0.2px;
         }
-        /* Timer styling */
         .timer {
             background-color: #000000;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 14px;
-    position: fixed;
-    top: 10px;
-    color: #999999;
-    font-weight: 600;
-    border: solid 1.5px gray;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            position: fixed;
+            top: 10px;
+            color: #999999;
+            font-weight: 600;
+            border: solid 1.5px gray;
         }
-        /* Button styling */
         .button {
             background-color: #0042ff;
-    color: #ffffff;
-    padding: 8px 30px;
-    margin: 10px;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    font-size: 15px;
-    transition: background-color 0.3s;
-    font-weight: 400;
+            color: #ffffff;
+            padding: 8px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.3s;
+            font-weight: 400;
         }
         .button:hover {
-            background-color: #0033ff; /* Darker blue on hover */
+            background-color: #0033ff;
         }
         .button.disabled {
             background-color: #555;
             cursor: not-allowed;
         }
-        /* Text styling */
-        .text {
-            font-size: 14px;
-            margin: 10px;
-            color: #ccc; /* Lighter text color */
-        }
-        /* Note styling */
         .note {
             background-color: #000000;
-    padding: 8px 20px;
-    margin: 10px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-style: italic;
-    color: #00edff;
-    text-align: center;
-    font-weight: 100;
-    border: solid 1px #5b5b5b;
+            padding: 8px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-style: italic;
+            color: #00edff;
+            text-align: center;
+            font-weight: 100;
+            border: solid 1px #5b5b5b;
         }
-        /* Cooldown timer styling */
         .cooldown-timer {
             background-color: #333;
             padding: 8px 16px;
             margin: 10px;
             border-radius: 5px;
             font-size: 14px;
-            display: none; /* Hidden by default */
+            display: none;
         }
         .cooldown-timer.active {
             display: block;
         }
-        /* Slot count styling */
-        .slot-count {
-            background-color: #333;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            text-align: center;
-        }
         .fro {
             position: fixed;
-    bottom: 0px;
-    font-size: 9px;
-    color: rgba(255, 255, 255, 0.57);
-    background: black;
-    z-index: 0;
-    width: 100%;
-    text-align: center;
-    padding: 13px;
+            bottom: 0px;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.57);
+            background: black;
+            z-index: 0;
+            width: 100%;
+            text-align: center;
+            padding: 13px;
         }
-       
     </style>
 </head>
 <body>
-<!--     <div class="timer" id="timer">Offer valid for 10 min - 15 min based on the slots available.</div> -->
-    <div class="timer" id="time">Offer valid for 10 min - 15 min based on the slots available.</div>
+    <div class="timer" id="timer">Offer expiring in -- sec</div>
     
     <div style="display: flex; align-items: center;">
         <button class="button" id="formButton" onclick="redirectToForm()">Apply Now</button>
     </div>
     
-    <div class="note" id="clickMessage">Don't click for 2 min if once clicked</div>
-    <div class="cooldown-timer" id="cooldownTimer">Cooldown: 2:00</div>
+    <div class="note" id="clickMessage">Don't click for 50 sec if once clicked</div>
+    <div class="cooldown-timer" id="cooldownTimer">Cooldown: 0:50</div>
     <div class="fro">From BS/MFI</div>
     <script>
         let formButton = document.getElementById('formButton');
         let clickMessage = document.getElementById('clickMessage');
-        let slotMessage = document.getElementById('slotMessage');
-        let slotsDisplay = document.getElementById('slots');
-        let slotsAvailable = 10; // Example slot count
         let timer = document.getElementById('timer');
         let cooldownTimer = document.getElementById('cooldownTimer');
 
-        // Load timer from localStorage or set default
-        let timeLeft = localStorage.getItem('timer') ? parseInt(localStorage.getItem('timer')) : 15 * 60; // 15 minutes in seconds
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-        timer.textContent = `Offer valid for : ${minutes} min ${seconds} sec`;
+        // Time settings in IST (24-hour format) for March 24, 2025
+        const OFFER_START_HOUR_IST = 10; // 10:00 IST
+        const OFFER_START_MINUTE_IST = 20;
+        const OFFER_END_HOUR_IST = 10; // 10:25 IST
+        const OFFER_END_MINUTE_IST = 22;
+        const IST_OFFSET_MINUTES = 330; // IST is UTC+5:30 (5 hours * 60 + 30 minutes)
+        const COOLDOWN_DURATION_MS = 50000; // 50 seconds in milliseconds
+        const OFFER_DATE = new Date('2025-03-24 T00:00:00Z'); // March 24, 2025 UTC
+        const OFFER_START_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_START_HOUR_IST * 3600 + OFFER_START_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC start time
+        const OFFER_END_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_END_HOUR_IST * 3600 + OFFER_END_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC end time
 
         // Load last click timestamp from localStorage
         let lastClickTime = localStorage.getItem('lastClickTime') ? parseInt(localStorage.getItem('lastClickTime')) : 0;
         let canClick = checkCooldown();
         let cooldownInterval;
+        let offerInterval;
 
-        // Check if 2 minutes have passed since the last click
+        // Check if 50 seconds have passed since the last click
         function checkCooldown() {
             if (lastClickTime === 0) return true;
             const timeElapsed = Date.now() - lastClickTime;
-            return timeElapsed >= 120000; // 2 minutes in milliseconds
+            return timeElapsed >= COOLDOWN_DURATION_MS;
         }
 
-        // Update timer
-        function updateTimer() {
-            if (timeLeft <= 0) {
-                timer.textContent = "Valid for : 0 min 0 sec";
-                clearInterval(timerInterval);
-                localStorage.removeItem('timer');
-                return;
-            }
+        // Get current UTC time in seconds since epoch
+        function getUTCSeconds() {
+            return Math.floor(Date.now() / 1000);
+        }
 
-            minutes = Math.floor(timeLeft / 60);
-            seconds = timeLeft % 60;
-            timer.textContent = `Valid for : ${minutes} min ${seconds} sec`;
-            localStorage.setItem('timer', timeLeft);
-            timeLeft--;
+        // Check if current time is within the offer window for March 24, 2025
+        function isOfferValid() {
+            const utcSeconds = getUTCSeconds();
+            return utcSeconds >= OFFER_START_SECONDS_UTC && utcSeconds < OFFER_END_SECONDS_UTC;
+        }
+
+        // Update offer timer
+        function updateOfferTimer() {
+            const utcSeconds = getUTCSeconds();
+            const remainingSeconds = Math.max(0, OFFER_END_SECONDS_UTC - utcSeconds);
+
+            if (remainingSeconds > 0 && utcSeconds >= OFFER_START_SECONDS_UTC) {
+                timer.textContent = `Offer expiring in ${remainingSeconds} sec`;
+                formButton.classList.remove('disabled');
+                formButton.textContent = "Apply Now";
+            } else {
+                timer.textContent = "Offer expired";
+                formButton.classList.add('disabled');
+                formButton.textContent = "Offer Expired";
+                clearInterval(offerInterval);
+            }
         }
 
         // Update cooldown timer
         function updateCooldownTimer() {
             const timeElapsed = Date.now() - lastClickTime;
-            const remainingTime = Math.max(0, 120000 - timeElapsed); // 2 minutes in milliseconds
-            const minutesRemaining = Math.floor(remainingTime / 60000);
-            const secondsRemaining = Math.floor((remainingTime % 60000) / 1000);
+            const remainingTime = Math.max(0, COOLDOWN_DURATION_MS - timeElapsed);
+            const secondsRemaining = Math.floor(remainingTime / 1000);
 
             if (remainingTime > 0) {
-                cooldownTimer.textContent = `Cooldown: ${minutesRemaining}:${secondsRemaining.toString().padStart(2, '0')}`;
+                cooldownTimer.textContent = `Cooldown: 0:${secondsRemaining.toString().padStart(2, '0')}`;
             } else {
                 cooldownTimer.textContent = "Cooldown: 0:00";
                 clearInterval(cooldownInterval);
                 cooldownTimer.classList.remove('active');
                 canClick = true;
-                formButton.classList.remove('disabled');
+                if (isOfferValid()) {
+                    formButton.classList.remove('disabled');
+                    formButton.textContent = "Apply Now";
+                }
                 clickMessage.style.color = "#fff";
-                localStorage.removeItem('lastClickTime'); // Clear after cooldown
+                localStorage.removeItem('lastClickTime');
             }
         }
 
-        let timerInterval = setInterval(updateTimer, 1000);
-
-        // Redirect to Google Forms and enforce 2-minute cooldown
+        // Redirect to Google Forms and enforce 50-second cooldown
         function redirectToForm() {
+            const utcSeconds = getUTCSeconds();
+
+            if (utcSeconds >= OFFER_END_SECONDS_UTC) {
+                alert("The offer has expired (IST).");
+                timer.textContent = "Offer expired";
+                formButton.classList.add('disabled');
+                formButton.textContent = "Offer Expired";
+                clearInterval(offerInterval);
+                return;
+            }
+
+            if (!isOfferValid()) {
+                alert("The offer is not valid yet or has expired (IST).");
+                return;
+            }
+
             if (!canClick) {
                 alert("Wait until the cooldown ends.");
                 return;
             }
 
-            // Redirect to Google Forms (replace with your actual form URL)
             window.location.href = "https://forms.gle/s97PTXytwSTJqSBP8";
 
-            // Disable button and set last click time
             canClick = false;
             formButton.classList.add('disabled');
             clickMessage.style.color = "#ff5555";
             lastClickTime = Date.now();
             localStorage.setItem('lastClickTime', lastClickTime);
 
-            // Show and start cooldown timer
             cooldownTimer.classList.add('active');
-            updateCooldownTimer(); // Initial update
+            updateCooldownTimer();
             cooldownInterval = setInterval(updateCooldownTimer, 1000);
 
-            // Re-enable after 2 minutes (backup)
             setTimeout(() => {
                 canClick = true;
-                formButton.classList.remove('disabled');
-                clickMessage.style.color = "#fff";
-                clearInterval(cooldownInterval);
                 cooldownTimer.classList.remove('active');
+                clearInterval(cooldownInterval);
+                if (isOfferValid()) {
+                    formButton.classList.remove('disabled');
+                    formButton.textContent = "Apply Now";
+                }
+                clickMessage.style.color = "#fff";
                 localStorage.removeItem('lastClickTime');
-            }, 120000); // 2 minutes in milliseconds
-
-            // Decrease slot count
-            slotsAvailable--;
-            slotsDisplay.textContent = slotsAvailable;
-
-            // If slots are finished, disable the button permanently
-            if (slotsAvailable <= 0) {
-                formButton.classList.add('disabled');
-                formButton.onclick = null;
-                slotMessage.style.color = "#ff5555";
-            }
+            }, COOLDOWN_DURATION_MS); // 50 seconds
         }
 
-        // Initial state based on cooldown
+        // Initial state based on cooldown and offer validity
         if (!canClick && lastClickTime > 0) {
             formButton.classList.add('disabled');
             clickMessage.style.color = "#ff5555";
@@ -242,23 +240,33 @@
             cooldownInterval = setInterval(updateCooldownTimer, 1000);
         }
 
-        
-          document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+        if (isOfferValid()) {
+            updateOfferTimer();
+            offerInterval = setInterval(updateOfferTimer, 1000);
+        } else {
+            timer.textContent = "Offer expired";
+            formButton.classList.add('disabled');
+            formButton.textContent = "Offer Expired";
+        }
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+            // Show custom menu on right-click
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            // Hide the menu when clicking elsewhere
+            document.addEventListener("click", () => {
+                if (customMenu) customMenu.style.display = "none";
+            });
+        });
     </script>
 </body>
 </html>
