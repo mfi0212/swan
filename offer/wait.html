@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>STO | User</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Noto+Sans">
+    <title>STO | Waiting</title>
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -17,344 +14,261 @@
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
         }
-
         body {
-            background: rgb(0, 0, 0);
-            color: white;
+            background-color: #000000;
+            color: #fff;
+            font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            padding: 10px;
-            letter-spacing: 0.5px;
+            justify-content: center;
             height: 100vh;
+            margin: 0;
+            letter-spacing: 0.2px;
         }
-
-        .container {
+        .timer {
+            background-color: #000000;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
             text-align: center;
-            width: 85%;
-            line-height: 15px;
-            max-width: 650px;
+            font-size: 14px;
             position: fixed;
-            top: 100px;
+            top: 10px;
+            color: #999999;
+            font-weight: 600;
+            border: solid 1.5px gray;
         }
-
-        h1 {
-            font-size: 24px;
-            font-weight: 500;
-            position: fixed;
-            color: #ffffff;
-            top: 5px;
-            left: 15px;
-        }
-
-        .input-container {
-            display: flex;
-            flex-direction: row;
-            gap: 50px;
-            justify-content: center;
-            align-items: center;
-            padding: 1px;
-            position: fixed;
-            bottom: 35px;
-            border-radius: 100px;
-            width: 100%;
-            background: #00000000;
-            max-width: 300px;
-            border: solid 1.5px #3f3f3f;
-        }
-        img {
-            width: 100%;
-            max-width: 450px;
-        }
-        .input-container input {
-            flex: 1;
-            min-width: 150px;
-            padding: 8px 25px;
-            border: none;
-            background: transparent;
-            color: white;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input::placeholder {
-            color: rgb(223, 223, 223);
-        }
-
-        input:focus {
-            border-color: #ffffff;
-        }
-
         .button {
-            padding: 8px 15px;
-            background-color: #ffffff;
-            border: none;
-            color: black;
-            cursor: pointer;
-            font-weight: 400;
-            font-size: 15px;
-            transition: 0.3s;
-        }
-
-        .button:hover {
-            background-color: rgba(66, 66, 66, 0.49);
-            color: white;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 350px;
-            background: #000000b5;
-            padding: 20px;
-            text-align: left;
-            box-shadow: 0 4px 8px 100em rgb(0 0 0 / 93%);
-            line-height: 45px;
-            border: solid 2px #1a1a1a;
-            backdrop-filter: blur(50px);
-            border-radius: 14px;
-        }
-
-        .modal h4 {
-            text-align: center;
-            border-bottom: solid 1px #ffffff;
-            padding-bottom: 10px;
-            font-weight: 500;
-            font-size: 18px;
-        }
-
-        .modal p {
-            margin: 10px 0;
-            font-size: 14px;
-            color: #00ddff;
-            font-weight: 400;
-        }
-
-        .modal strong {
+            background-color: #0042ff;
             color: #ffffff;
-            font-weight: 400;
-            font-size: 14px;
-        }
-
-        .close-btn {
-            position: fixed;
-            top: 10px;
-            right: 15px;
-            font-size: 25px;
-            cursor: pointer;
-            color: white;
-            background: #cacaca21;
+            padding: 8px 30px;
+            margin: 10px;
             border: none;
             border-radius: 100px;
-            font-weight: 100;
-            width: 36px;
-            height: 36px;
-        }
-        .offer {
-            padding: 20px;
-            border: solid 1.5px #292929;
-            border-radius: 15px;
-            margin-bottom: 65px;
-        }
-        .options a {
-            position: fixed;
-            top: 10px;
-            font-size: 11px;
-            background: rgb(0 0 0);
-            padding: 5px 18px;
-            color: #d9d9d9;
-            text-decoration: none;
-            border-radius: 100px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.3s;
             font-weight: 400;
-            border: solid 1.4px gray;
         }
-    
-        .title {
-            margin: 0px 0px 15px 0px;
-            text-align: justify;
+        .button:hover {
+            background-color: #0033ff;
+        }
+        .button.disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+        .note {
+            background-color: #000000;
+            padding: 8px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-style: italic;
+            color: #00edff;
+            text-align: center;
+            font-weight: 100;
+            border: solid 1px #5b5b5b;
+        }
+        .cooldown-timer {
+            background-color: #333;
+            padding: 8px 16px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+        }
+        .cooldown-timer.active {
+            display: block;
         }
         .fro {
             position: fixed;
             bottom: 0px;
             font-size: 9px;
             color: rgba(255, 255, 255, 0.57);
+            background: black;
             z-index: 0;
             width: 100%;
             text-align: center;
             padding: 13px;
         }
-        h2 {
-            font-weight: 400;
-            text-transform: capitalize;
-            text-decoration: overline 0.1px gray;
-        }
-        .container p {
-            margin: 10px 0px;
-            background: #ffffff;
-            color: black;
-            font-weight: 600;
-            text-align: center;
-        }
-        .offer-container {
-            max-width: 650px;
-            margin: 10% auto;
-            line-height: 35px;
-            padding: 20px;
-            border: solid 1px #000000;
-            border-radius: 15px;
-            margin-bottom: 50px;
-            width: 100%;
-            background: #151515;
-        }
-        .offer-button {
-            background-color: #ffffff;
-            color: #000000;
-            padding: 10px 20px;
-            text-decoration: none;
-            margin-top: 10px;
-            font-weight: 400;
-        }
-        .offer-container p {
-            background-color: transparent;
-            color: #a4a4a4;
-            font-weight: 100;
-            line-height: 25px;
-            font-size: 13px;
-            padding: 9px;
-        }
-        .input-container a {
-            text-decoration: none;
-            color: white;
-            padding: 6px;
-        }
     </style>
 </head>
 <body>
-    <div class="options">
-        <a style="right: 105px;color: rgb(255, 255, 255);" href="https://mfi0212.github.io/swan/offer/programs">Programs</a>
-        <a style="position: fixed; right: 10px;color: rgb(255, 255, 255);" href="https://docs.google.com/forms/d/e/1FAIpQLSdmCSWXieZpqTiUqIVVihwn8vdGl-RyHijMNmovi_Bfc2GRbg/viewform">Problem</a>
+    <div class="timer" id="timer">Offer expiring in -- sec</div>
+    
+    <div style="display: flex; align-items: center;">
+        <button class="button" id="formButton" onclick="redirectToForm()">Apply Now</button>
     </div>
-    <div class="fro">By BsLends</div>
-    <div class="logo">
-        <h1>STO</h1>
-        <h6 style="position: fixed; top: 35px; left: 15px;">Short term offers</h6>
-    </div>
-    <div class="container">
-        <div class="offer">
-            <div class="title">
-                Offer
-            </div>
-            <img id="offerImage" width="100%" src="offer.png" alt="">
-            <p style="background: transparent;
-            color: white;
-            font-weight: 100;
-            line-height: 20px;
-            font-size: 12px;
-            text-align: left;
-            margin: 20px 0px;">Try to take before the offer closed (or) Use pre-saver to buy the upcoming next offer.</p>
-            <div id="countdown" style="color: #ffffff;
-            font-size: 10px;
-            margin-top: 10px;
-            background: #292929;
-            padding: 10px;
-            border-radius: 1000px;
-            font-weight: 400;
-            width: 100%;
-            letter-spacing: 0px;"></div>
-        </div>
-    </div>
-    <div class="input-container">
-        <a href="https://mfi0212.github.io/swan/offer/wait">Apply</a>
-        <a href="https://mfi0212.github.io/MFI/accverify">My account</a>
-    </div>
-
-    <!-- Popup Modal -->
-    <div id="userModal" class="modal">
-        <button class="close-btn" onclick="closeModal()">×</button>
-        <div id="userDetails"></div>
-    </div>
-
+    
+    <div class="note" id="clickMessage">Don't click for 50 sec if once clicked</div>
+    <div class="cooldown-timer" id="cooldownTimer">Cooldown: 0:50</div>
+    <div class="fro">From BS/MFI</div>
     <script>
-        
-        const offerEndTime = new Date("March 25, 2025 11:00:00").getTime();
+        let formButton = document.getElementById('formButton');
+        let clickMessage = document.getElementById('clickMessage');
+        let timer = document.getElementById('timer');
+        let cooldownTimer = document.getElementById('cooldownTimer');
 
-        // Get the image element and countdown display
-        const offerImage = document.getElementById("offerImage");
-        const countdownElement = document.getElementById("countdown");
+        // Time settings in IST (24-hour format) for March 24, 2025
+        const OFFER_START_HOUR_IST = 10; // 10:00 IST
+        const OFFER_START_MINUTE_IST = 30;
 
-        // Update the countdown every second
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const timeLeft = offerEndTime - now;
+        const OFFER_END_HOUR_IST = 11; // 10:25 IST
+        const OFFER_END_MINUTE_IST = 0;
 
-            // Calculate time components
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        const IST_OFFSET_MINUTES = 330; // IST is UTC+5:30 (5 hours * 60 + 30 minutes)
+        const COOLDOWN_DURATION_MS = 50000; // 50 seconds in milliseconds
+        const OFFER_DATE = new Date('2025-03-25T00:00:00Z'); // March 24, 2025 UTC
+        const OFFER_START_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_START_HOUR_IST * 3600 + OFFER_START_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC start time
+        const OFFER_END_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_END_HOUR_IST * 3600 + OFFER_END_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC end time
 
-            // Display the countdown
-            countdownElement.innerHTML = `Offer ends in: ${hours}h ${minutes}m ${seconds}s`;
+        // Load last click timestamp from localStorage
+        let lastClickTime = localStorage.getItem('lastClickTime') ? parseInt(localStorage.getItem('lastClickTime')) : 0;
+        let canClick = checkCooldown();
+        let cooldownInterval;
+        let offerInterval;
 
-            // Check if the offer is still active
-            if (timeLeft > 0) {
-                // Offer is active - remove blur
-                offerImage.style.filter = "blur(0px)";
+        // Check if 50 seconds have passed since the last click
+        function checkCooldown() {
+            if (lastClickTime === 0) return true;
+            const timeElapsed = Date.now() - lastClickTime;
+            return timeElapsed >= COOLDOWN_DURATION_MS;
+        }
+
+        // Get current UTC time in seconds since epoch
+        function getUTCSeconds() {
+            return Math.floor(Date.now() / 1000);
+        }
+
+        // Check if current time is within the offer window for March 24, 2025
+        function isOfferValid() {
+            const utcSeconds = getUTCSeconds();
+            return utcSeconds >= OFFER_START_SECONDS_UTC && utcSeconds < OFFER_END_SECONDS_UTC;
+        }
+
+        // Update offer timer
+        function updateOfferTimer() {
+            const utcSeconds = getUTCSeconds();
+            const remainingSeconds = Math.max(0, OFFER_END_SECONDS_UTC - utcSeconds);
+
+            if (remainingSeconds > 0 && utcSeconds >= OFFER_START_SECONDS_UTC) {
+                timer.textContent = `Offer expiring in ${remainingSeconds} sec`;
+                formButton.classList.remove('disabled');
+                formButton.textContent = "Apply Now";
             } else {
-                // Offer has ended - apply blur
-                offerImage.style.filter = "blur(100px)";
-                countdownElement.innerHTML = "Offer has ended";
-                clearInterval(timer); // Stop the timer
-            }
-        }, 1000);
-
-        function verifyUser() {
-            var password = document.getElementById('password').value;
-            var userDatabase = {
-                "4211": { name: "Chaitanya Harsha ", amount: 3000, takenDate: "11-03-2025", returnDate: "26-03-2025", interest: 800 },
-            };
-
-            if (userDatabase[password]) {
-                var user = userDatabase[password];
-                document.getElementById('userDetails').innerHTML = `
-                    <h4>Borrower Details</h4>
-                    <p><strong>Name:</strong> ${user.name}</p>
-                    <p><strong>Amount Borrowed:</strong> ${user.amount}rs</p>
-                    <p><strong>Taken Date:</strong> ${user.takenDate}</p>
-                    <p><strong>Return Date:</strong> ${user.returnDate}</p>
-                    <p><strong>Interest:</strong> ${user.interest}rs</p>
-                `;
-                document.getElementById('userModal').style.display = 'block';
-            } else {
-                alert("Invalid password!(or) Try this");
+                timer.textContent = "Offer expired";
+                formButton.classList.add('disabled');
+                formButton.textContent = "Offer Expired";
+                clearInterval(offerInterval);
             }
         }
 
-        function closeModal() {
-            document.getElementById('userModal').style.display = 'none';
+        // Update cooldown timer
+        function updateCooldownTimer() {
+            const timeElapsed = Date.now() - lastClickTime;
+            const remainingTime = Math.max(0, COOLDOWN_DURATION_MS - timeElapsed);
+            const secondsRemaining = Math.floor(remainingTime / 1000);
+
+            if (remainingTime > 0) {
+                cooldownTimer.textContent = `Cooldown: 0:${secondsRemaining.toString().padStart(2, '0')}`;
+            } else {
+                cooldownTimer.textContent = "Cooldown: 0:00";
+                clearInterval(cooldownInterval);
+                cooldownTimer.classList.remove('active');
+                canClick = true;
+                if (isOfferValid()) {
+                    formButton.classList.remove('disabled');
+                    formButton.textContent = "Apply Now";
+                }
+                clickMessage.style.color = "#fff";
+                localStorage.removeItem('lastClickTime');
+            }
         }
+
+        // Redirect to Google Forms and enforce 50-second cooldown
+        function redirectToForm() {
+            const utcSeconds = getUTCSeconds();
+
+            if (utcSeconds >= OFFER_END_SECONDS_UTC) {
+                alert("The offer has expired (IST).");
+                timer.textContent = "Offer expired";
+                formButton.classList.add('disabled');
+                formButton.textContent = "Offer Expired";
+                clearInterval(offerInterval);
+                return;
+            }
+
+            if (!isOfferValid()) {
+                alert("The offer is not valid yet or has expired (IST).");
+                return;
+            }
+
+            if (!canClick) {
+                alert("Wait until the cooldown ends.");
+                return;
+            }
+
+            window.location.href = "https://forms.gle/s97PTXytwSTJqSBP8";
+
+            canClick = false;
+            formButton.classList.add('disabled');
+            clickMessage.style.color = "#ff5555";
+            lastClickTime = Date.now();
+            localStorage.setItem('lastClickTime', lastClickTime);
+
+            cooldownTimer.classList.add('active');
+            updateCooldownTimer();
+            cooldownInterval = setInterval(updateCooldownTimer, 1000);
+
+            setTimeout(() => {
+                canClick = true;
+                cooldownTimer.classList.remove('active');
+                clearInterval(cooldownInterval);
+                if (isOfferValid()) {
+                    formButton.classList.remove('disabled');
+                    formButton.textContent = "Apply Now";
+                }
+                clickMessage.style.color = "#fff";
+                localStorage.removeItem('lastClickTime');
+            }, COOLDOWN_DURATION_MS); // 50 seconds
+        }
+
+        // Initial state based on cooldown and offer validity
+        if (!canClick && lastClickTime > 0) {
+            formButton.classList.add('disabled');
+            clickMessage.style.color = "#ff5555";
+            cooldownTimer.classList.add('active');
+            cooldownInterval = setInterval(updateCooldownTimer, 1000);
+        }
+
+        if (isOfferValid()) {
+            updateOfferTimer();
+            offerInterval = setInterval(updateOfferTimer, 1000);
+        } else {
+            timer.textContent = "Offer expired";
+            formButton.classList.add('disabled');
+            formButton.textContent = "Offer Expired";
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+            const customMenu = document.querySelector(".custom-menu");
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+            // Show custom menu on right-click
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+            // Hide the menu when clicking elsewhere
+            document.addEventListener("click", () => {
+                if (customMenu) customMenu.style.display = "none";
+            });
+        });
     </script>
 </body>
 </html>
