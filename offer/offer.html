@@ -260,14 +260,14 @@
             text-align: center;
             margin: 20px 0px;">Try to take before the offer closed (or) Use pre-saver to buy the upcoming next offer.</p>
             <div id="countdown" style="color: #ffffff;
-            font-size: 10px;
+            font-size: 12px;
             margin-top: 10px;
-            background: #292929;
+            background: #ffffff1f;
             padding: 10px;
             border-radius: 1000px;
-            font-weight: 400;
+            font-weight: 200;
             width: 100%;
-            letter-spacing: 0px;"></div>
+            letter-spacing: 0.5px;"></div>
         </div>
     </div>
     <div class="input-container">
@@ -309,7 +309,7 @@
                 offerImage.style.filter = "blur(0px)";
             } else {
                 // Offer has ended - apply blur
-                offerImage.style.filter = "blur(100px)";
+                offerImage.style.filter = "blur(80px)";
                 countdownElement.innerHTML = "Offer has ended";
                 clearInterval(timer); // Stop the timer
             }
