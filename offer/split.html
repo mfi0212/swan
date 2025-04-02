@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator with Fixed Fee Structure</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Red Hat Display", sans-serif;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #8B4513;
+            line-height: 1.6;
+            letter-spacing: 0.4px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 15px;
+        }
+        .instructions {
+            margin: 30px 0px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            border: 2px solid #8B4513;
+            font-size: 14px;
+        }
+        .apply-link {
+            display: block;
+            margin: 20px 0;
+            text-align: center;
+        }
+        a {
+            background-color: #8B4513;
+            color: white;
+            padding: 6px 20px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        a:hover {
+            background-color: #6B2E0E;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #8B4513;
+        }
+        h2 {
+            color: #8B4513;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #8B4513;
+        }
+        p {
+            color: #8B4513;
+            margin: 5px 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #8B4513;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            color: #8B4513;
+        }
+        input:focus {
+            outline: none;
+            border-color: #6B2E0E;
+            box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+        }
+        button {
+            background-color: #8B4513;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #6B2E0E;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border: 2px solid #8B4513;
+            border-radius: 6px;
+            display: none;
+            background-color: #f9f9f9;
+        }
+        #result h3 {
+            color: #8B4513;
+            margin-top: 0;
+            font-size: 20px;
+        }
+        #result p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        span {
+            font-weight: bold;
+            color: #6B2E0E;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1 style="text-align: center; font-style: italic; font-weight: 900; font-size: 40px; margin: 20px;">SPLIT PAY</h1>
+        </div>
+        <div class="instructions">
+            <p><strong>How to Use:</strong> You can now split your repayment into smaller amounts, making it easier to pay back in a way that suits you</p>
+        </div>
+        <div class="apply-link">
+            <a href="#calculator">Apply now</a>
+        </div>
+        <div class="instructions">
+            <p><strong>NOTE :</strong> You Have to pay the fee before applying for the split pay</p>
+        </div>
+        <div class="calculator" id="calculator">
+            <div class="form-group">
+                <label for="loanAmount">Amount you are splitting:</label>
+                <input type="number" id="loanAmount" min="1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="loanTenure">No. of splits you like to do:</label>
+                <input type="number" id="loanTenure" min="1" required>
+            </div>
+
+            <button onclick="calculateEMI()">Calculate</button>
+
+            <div id="result">
+                <h3>Details:</h3>
+                <p>Split amount: ₹<span id="emiResult"></span></p>
+                <p>Split fee: ₹<span id="totalInterest"></span></p>
+                <br>
+                <p>With split fee: ₹<span id="totalAmount"></span></p>
+            </div>
+        </div>
+        <div class="instructions">
+            <p><strong>CUTS IN :</strong> After applying and starting the split payment, the amount will be deducted directly.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateEMI() {
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            const loanTenure = parseFloat(document.getElementById('loanTenure').value);
+
+            // Determine fee per split based on amount range
+            let feePerSplit;
+            if (loanAmount < 1000) {
+                feePerSplit = 49; // Below 1k
+            } else if (loanAmount >= 1000 && loanAmount <= 5000) {
+                feePerSplit = 49; // 1k - 5k
+            } else if (loanAmount > 5000 && loanAmount <= 10000) {
+                feePerSplit = 89; // 5k - 10k
+            } else if (loanAmount > 10000 && loanAmount <= 15000) {
+                feePerSplit = 129; // 10k - 15k
+            } else {
+                feePerSplit = 169; // Above 15k
+            }
+
+            // Calculate total fee (fee per split * number of splits)
+            const totalFee = feePerSplit * loanTenure;
+
+            // Split amount (loan amount divided by number of splits)
+            const splitAmount = loanAmount / loanTenure;
+
+            // Total amount (loan amount + total fee)
+            const totalAmount = loanAmount + totalFee;
+
+            // Display results
+            document.getElementById('emiResult').textContent = splitAmount.toFixed(2);
+            document.getElementById('totalInterest').textContent = totalFee.toFixed(2);
+            document.getElementById('totalAmount').textContent = totalAmount.toFixed(2);
+            document.getElementById('result').style.display = 'block';
+
+            // Validate inputs
+            if (isNaN(splitAmount) || splitAmount <= 0 || isNaN(loanTenure) || loanTenure <= 0) {
+                alert('Enter valid amounts and number of splits!');
+                document.getElementById('result').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
