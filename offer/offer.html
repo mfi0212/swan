@@ -282,45 +282,53 @@
     </div>
 
     <script>
-        
-        const offerEndTime = new Date("March 30, 2025, 20:00:00").getTime();
-
+       const offerStartTime = new Date("April 5, 2025, 18:00:00 GMT+0530").getTime(); // 6:00 PM IST
+       const offerEndTime = new Date("April 5, 2025, 21:00:00 GMT+0530").getTime();    // 9:00 PM IST
+    
         // Get the image element and countdown display
         const offerImage = document.getElementById("offerImage");
         const countdownElement = document.getElementById("countdown");
-
+    
         // Update the countdown every second
         const timer = setInterval(function() {
             const now = new Date().getTime();
-            const timeLeft = offerEndTime - now;
-
-            // Calculate time components
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            // Display the countdown
-            countdownElement.innerHTML = `Offer ends in: ${hours}h ${minutes}m ${seconds}s`;
-
-            // Check if the offer is still active
-            if (timeLeft > 0) {
-                // Offer is active - remove blur
-                offerImage.style.filter = "blur(0px)";
+            let timeLeft;
+    
+            // Check if offer has started
+            if (now < offerStartTime) {
+                // Offer hasn't started yet
+                timeLeft = offerStartTime - now;
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    
+                countdownElement.innerHTML = `Offer starts in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+                offerImage.style.filter = "blur(80px)"; // Blur image until offer starts
+            } else if (now < offerEndTime) {
+                // Offer is active
+                timeLeft = offerEndTime - now;
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    
+                countdownElement.innerHTML = `Offer ends in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+                offerImage.style.filter = "blur(0px)"; // Clear blur when offer is active
             } else {
-                // Offer has ended - apply blur
-                offerImage.style.filter = "blur(80px)";
+                // Offer has ended
                 countdownElement.innerHTML = "Offer has ended";
+                offerImage.style.filter = "blur(80px)"; // Blur image after offer ends
                 clearInterval(timer); // Stop the timer
             }
         }, 1000);
-
+    
         function verifyUser() {
             var password = document.getElementById('password').value;
             var userDatabase = {
                 "4211": { name: "Chaitanya Harsha ", amount: 3000, takenDate: "11-03-2025", returnDate: "26-03-2025", interest: 800 },
             };
-
+    
             if (userDatabase[password]) {
                 var user = userDatabase[password];
                 document.getElementById('userDetails').innerHTML = `
@@ -336,26 +344,29 @@
                 alert("Invalid password!(or) Try this");
             }
         }
-
+    
         function closeModal() {
             document.getElementById('userModal').style.display = 'none';
         }
+
         document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
+            const customMenu = document.querySelector(".custom-menu");
 
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
+            // Show custom menu on right-click
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
 
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+            // Hide the menu when clicking elsewhere
+            document.addEventListener("click", () => {
+                if (customMenu) customMenu.style.display = "none";
+            });
+        });
     </script>
 </body>
 </html>
