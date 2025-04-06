@@ -90,7 +90,7 @@
         <input type="password" id="passwordInput" placeholder="Enter your password">
         <button onclick="checkPassword()">Submit</button>
         <div id="message"></div>
-        <div class="note"><strong style="text-decoration: underline;">NOTE </strong>: Pay the pre-saver fee and interest. Your amount will not be arranged until the fee and interest is paid and conformed.</div>
+        <div class="note"><strong style="text-decoration: underline;">NOTE </strong>: Pay the pre-saver fee and any applicable interest first. Any changes to the actual offer after payment will not affect you. Your amount will not be arranged until the fee is paid and confirmed.</div>
     </div>
     <script>
        function checkPassword() {
@@ -102,7 +102,7 @@
         messageDiv.className = "error";
     } else if (password === 'Mahesh888*') {
         // messageDiv.innerHTML = "<p style='color: red;background: #ffd3d3;padding: 11px;'>Welcome 7075454293, <br><br>Your Pre-Saver application is still under verification. Your verification was confirmed at 12:15 PM.<br><br></p>";
-        messageDiv.innerHTML = "Welcome <strong>7075454293</strong>, <br><br>Your pre-saver application amount on <strong>07-04-2025</strong> is conformed!<br><br> Pre-saver fee : <strong>289.33 Rupees</strong><br><br> Interest and Fee paid : <strong>No</strong> <br><br><hr><br> 8th April offer : <strong>5000rs</strong> for <strong>15 days</strong> for <strong>950rs</strong> at <strong>4pm</strong>";
+        messageDiv.innerHTML = "Welcome <strong>7075454293</strong>, <br><br>Your pre-saver application amount on <strong>07-04-2025</strong> is conformed!<br><br> Pre-saver fee : <strong>289.33 Rupees</strong><br><br> Fee paid : <strong>No</strong><br><br> Interest paid : <strong>No</strong> <br><br><hr><br> 8th April offer : <strong>5000rs</strong> for <strong>15 days</strong> for <strong>950rs</strong> at <strong>4pm</strong>";
         messageDiv.className = "success";
     } else {
         messageDiv.innerHTML = "We don't find your pre-saved application";
