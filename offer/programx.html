@@ -15,17 +15,15 @@
             font-family: "Red Hat Display", sans-serif;
         }
         body {
-            /* background: linear-gradient(105deg, #ff1414, #f63cff); */
-            background: linear-gradient(164deg, #000000, #d3901e);
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    color: #ffffff;
-    font-weight: 600;
-    line-height: 40px;
-    height: 100vh;
+            background: linear-gradient(164deg, #000000, #a1a1a1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: #ffffff;
+            font-weight: 600;
+            line-height: 40px;
+            height: 100vh;
         }
         .offer-container {
             width: 650px;
@@ -48,7 +46,7 @@
         }
         .highlight {
             color: #000000;
-    font-weight: 800;
+            font-weight: 800;
         }
         .fee-list {
             list-style-type: none;
@@ -82,11 +80,11 @@
             margin-top: 15px;
             font-style: italic;
         }
-        a{
+        a {
             text-decoration: none;
             color: white;
         }
-        hr{
+        hr {
             background: #ffffff;
             height: 1.5px;
             border: none;
@@ -97,42 +95,36 @@
 <body>
     <div class="offer-container">
         <p style="text-align: center;
-        color: #be821b;
-        font-weight: 800;
-        font-size: 20px;">Sri Rama Navami </p>
+        color: #a1a1a1;
+        font-weight: 600;
+        font-size: 16px;">Program X</p>
         <div class="offer-title">Special Offer</div>
         <div class="offer-details">
-            <li>You can clear your pending amounts under a <span class="highlight">40-day plan</span>.</li>
-            <li>The interest will be based on the amount you clear.</li>
+            <p>We are offering a <span class="highlight">₹3000</span> with no interest for members who clear more than <span class="highlight">₹10,000</span> today!</p>
             <hr>
             <ul class="fee-list">
-                <li><span class="highlight" style="text-decoration: underline 2px; text-transform: uppercase; font-weight: 800;">Important Note:</span></li>
-                <li>No cash will be given. This offer is only to <span class="highlight">help you to clear your existing dues</span> under this 40 days.</li>
-                <li>Offer starts today at <span class="highlight">8 PM</span> and ends at <span class="highlight">12 PM</span>.</li>
+                <li>For <span class="highlight">10 days</span>: No extra charges (<span class="highlight">₹0</span>)</li>
+                <li>For <span class="highlight">20 days</span>: Have to pay <span class="highlight">₹229</span> extra</li>
+                <li><span class="highlight" style="text-decoration: underline 2px; text-transform: uppercase;">Note :</span> First come, first serve!</li>
+                <li>Tip : Try to clear <span class="highlight">₹10,000</span> before <span class="highlight">2 PM</span> to claim the offer.</li>
             </ul>
             <p style="text-align: center; margin-top: 25px;">Click below option now to</p>
         </div>
-<!--         <button class="button"><a href="https://forms.gle/BNVq36aRapFX1Euv5">Apply for offer</a></button> -->
         <button class="button"><a onclick="alert('Offer closed...')">Apply now</a></button>
     </div>
     <script>
-        
-          document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                customMenu.style.display = "block";
+                customMenu.style.top = `${event.pageY}px`;
+                customMenu.style.left = `${event.pageX}px`;
+            });
+            document.addEventListener("click", () => {
+                customMenu.style.display = "none";
+            });
+        });
     </script>
 </body>
 </html>
