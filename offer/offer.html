@@ -277,10 +277,10 @@
     </div>
     <div class="input-container">
         <a style="border-radius: 20px 0px 0px 20px;
-        background: linear-gradient(89deg, #d400ff, transparent);
+        background: linear-gradient(89deg, #ff00ee, transparent);
         filter: drop-shadow(0px 0px 32px #ff00ee);" href="https://mfi0212.github.io/swan/offer/wait">Apply</a>
-        <a style="border-radius: 0px 20px 20px 0px;    background: linear-gradient(268deg, #002aff, transparent);
-filter: drop-shadow(0px 0px 32px #002aff);" href="https://mfi0212.github.io/MFI/accverify">Account</a>
+        <a style="border-radius: 0px 20px 20px 0px;    background: linear-gradient(268deg, #001aff, transparent);
+filter: drop-shadow(0px 0px 32px #001aff);" href="https://mfi0212.github.io/MFI/accverify">Account</a>
     </div>
 
     <!-- Popup Modal -->
@@ -311,7 +311,7 @@ filter: drop-shadow(0px 0px 32px #002aff);" href="https://mfi0212.github.io/MFI/
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
     
                 countdownElement.innerHTML = `Offer starts in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-                offerImage.style.filter = "blur(80px)"; // Blur image until offer starts
+                offerImage.style.filter = "blur(60px)"; // Blur image until offer starts
             } else if (now < offerEndTime) {
                 // Offer is active
                 timeLeft = offerEndTime - now;
