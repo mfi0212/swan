@@ -116,7 +116,7 @@
 
         const IST_OFFSET_MINUTES = 330; // IST is UTC+5:30 (5 hours * 60 + 30 minutes)
         const COOLDOWN_DURATION_MS = 50000; // 50 seconds in milliseconds
-        const OFFER_DATE = new Date('2025-04-28T00:00:00Z'); // March 24, 2025 UTC
+        const OFFER_DATE = new Date('2025-04-30T00:00:00Z'); // March 24, 2025 UTC
         const OFFER_START_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_START_HOUR_IST * 3600 + OFFER_START_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC start time
         const OFFER_END_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_END_HOUR_IST * 3600 + OFFER_END_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC end time
 
@@ -186,10 +186,10 @@
             const utcSeconds = getUTCSeconds();
 
             if (utcSeconds >= OFFER_END_SECONDS_UTC) {
-                alert("The offer has expired.");
+                alert("No offers available.");
                 timer.textContent = "Offer expired";
                 formButton.classList.add('disabled');
-                formButton.textContent = "Offer Expired";
+                formButton.textContent = "No offers available.";
                 clearInterval(offerInterval);
                 return;
             }
@@ -200,7 +200,7 @@
             }
 
             if (!canClick) {
-                alert("Wait until the cooldown ends.");
+                alert("Wait until the countdown ends.");
                 return;
             }
 
@@ -241,9 +241,9 @@
             updateOfferTimer();
             offerInterval = setInterval(updateOfferTimer, 1000);
         } else {
-            timer.textContent = "BS/MFI";
+            timer.textContent = "";
             formButton.classList.add('disabled');
-            formButton.textContent = "BS/MFI";
+            formButton.textContent = "Offer Expired";
         }
 
         document.addEventListener("DOMContentLoaded", () => {
