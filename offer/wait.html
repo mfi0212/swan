@@ -27,17 +27,15 @@
             letter-spacing: 0.2px;
         }
         .timer {
-            background-color: #000000;
             padding: 10px 20px;
-            margin: 10px;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 14px;
-            position: fixed;
-            top: 10px;
-            color: #999999;
-            font-weight: 600;
-            border: solid 1.5px gray;
+    margin: 10px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    top: 10px;
+    color: #ff00edcf;
+    font-weight: 600;
         }
         .button {
             background-color: #0042ff;
@@ -59,16 +57,15 @@
             cursor: not-allowed;
         }
         .note {
-            background-color: #000000;
-            padding: 8px 20px;
-            margin: 10px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-style: italic;
-            color: #00edff;
-            text-align: center;
-            font-weight: 100;
-            border: solid 1px #5b5b5b;
+            background-color: #181818;
+    padding: 8px 20px;
+    margin: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-style: italic;
+    color: white;
+    text-align: center;
+    font-weight: 100;
         }
         .cooldown-timer {
             background-color: #333;
@@ -95,15 +92,15 @@
     </style>
 </head>
 <body>
-    <div class="timer" id="timer">Offer expiring in -- sec</div>
+    <div class="timer" id="timer">BS/MFI</div>
     
     <div style="display: flex; align-items: center;">
         <button class="button" id="formButton" onclick="redirectToForm()">Apply Now</button>
     </div>
     
-    <div class="note" id="clickMessage">Don't click for 50 sec if once clicked</div>
-    <div class="cooldown-timer" id="cooldownTimer">Cooldown: 0:50</div>
-    <div class="fro">From BS/MFI</div>
+    <div class="note" id="clickMessage">Don't click for 50 sec if onces clicked</div>
+    <div class="cooldown-timer" id="cooldownTimer">Wait for : 0:50</div>
+    <div class="fro">From BsLends</div>
     <script>
         let formButton = document.getElementById('formButton');
         let clickMessage = document.getElementById('clickMessage');
@@ -111,7 +108,7 @@
         let cooldownTimer = document.getElementById('cooldownTimer');
 
         // Time settings in IST (24-hour format) for March 24, 2025
-        const OFFER_START_HOUR_IST = 17;
+        const OFFER_START_HOUR_IST = 16;
         const OFFER_START_MINUTE_IST = 30;
 
         const OFFER_END_HOUR_IST = 20; // 10:25 IST
@@ -153,13 +150,13 @@
             const remainingSeconds = Math.max(0, OFFER_END_SECONDS_UTC - utcSeconds);
 
             if (remainingSeconds > 0 && utcSeconds >= OFFER_START_SECONDS_UTC) {
-                timer.textContent = `Offer expiring in ${remainingSeconds} sec`;
+                timer.textContent = `Time left to apply : ${remainingSeconds} sec`;
                 formButton.classList.remove('disabled');
                 formButton.textContent = "Apply Now";
             } else {
-                timer.textContent = "Offer expired";
+                timer.textContent = "";
                 formButton.classList.add('disabled');
-                formButton.textContent = "Offer Expired";
+                formButton.textContent = "";
                 clearInterval(offerInterval);
             }
         }
@@ -171,9 +168,9 @@
             const secondsRemaining = Math.floor(remainingTime / 1000);
 
             if (remainingTime > 0) {
-                cooldownTimer.textContent = `Cooldown: 0:${secondsRemaining.toString().padStart(2, '0')}`;
+                cooldownTimer.textContent = `Wait for : 0:${secondsRemaining.toString().padStart(2, '0')}`;
             } else {
-                cooldownTimer.textContent = "Cooldown: 0:00";
+                cooldownTimer.textContent = "Wait for : 0:00";
                 clearInterval(cooldownInterval);
                 cooldownTimer.classList.remove('active');
                 canClick = true;
@@ -185,13 +182,11 @@
                 localStorage.removeItem('lastClickTime');
             }
         }
-
-        // Redirect to Google Forms and enforce 50-second cooldown
         function redirectToForm() {
             const utcSeconds = getUTCSeconds();
 
             if (utcSeconds >= OFFER_END_SECONDS_UTC) {
-                alert("The offer has expired (IST).");
+                alert("The offer has expired.");
                 timer.textContent = "Offer expired";
                 formButton.classList.add('disabled');
                 formButton.textContent = "Offer Expired";
@@ -200,7 +195,7 @@
             }
 
             if (!isOfferValid()) {
-                alert("The offer is not valid yet or has expired (IST).");
+                alert("The offer is not valid yet or has expired.");
                 return;
             }
 
@@ -213,7 +208,7 @@
 
             canClick = false;
             formButton.classList.add('disabled');
-            clickMessage.style.color = "#ff5555";
+            clickMessage.style.color = "red";
             lastClickTime = Date.now();
             localStorage.setItem('lastClickTime', lastClickTime);
 
@@ -246,9 +241,9 @@
             updateOfferTimer();
             offerInterval = setInterval(updateOfferTimer, 1000);
         } else {
-            timer.textContent = "Offer expired";
+            timer.textContent = "BS/MFI";
             formButton.classList.add('disabled');
-            formButton.textContent = "Offer Expired";
+            formButton.textContent = "BS/MFI";
         }
 
         document.addEventListener("DOMContentLoaded", () => {
