@@ -16,12 +16,21 @@
           font-family: "Red Hat Display", sans-serif;
           color: #ffffff;
       }
+      * {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
       body {
         display: block;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, rgb(0, 42, 255), #000000);
+    background: linear-gradient(to bottom, rgb(0 26 156), #000000);
     color: #ffffff;
     display: flex
 ;
@@ -45,7 +54,7 @@
     font-size: 13px;
     backdrop-filter: blur(100px);
     filter: drop-shadow(2px 4px 6px #0000003d);
-    background: #ffffff30;
+    background: linear-gradient(1deg, #00000070, #ffffff40);
     font-weight: 500;
     }
 
@@ -59,7 +68,7 @@
     padding: 10px 25px;
     background-color: #0042ff;
     color: #ffffff;
-    border-radius: 600px;
+    border-radius: 12px;
     font-size: 14px;
     cursor: pointer;
     position: fixed;
@@ -139,6 +148,16 @@ outline: none;
     button:hover{
   background:  rgb(49, 49, 49);
 }
+.presave{
+  text-decoration: none;
+    padding: 10px 13px;
+    color: rgb(124, 124, 124);
+    border-radius: 10px;
+}
+.presave:hover{
+  background-color: rgba(128, 128, 128, 0.36);
+  color: white
+}
     @media(max-width: 600px){
       body {
         display: block;
@@ -166,7 +185,7 @@ outline: none;
         font-size: 12px;
         backdrop-filter: blur(100px);
         filter: drop-shadow(2px 4px 6px #0000003d);
-        background: #ffffff30;
+        background: linear-gradient(1deg, #00000070, #ffffff40);
         font-weight: 500;width: 85%;
     }
     }
@@ -190,12 +209,8 @@ outline: none;
     bottom: 80px">
     <span style="    font-size: 15px;">After filling wait few hours..!</span>
     <br><br>
-    To provide the fund, we need to collect the amount first. It takes few hours to arrange the fund, so be patience during this time to get the fund.<br><br><span>
-      <a style="text-decoration: none;
-      background: white;
-      padding: 5px 13px;
-      color: black;
-      border-radius: 1000px;" href="https://forms.gle/rtcayowFYw48u94PA">Apply for Pre-saver</a></span>
+    To provide the fund, we need to collect the amount first. It takes few hours to arrange the fund, so be patience during this time to get the fund.<br><br><br><span>
+      <a class="presave" href="https://forms.gle/rtcayowFYw48u94PA">Apply for Pre-saver  <i class="fa-solid fa-angle-right"></i></a></span>
     <br>
   </div>
   
@@ -220,16 +235,16 @@ outline: none;
     }
     
     .helper-button {
-        position: fixed;
-top: 10px;
-font-size: 12px;
-background: #ffffff83;
-padding: 3px 15px;
-border-radius: 60px;
-color: #ffffff;
-text-decoration: none;
-border: 3px solid transparent;
-z-index: 100000000;
+           position: fixed;
+    top: 10px;
+    font-size: 13px;
+    background: transparent;
+    padding: 3px 15px;
+    border-radius: 60px;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1.5px solid #ffffff69;
+    z-index: 100000000;
     }
     
     /* This class will be added and removed dynamically */
@@ -259,7 +274,7 @@ z-index: 100000000;
   display: contents;
 }
       </style>
-       <a style="right: 85px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
+       <a style="right: 90px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
       <a style="right: 5px;" class="helper-button" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
      
         <script>
