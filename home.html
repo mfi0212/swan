@@ -235,15 +235,15 @@ outline: none;
     }
     
     .helper-button {
-           position: fixed;
+          position: fixed;
     top: 10px;
     font-size: 13px;
-    background: transparent;
-    padding: 3px 15px;
+    background: #ffffff42;
+    padding: 5px 15px;
     border-radius: 60px;
     color: #ffffff;
     text-decoration: none;
-    border: 1.5px solid #ffffff69;
+    border: none;
     z-index: 100000000;
     }
     
@@ -251,10 +251,10 @@ outline: none;
     .animated-border::before {
         content: "";
         position: absolute;
-        top: -3px;
-        left: -3px;
-        right: -3px;
-        bottom: -3px;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
         border-radius: 60px;
         background: linear-gradient(270deg,#ffffffad,#aa00ff,#ffd500, #ff0000,#003cff,#ea00ff,#00ff73,#ff6a00,#ffffff4d);
                 background-size: 400% 100%;
@@ -274,7 +274,7 @@ outline: none;
   display: contents;
 }
       </style>
-       <a style="right: 90px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
+       <a style="right: 85px;" class="helper-button" href="https://mfi0212.github.io/MFI/abt.hlp">Helper</a>
       <a style="right: 5px;" class="helper-button" href="https://mfi0212.github.io/MFI/imlate">I'm late</a>
      
         <script>
@@ -287,7 +287,7 @@ outline: none;
         // Remove animation after 5 seconds
         setTimeout(() => {
             helperButton.classList.remove("animated-border");
-        }, 10000);
+        }, 10000000);
     });
     
         </script>
