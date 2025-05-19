@@ -46,13 +46,13 @@ body {
       .job-card {
         color: #00ddff;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px 30px 0px 0px;
     padding: 20px;
     margin-bottom: 20px;
     max-width: 600px;
     text-align: center;
     font-size: 13px;
-    background: linear-gradient(179deg, #0000005e, #00199a00);
+    background: linear-gradient(180deg, #0000005e, #00000000);
     font-weight: 500;
     }
 
@@ -62,17 +62,19 @@ body {
     }
 
     .apply-button {
-      bottom:40px;
-    padding: 10px 25px;
-    background-color: #ffffff42;
-    color: #ffffff;
-    border-radius: 12px;
-    font-size: 14px;
-    cursor: pointer;
-    position: fixed;
-border: none;
+          bottom: 45px;
+    padding: 8px 20px;
+      background-color: #ffffff00;
+      color: #ffffff;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      position: fixed;
+      border: solid 2px #ffffff61;
     }
-
+ button:hover{
+  background:  rgba(255, 255, 255, 0.326);
+}
     .modal {
       display: none;
       position: fixed;
@@ -143,15 +145,14 @@ outline: none;
     display: contents;
     }
 
-    button:hover{
-  background:  rgb(0, 0, 0);
-}
 .presave{
   text-decoration: none;
-    padding: 10px 13px;
+    padding: 10px 25px;
     color: rgb(255, 255, 255);
-    border-radius: 10px;
+    border-radius: 4cqh;
     font-size: 13px;
+    filter: drop-shadow(2px 0px 6px rgb(215, 215, 215));
+    background: #000000c6;
 }
 .presave:hover{
  text-decoration: underline 1.5px;
@@ -179,10 +180,10 @@ outline: none;
             
         color: #00ddff;
         border: none;
-        border-radius: 20px;
+        border-radius: 30px 30px 0px 0px;
         text-align: center;
         font-size: 13px;
-        background: linear-gradient(179deg, #0000005e, #00199a00);
+        background: linear-gradient(180deg, #0000005e, #00199a00);
         font-weight: 500;
         width: 88%;
 
@@ -205,11 +206,11 @@ outline: none;
 " src="linklogo.png" alt="">
   <!-- Job Card -->
   <div class="job-card" style="position: fixed;
-    bottom: 65px">
+    bottom: 80px">
     <span style="    font-size: 15px;">After filling wait few hours..!</span>
     <br><br>
     To provide the fund, we need to collect the amount first. It takes few hours to arrange the fund, so be patience during this time to get the fund.<br><br><br><span>
-      <a class="presave" href="https://forms.gle/rtcayowFYw48u94PA">Apply for Pre-saver now   <i class="fa-solid fa-angle-right"></i> </a></span>
+      <a class="presave" style="    text-decoration: none;" href="https://forms.gle/rtcayowFYw48u94PA">Apply for Pre-saver</a></span>
     <br>
   </div>
   
