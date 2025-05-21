@@ -13,15 +13,7 @@
             padding: 0;
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
-        } * {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+        }
         body {
             background-color: #000000;
             color: #fff;
@@ -33,7 +25,15 @@ body {
             height: 100vh;
             margin: 0;
             letter-spacing: 0.2px;
-        }
+        } * {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
         .timer {
             padding: 10px 20px;
     margin: 10px;
@@ -124,7 +124,7 @@ body {
 
         const IST_OFFSET_MINUTES = 330; // IST is UTC+5:30 (5 hours * 60 + 30 minutes)
         const COOLDOWN_DURATION_MS = 50000; // 50 seconds in milliseconds
-        const OFFER_DATE = new Date('2025-05-07T00:00:00Z'); // March 24, 2025 UTC
+        const OFFER_DATE = new Date('2025-05-21T00:00:00Z'); // March 24, 2025 UTC
         const OFFER_START_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_START_HOUR_IST * 3600 + OFFER_START_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC start time
         const OFFER_END_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_END_HOUR_IST * 3600 + OFFER_END_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC end time
 
