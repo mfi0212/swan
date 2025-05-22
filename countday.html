@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300..900&display=swap');
+
+        * {
+            font-family: "Red Hat Display", sans-serif;
+        }
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c2c2c;
+        }
+        .container {
+            max-width: 400px;
+            background: #2c2c2c;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 {
+            color: #f0a500;
+        }
+        input, button {
+            margin: 10px 0;
+            width: 85%;
+            color: #ffffff;
+            background: #1b1b1beb;
+            border: none;
+            outline: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #393939;
+            cursor: pointer;
+            width: 35%;
+            transition: background 0.3s;
+        }
+        .output {
+            margin-top: 20px;
+            font-weight: 600;
+            color: #00ffc2;
+            background: rgba(0, 0, 0, 0);
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="daysInput" placeholder="Enter number of days" min="0">
+        <button onclick="calculateDate()">Date</button>
+
+        <input type="date" id="dateInput" onchange="calculateDaysFromDate()">
+        <div class="output" id="output"></div>
+        <input type="date" id="startDate"> 
+        <input type="text" id="dayCount" placeholder="Enter number of days" min="0"> 
+        <button onclick="calculateDateRange()">Date</button>
+
+        <input type="text" id="monthInput" placeholder="Enter month number (1-12)" oninput="displayMonthName()">
+        
+        <!-- New Time Calculation Section -->
+        <input type="time" id="startTime" placeholder="Start time">
+        <input type="time" id="endTime" placeholder="End time">
+        <button onclick="calculateTimeDifference()">Calculate Minutes</button>
+    </div>
+
+    <script>
+        function formatDate(date) {
+            let day = date.getDate().toString().padStart(2, '0');
+            let month = (date.getMonth() + 1).toString().padStart(2, '0');
+            let year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+
+        function evaluateExpression(input) {
+            try {
+                return new Function('return ' + input)();
+            } catch {
+                return NaN;
+            }
+        }
+
+        function calculateDate() {
+            let daysInput = document.getElementById('daysInput').value;
+            daysInput = evaluateExpression(daysInput);
+            const output = document.getElementById('output');
+
+            if (isNaN(daysInput) || daysInput < 0) {
+                output.textContent = 'Please enter a valid number of days.';
+                return;
+            }
+
+            const currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() + daysInput);
+
+            output.textContent = formatDate(currentDate);
+        }
+
+        function calculateDaysFromDate() {
+            const dateInput = document.getElementById('dateInput').value;
+            const output = document.getElementById('output');
+
+            if (!dateInput) {
+                output.textContent = '';
+                return;
+            }
+
+            const selectedDate = new Date(dateInput);
+            const currentDate = new Date();
+
+            const timeDifference = selectedDate - currentDate;
+            const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+            if (daysDifference >= 0) {
+                output.textContent = `${daysDifference} days (${formatDate(selectedDate)})`;
+            } else {
+                output.textContent = `${Math.abs(daysDifference)} days ago (${formatDate(selectedDate)})`;
+            }
+        }
+
+        function calculateDateRange() {
+            const startDate = document.getElementById('startDate').value;
+            let dayCount = document.getElementById('dayCount').value;
+            dayCount = evaluateExpression(dayCount);
+            const output = document.getElementById('output');
+
+            if (!startDate || isNaN(dayCount) || dayCount < 0) {
+                output.textContent = 'Please enter a valid date and number of days.';
+                return;
+            }
+
+            const start = new Date(startDate);
+            const end = new Date(start);
+            end.setDate(start.getDate() + dayCount);
+            
+            output.innerHTML = `<p>No of days: ${dayCount}</p><p>Start Date: ${formatDate(start)}</p><p>End Date: ${formatDate(end)}</p>`;
+        }
+
+        function displayMonthName() {
+            const monthNumber = document.getElementById('monthInput').value;
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            if (monthNumber >= 1 && monthNumber <= 12) {
+                alert(`Month: ${months[monthNumber - 1]}`);
+            }
+        }
+
+        // New function to calculate time difference in minutes
+        function calculateTimeDifference() {
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            const output = document.getElementById('output');
+
+            if (!startTime || !endTime) {
+                output.textContent = 'Please enter both start and end times.';
+                return;
+            }
+
+            const [startHours, startMinutes] = startTime.split(':').map(Number);
+            const [endHours, endMinutes] = endTime.split(':').map(Number);
+
+            const startTotalMinutes = startHours * 60 + startMinutes;
+            let endTotalMinutes = endHours * 60 + endMinutes;
+
+            // Handle case where end time is on the next day
+            if (endTotalMinutes < startTotalMinutes) {
+                endTotalMinutes += 24 * 60; // Add 24 hours worth of minutes
+            }
+
+            const differenceInMinutes = endTotalMinutes - startTotalMinutes;
+
+            output.textContent = `Time difference: ${differenceInMinutes} minutes`;
+        }
+    </script>
+</body>
+</html>
