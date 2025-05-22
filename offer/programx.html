@@ -13,17 +13,9 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Red Hat Display", sans-serif;
-        } * {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+        }
         body {
-            background: linear-gradient(164deg, #000000, #a1a1a1);
+            background: linear-gradient(164deg, #000000, #169e00d9);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,6 +24,15 @@ body {
             font-weight: 600;
             line-height: 40px;
             height: 100vh;
+        }
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         .offer-container {
             width: 650px;
@@ -101,37 +102,38 @@ body {
 </head>
 <body>
     <div class="offer-container">
-        <p style="text-align: center;
-        color: #a1a1a1;
-        font-weight: 600;
-        font-size: 16px;">Program X</p>
-        <div class="offer-title">Mno(Mid-Night Offer)</div>
+        <p style="text-align: center; color: #a1a1a1; font-weight: 600; font-size: 16px;">Program X</p>
+        <div class="offer-title">Exclusive Offer</div>
         <div class="offer-details">
-            <p>Borrow <span class="highlight"> 3000rs</span> for <span class="highlight"> 20 days</span> for 649rs interest.</p>
+            <p>Get <span class="highlight">₹10,000</span> at just <span class="highlight">₹666 interest</span>!</p>
+            <p>This special offer is only for members who have borrowed <span class="highlight">₹40,000 or more</span>.</p>
             <hr>
             <ul class="fee-list">
-                <!-- <li>Pay <span class="highlight">649₹</span> to get an extra <span class="highlight">+10 days</span>.</li> -->
-                <li><span class="highlight" style="text-decoration: underline 2px; text-transform: uppercase;">Note :</span> And get 5 days free extand for another amount!</li>
-            </ul><hr>
-            <p style="text-align: center; margin-top: 25px;">Click below option now to</p>
+                <li><span class="highlight" style="text-decoration: underline 2px; text-transform: uppercase;">NOTE :</span>This offer will be based on, First come first served.</li>
+            </ul>
+            <hr>
+            <p style="text-align: center; margin-top: 25px;">Click below to take advantage of this offer</p>
         </div>
         <button class="button"><a href="https://forms.gle/8WP3DU4VZNhFHwNu7">Apply now</a></button>
-        <!-- <button class="button"><a onclick="alert('Offer closed....')">Apply now</a></button> -->
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                customMenu.style.display = "block";
-                customMenu.style.top = `${event.pageY}px`;
-                customMenu.style.left = `${event.pageX}px`;
-            });
-            document.addEventListener("click", () => {
-                customMenu.style.display = "none";
-            });
-        });
-    
+                  document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
+
+    // Show custom menu on right-click
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
+
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+        console.log("Page loaded successfully");
     </script>
 </body>
 </html>
