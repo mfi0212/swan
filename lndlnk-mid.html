@@ -3,144 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LendLink</title>
+    <title>LendLink - Mid</title>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #3c3c3c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7fa;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #000;
+            color: #1a1a1a;
+            overflow: hidden;
         }
+
         .container {
-            background-color: #fff;
-            padding: 15px;
+            background-color: #ffffff;
+            padding: 24px;
             width: 100%;
             max-width: 500px;
+            border-radius: 0px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
+
         .logo {
             text-align: center;
-            font-size: 20px;
+            font-size: 28px;
             font-weight: 700;
-            color: #000;
-            margin-bottom: 15px;
+            color: #1a1a1a;
+            margin-bottom: 24px;
         }
+
         .options {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 24px;
         }
+
         .option-btn {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 15px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 12px 24px;
             border: none;
+            border-radius: 0px;
             cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
         }
+
         .option-btn:hover {
-            background-color: #555;
+            background-color: #2d3748;
         }
+
         .option-btn.active {
-            background-color: #2a2;
+            background-color: #1e40af;
         }
-        #pin-section {
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 24px;
+            border-radius: 0px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .modal-content input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #1a1a1a;
+            border-radius: 0px;
+            font-size: 14px;
+            background-color: #f9fafb;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-content input:focus {
+            outline: none;
+            border-color: #1e40af;
+        }
+
+        .modal-content button {
+            background-color: #1e40af;
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: 0px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background-color: #1e3a8a;
+        }
+
+        #pin-error {
+            color: #e53e3e;
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        #search-section {
             display: none;
             text-align: center;
-            margin: 15px 0;
         }
-        #search-section, #search-results {
-            display: none;
-        }
-        label {
+
+        #search-section label {
             display: block;
-            margin: 6px 0 3px;
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1a1a;
         }
-        input[type="password"], input[type="number"] {
+
+        #search-section input[type="number"] {
             width: 100%;
-            max-width: 250px;
-            padding: 6px;
-            margin: 0 auto 10px;
-            border: 1px solid #ccc;
-            font-size: 13px;
-            display: block;
-            background-color: #fff;
+            max-width: 300px;
+            padding: 10px;
+            margin: 0 auto 16px;
+            border: 1px solid #1a1a1a;
+            border-radius: 0px;
+            font-size: 14px;
+            background-color: #f9fafb;
+            transition: border-color 0.3s ease;
         }
-        input:focus {
+
+        #search-section input:focus {
             outline: none;
-            border-color: #333;
+            border-color: #1e40af;
         }
-        button {
-            background-color: #2a2;
-            color: #fff;
-            padding: 6px 12px;
+
+        #search-section button {
+            background-color: #1e40af;
+            color: #ffffff;
+            padding: 12px;
             border: none;
+            border-radius: 0px;
             cursor: pointer;
             width: 100%;
-            max-width: 250px;
-            font-size: 13px;
-            font-weight: 500;
-            margin: 0 auto;
+            max-width: 300px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
         }
-        button:hover {
-            background-color: #272;
+
+        #search-section button:hover {
+            background-color: #1e3a8a;
         }
+
         #search-results {
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #fff;
+            display: none;
+            margin-top: 24px;
+            padding: 16px;
+            border: 1px solid #1a1a1a;
+            border-radius: 0px;
+            background-color: #f9fafb;
         }
+
         #search-results h2 {
-            margin: 0 0 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+
+        .giver-entry {
+            margin-bottom: 16px;
+            padding: 12px;
+            border: 1px solid #1a1a1a;
+            border-radius: 0px;
+            background-color: #ffffff;
             font-size: 14px;
         }
-        .giver-entry {
-            margin-bottom: 8px;
-            font-size: 13px;
-            padding: 8px;
-            background-color: #fff;
-        }
+
         .giver-entry p {
-            margin: 2px 0;
+            margin: 4px 0;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .availability {
-            color: #2a2;
-            font-weight: 600;
-        }
-        .not-available {
-            color: #c22;
-            font-weight: 600;
-        }
-        #pin-error {
-            color: #c22;
-            text-align: center;
+
+        .copy-btn {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 0px;
+            cursor: pointer;
             font-size: 12px;
-            display: none;
-            margin-bottom: 10px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: #2d3748;
+        }
+
+        .copy-btn.copied {
+            background-color: #1e40af;
+        }
+
+        .availability {
+            color: #1e40af;
+            font-weight: 600;
+        }
+
+        .not-available {
+            color: #e53e3e;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 16px;
+                padding: 16px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .option-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+
+            .modal-content {
+                margin: 16px;
+                padding: 16px;
+            }
+
+            .copy-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="modal" id="pin-modal">
+        <div class="modal-content">
+            <label for="pin-input">Enter PIN</label>
+            <input type="password" id="pin-input" placeholder="PIN" maxlength="4">
+            <button onclick="validatePin()">Submit</button>
+            <p id="pin-error">Incorrect PIN.</p>
+        </div>
+    </div>
     <div class="container">
         <div class="logo">LendLink - Mid</div>
         <div class="options">
             <button class="option-btn" onclick="selectOption('giver')">Giver</button>
             <button class="option-btn" onclick="selectOption('taker')">Taker</button>
-        </div>
-        <div id="pin-section">
-            <label for="pin-input">Enter PIN</label>
-            <input type="password" id="pin-input" placeholder="PIN">
-            <button onclick="validatePin()">Submit</button>
-            <p id="pin-error">Incorrect PIN.</p>
         </div>
         <div id="search-section">
             <label for="search-amount">Amount (₹):</label>
@@ -166,38 +314,52 @@
             if (option === 'giver') {
                 window.location.href = 'https://forms.gle/2537eEtRb7pRdbZM9';
             } else {
-                document.getElementById('pin-section').style.display = 'block';
-                document.getElementById('search-section').style.display = 'none';
-                document.getElementById('search-results').style.display = 'none';
-                document.getElementById('pin-error').style.display = 'none';
+                document.getElementById('pin-modal').style.display = 'flex';
                 document.getElementById('pin-input').value = '';
+                document.getElementById('pin-error').style.display = 'none';
+                document.getElementById('pin-input').focus();
             }
         }
 
         function validatePin() {
             const pin = document.getElementById('pin-input').value;
             if (pin === correctPin) {
-                document.getElementById('pin-section').style.display = 'none';
+                document.getElementById('pin-modal').style.display = 'none';
                 document.getElementById('search-section').style.display = 'block';
-                document.getElementById('pin-error').style.display = 'none';
+                document.getElementById('search-results').style.display = 'none';
             } else {
                 document.getElementById('pin-error').style.display = 'block';
+                document.getElementById('pin-input').value = '';
             }
+        }
+
+        function copyToClipboard(phone, button) {
+            navigator.clipboard.writeText(phone).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy phone number.');
+            });
         }
 
         function searchGivers() {
             const searchAmount = parseFloat(document.getElementById('search-amount').value);
             const searchResults = document.getElementById('search-results');
 
-            if (isNaN(searchAmount)) {
-                alert('Please enter a valid amount.');
+            if (isNaN(searchAmount) || searchAmount < 0) {
+                alert('Please enter a valid positive amount.');
                 return;
             }
 
             const matchedGivers = givers.filter(giver => giver.amount === searchAmount);
             searchResults.innerHTML = '<h2>Results</h2>';
             if (matchedGivers.length === 0) {
-                searchResults.innerHTML += '<p>No Givers found for ₹' + searchAmount.toFixed(2) + '.</p>';
+                searchResults.innerHTML += `<p>No Givers found for ₹${searchAmount.toFixed(2)}.</p>`;
             } else {
                 matchedGivers.forEach(giver => {
                     const status = giver.availability ? 'Available' : 'Not Available';
@@ -205,7 +367,9 @@
                     searchResults.innerHTML += `
                         <div class="giver-entry">
                             <p><strong>Name:</strong> ${giver.name}</p>
-                            <p><strong>Phone:</strong> ${giver.phone}</p>
+                            <p><strong>Phone:</strong> ${giver.phone}
+                                <button class="copy-btn" onclick="copyToClipboard('${giver.phone}', this)" aria-label="Copy phone number">Copy</button>
+                            </p>
                             <p><strong>Amount:</strong> ₹${giver.amount.toFixed(2)}</p>
                             <p><strong>Interest:</strong> ₹${giver.interest.toFixed(2)}</p>
                             <p><strong>Status:</strong> <span class="${statusClass}">${status}</span></p>
@@ -215,6 +379,13 @@
             }
             searchResults.style.display = 'block';
         }
+
+        // Handle Enter key for PIN submission
+        document.getElementById('pin-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                validatePin();
+            }
+        });
     </script>
 </body>
 </html>
