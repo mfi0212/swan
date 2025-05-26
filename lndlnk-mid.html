@@ -10,7 +10,15 @@
             margin: 0;
             padding: 0;
         }
-
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f4f7fa;
@@ -385,6 +393,24 @@
             if (event.key === 'Enter') {
                 validatePin();
             }
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
         });
     </script>
 </body>
