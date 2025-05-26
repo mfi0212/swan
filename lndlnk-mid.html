@@ -439,7 +439,7 @@
                 searchResults.innerHTML += `<p>No Givers found for ₹${searchAmount.toFixed(2)}.</p>`;
             } else {
                 matchedGivers.forEach(giver => {
-                    const status = giver.availability ? 'I will give amount right now' : 'I can1t give amount right now';
+                    const status = giver.availability ? 'I will give amount right now' : 'I can`t give amount right now';
                     const statusClass = giver.availability ? 'availability' : 'not-available';
                     searchResults.innerHTML += `
                         <div class="giver-entry">
