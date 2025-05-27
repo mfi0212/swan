@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="style.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LendLink - Mid</title>
     <style>
@@ -300,6 +301,8 @@
             <label for="pin-input">Enter the mid-enter-pin to see the giver list</label>
             <input type="password" id="pin-input" placeholder="PIN" maxlength="4">
             <button onclick="validatePin()">Submit</button>
+            <P style="    margin: 10px;
+    font-size: 13px;">NOTE : If you does not have any mid-enter-pin it mean you does not paid the fee for Lendlink - Mid</P>
             <p id="pin-error">Incorrect PIN.</p>
         </div>
     </div>
@@ -331,11 +334,12 @@
 
     <script>
         let currentOption = '';
-        const correctPin = '0212';
-        const correctUserPin = '1202';
         let givers = [
             { name: "Kiran Burri", phone: "9666785217", amount: 10000, interest: 2500, availability: true },
             { name: "Bhargav Akula", phone: "9747265868", amount: 10000, interest: 2000, availability: false },
+            { name: "Siva yerramsetti", phone: "9394522389", amount: 20000, interest: 4000, availability: false },
+            { name: "Kiran tummu", phone: "9394522389", amount: 5000, interest: 1200, availability: false },
+            { name: "Gangadhar", phone: "9966934212", amount: 15000, interest: 2500, availability: true },
         ];
         let userDetails = {
             name: "John Doe",
