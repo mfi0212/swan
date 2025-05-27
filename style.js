@@ -1,6 +1,5 @@
 let currentOption = '';
         let givers = [
-            { name: "Kiran Burri", phone: "9666785217", amount: 10000, interest: 2500, availability: true },
             { name: "Bhargav Akula", phone: "9747265868", amount: 10000, interest: 2000, availability: false },
             { name: "Siva yerramsetti", phone: "9394522389", amount: 20000, interest: 4000, availability: false },
             { name: "Kiran tummu", phone: "9394522389", amount: 5000, interest: 1200, availability: false },
