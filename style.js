@@ -13,6 +13,10 @@ let currentOption = '';
             takenfor: 25
         };
 
+        const correctPin = '0212'; // Taker PIN
+        const correctGiverPin = 'TAK#12'; // Giver PIN
+        const correctUserPin = '0101'; // User PIN
+
         function showUserPinModal() {
             document.getElementById('user-pin-modal').style.display = 'flex';
             document.getElementById('user-pin-input').value = '';
@@ -28,6 +32,7 @@ let currentOption = '';
             } else {
                 document.getElementById('user-pin-error').style.display = 'block';
                 document.getElementById('user-pin-input').value = '';
+                document.getElementById('user-pin-input').focus();
             }
         }
 
@@ -49,33 +54,46 @@ let currentOption = '';
             document.getElementById('search-section').style.display = 'none';
             document.getElementById('search-results').style.display = 'none';
         }
-        const correctPin = '0212';
-        const correctUserPin = '1202';
-        function selectOption(option) {
-            currentOption = option;
-            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`button[onclick="selectOption('${option}')"]`).classList.add('active');
 
-            if (option === 'giver') {
-                window.location.href = 'https://forms.gle/EBCovJmKfWdTVjRF6';
-            } else {
-                document.getElementById('pin-modal').style.display = 'flex';
-                document.getElementById('pin-input').value = '';
-                document.getElementById('pin-error').style.display = 'none';
-                document.getElementById('pin-input').focus();
-            }
+        function showPinModal(type) {
+            currentOption = type;
+            const modal = type === 'giver' ? document.getElementById('giver-pin-modal') : document.getElementById('pin-modal');
+            modal.style.display = 'flex';
+            const input = document.getElementById(type === 'giver' ? 'giver-pin-input' : 'pin-input');
+            input.value = '';
+            document.getElementById(type === 'giver' ? 'giver-pin-error' : 'pin-error').style.display = 'none';
+            input.focus();
         }
 
-        function validatePin() {
-            const pin = document.getElementById('pin-input').value;
-            if (pin === correctPin) {
-                document.getElementById('pin-modal').style.display = 'none';
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+            const error = document.getElementById(modalId === 'pin-modal' ? 'pin-error' : modalId === 'giver-pin-modal' ? 'giver-pin-error' : 'user-pin-error');
+            error.style.display = 'none';
+        }
+
+        function validatePin(type) {
+            const pinInput = document.getElementById(type === 'giver' ? 'giver-pin-input' : 'pin-input');
+            const pinError = document.getElementById(type === 'giver' ? 'giver-pin-error' : 'pin-error');
+            const modal = document.getElementById(type === 'giver' ? 'giver-pin-modal' : 'pin-modal');
+            const pin = pinInput.value;
+
+            if (type === 'giver' && pin === correctGiverPin) {
+                modal.style.display = 'none';
+                pinInput.value = '';
+                pinError.style.display = 'none';
+                window.location.href = 'https://forms.gle/EBCovJmKfWdTVjRF6'; // Redirect to Google Form
+            } else if (type === 'taker' && pin === correctPin) {
+                modal.style.display = 'none';
+                pinInput.value = '';
+                pinError.style.display = 'none';
                 document.getElementById('search-section').style.display = 'block';
                 document.getElementById('search-results').style.display = 'none';
                 document.getElementById('user-details').style.display = 'none';
             } else {
-                document.getElementById('pin-error').style.display = 'block';
-                document.getElementById('pin-input').value = '';
+                pinError.style.display = 'block';
+                pinInput.value = '';
+                pinInput.focus();
             }
         }
 
@@ -103,7 +121,7 @@ let currentOption = '';
             }
 
             const matchedGivers = givers.filter(giver => giver.amount === searchAmount);
-            searchResults.innerHTML = '<h2>Giver who have money</h2> ';
+            searchResults.innerHTML = '<h2>Giver who have money</h2>';
             if (matchedGivers.length === 0) {
                 searchResults.innerHTML += `<p>No Givers found for ₹${searchAmount.toFixed(2)}.</p>`;
             } else {
@@ -130,7 +148,13 @@ let currentOption = '';
         // Handle Enter key for PIN submission
         document.getElementById('pin-input').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
-                validatePin();
+                validatePin('taker');
+            }
+        });
+
+        document.getElementById('giver-pin-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                validatePin('giver');
             }
         });
 
@@ -138,23 +162,4 @@ let currentOption = '';
             if (event.key === 'Enter') {
                 validateUserPin();
             }
-        });
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
-
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
-
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
-            });
         });
