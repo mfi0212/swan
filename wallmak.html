@@ -80,7 +80,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: black;
+    background-color: #121212;
     padding: 20px;
     border-radius: 12px;
     box-shadow: none;
@@ -194,9 +194,10 @@ body {
         }
 
         function openGoogleForm() {
-            window.open('https://forms.gle/your-google-form-link', '_blank');
+            window.open('https://forms.gle/W4A5vtiwQ5mXgtG67', '_blank');
             closeCustomizePopup();
         }
+
 
         function closeImagePopup() {
             document.getElementById('image-popup').style.display = 'none';
@@ -215,24 +216,24 @@ body {
     </script>
     <script>
         
-        // document.addEventListener("DOMContentLoaded", () => {
-        //     const customMenu = document.querySelector(".custom-menu");
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
 
-        //     document.addEventListener("contextmenu", (event) => {
-        //         event.preventDefault();
-        //         if (customMenu) {
-        //             customMenu.style.display = "block";
-        //             customMenu.style.top = `${event.pageY}px`;
-        //             customMenu.style.left = `${event.pageX}px`;
-        //         }
-        //     });
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
 
-        //     document.addEventListener("click", () => {
-        //         if (customMenu) {
-        //             customMenu.style.display = "none";
-        //         }
-        //     });
-        // });
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
     </script>
 </body>
 </html>
