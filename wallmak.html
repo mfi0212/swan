@@ -169,17 +169,28 @@ body {
             const imagePopup = document.getElementById('image-popup');
             const popupImage = document.getElementById('popup-image');
 
-            if (password === 'Cherish@123') {
+            if (password === 'MFI@0212') {
                 currentImage = 'wallmak1.png';
                 popupImage.src = currentImage;
                 imagePopup.style.display = 'block';
                 error.style.display = 'none';
-            } else if (password) {
-                currentImage = 'https://images.unsplash.com/photo-1516321310764-2f58c40a6c7d';
+            } else if (password === 'Cherish@123') {
+                currentImage = 'wallmak2.png';
                 popupImage.src = currentImage;
                 imagePopup.style.display = 'block';
                 error.style.display = 'none';
-            } else {
+            }else if (password === 'Deepak@11') {
+                currentImage = 'wallmak3.png';
+                popupImage.src = currentImage;
+                imagePopup.style.display = 'block';
+                error.style.display = 'none';
+            } else if (password === 'Mahesh888*') {
+                currentImage = 'wallmak4.png';
+                popupImage.src = currentImage;
+                imagePopup.style.display = 'block';
+                error.style.display = 'none';
+            }  
+            else {
                 error.style.display = 'block';
                 imagePopup.style.display = 'none';
                 currentImage = '';
