@@ -1,6 +1,8 @@
 let currentOption = '';
         let givers = [
             { name: "Bhargav Akula", phone: "9747265868", amount: 10000, interest: 2000, availability: false },
+            { name: "Bharat", phone: "private", amount: 10000, interest: 2000, availability: false },
+            { name: "venkata siva", phone: "MFI member only", amount: 10000, interest: 2000, availability: false },
             { name: "Siva yerramsetti", phone: "9394522389", amount: 20000, interest: 4000, availability: false },
             { name: "Kiran tummu", phone: "9394522389", amount: 5000, interest: 1200, availability: false },
             { name: "Gangadhar", phone: "9966934212", amount: 15000, interest: 2500, availability: false },
