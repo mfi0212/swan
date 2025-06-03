@@ -13,7 +13,7 @@ let currentOption = '';
             takenfor: 25
         };
 
-        const correctPin = '0212'; // Taker PIN
+        const correctPin = '0112'; // Taker PIN
         const correctGiverPin = 'TAK#12'; // Giver PIN
         const correctUserPin = '0101'; // User PIN
 
