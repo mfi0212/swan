@@ -1,44 +1,622 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>LendLink - Mid</title> <style> * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -ms-user-select: none; user-select: none; font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-color: #212d3b; min-height: 100vh; display: flex; flex-direction: column; align-items: center; color: #F6F6F6; overflow: auto; } .header { width: 100%; max-width: 400px; padding: 20px 16px; text-align: center; background-color: #2f3b4c; border-bottom: 1px solid #2E343B; } .logo { font-size: 26px; font-weight: 600; color: #40C4FF; letter-spacing: 0.5px; } .description { font-size: 14px; color: #8692A6; margin-top: 6px; line-height: 1.3; } .container { width: 100%; max-width: 400px; padding: 16px; background-color: #2f3b4c; margin: 0 10px; } .user-icon { position: fixed; bottom: 20px; right: 20px; cursor: pointer; font-size: 22px; background: #40C4FF; color: #FFFFFF; border-radius: 50%; padding: 12px; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); transition: transform 0.2s ease, background-color 0.2s ease; z-index: 1000; } .user-icon:hover { background-color: #33B6F0; transform: scale(1.1); } .options { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; } .option-btn { background-color: #3390ec; color: #FFFFFF; padding: 10px 20px; border: none; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500; transition: background-color 0.2s ease, transform 0.1s ease; } .option-btn:hover { background-color: #338fecb1; transform: scale(1.03); } .option-btn.active { background-color: #2196F3; } .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 2000; animation: fadeIn 0.2s ease-out; } @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } } .modal-content { background-color: #21272A; padding: 20px; border-radius: 16px; width: 100%; max-width: 320px; text-align: center; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); color: #F6F6F6; animation: popup 0.2s ease-out; position: relative; } @keyframes popup { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } } .modal-content label { display: block; font-size: 14px; font-weight: 400; margin-bottom: 12px; color: #F6F6F6; } .modal-content input[type="text"] { width: 100%; padding: 10px; margin-bottom: 16px; border: none; border-bottom: 1px solid #2E343B; background-color: transparent; color: #F6F6F6; font-size: 14px; text-align: center; transition: border-color 0.2s ease; } .modal-content input:focus { outline: none; border-color: #40C4FF; } .modal-content button { background-color: #3390ec; color: #FFFFFF; padding: 12px; border: none; border-radius: 12px; cursor: pointer; width: 100%; font-size: 14px; font-weight: 500; transition: background-color 0.2s ease, transform 0.1s ease; } .modal-content button:hover { background-color: #338feca4; transform: scale(1.03); } .close-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: #F6F6F6; font-size: 16px; cursor: pointer; transition: color 0.2s ease; } .close-btn:hover { color: #40C4FF; } #pin-error, #user-pin-error, #giver-pin-error { color: #F04848; font-size: 12px; margin-top: 8px; display: none; } .modal-content p { font-size: 12px; color: #8692A6; margin: 8px 0; } #search-section { display: none; text-align: center; } #search-section label { display: block; font-size: 14px; font-weight: 400; margin-bottom: 12px; color: #F6F6F6; } #search-section input[type="number"] { width: 100%; max-width: 260px; padding: 10px; margin: 0 auto 16px; border: none; border-bottom: 1px solid #6da9dc; background-color: transparent; color: #F6F6F6; font-size: 14px; text-align: center; transition: border-color 0.2s ease; } #search-section input:focus { outline: none; border-color: #40C4FF; } #search-section button { background-color: #3390ec; color: #FFFFFF; padding: 12px; border: none; border-radius: 12px; cursor: pointer; width: 100%; max-width: 260px; font-size: 14px; font-weight: 500; transition: background-color 0.2s ease, transform 0.1s ease; } #search-section button:hover { background-color: #33B6F0; transform: scale(1.03); } #search-results, #user-details { display: none; margin-top: 16px; padding: 12px; border-radius: 12px; background-color: #21272A; } #search-results h2, #user-details h2 { font-size: 14px; font-weight: 500; margin-bottom: 10px; color: #F6F6F6; } .giver-entry, .user-entry { margin-bottom: 8px; padding: 12px; border-radius: 12px; background-color: #252C30; font-size: 13px; transition: background-color 0.2s ease; } .giver-entry:hover, .user-entry:hover { background-color: #2E343B; } .giver-entry p, .user-entry p { margin: 4px 0; color: #F6F6F6; display: flex; align-items: center; gap: 6px; font-size: 14px; } .copy-btn { background-color: #40C4FF; color: #FFFFFF; padding: 6px 12px; border: none; border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 500; transition: background-color 0.2s ease, transform 0.1s ease; } .copy-btn:hover { background-color: #33B6F0; transform: scale(1.03); } .copy-btn.copied { background-color: #2196F3; } .availability { color: #4CAF50; font-weight: 400; } .not-available { color: #F04848; font-weight: 400; } .header, .container { margin: auto; padding: 12px; max-width: 100%; } button.close-btn { width: 0%; background: none; position: absolute; right: 15px; top: 0px; } button.close-btn:hover{ background: none; } @media (max-width: 600px) { .header, .container { margin: auto; padding: 12px; max-width: 100%; } .logo { font-size: 22px; } .description { font-size: 13px; } .option-btn { padding: 8px 16px; font-size: 13px; } .modal-content { margin: 8px; padding: 16px; max-width: 90%; border-radius: 14px; } .copy-btn { padding: 5px 10px; font-size: 11px; } .user-icon { bottom: 16px; right: 16px; padding: 10px; } } </style> </head> <body> <p style="margin: 10px; background: #44556d; padding: 5px 15px; border-radius: 100px; font-size: 12px;"> Currently, there are no givers. </p> <div class="header"> <div class="logo">LendLink - Mid</div> <p class="description">A platform connecting givers and takers for secure, transparent financial support.</p> </div><script src="style.js"></script> <div class="modal" id="pin-modal"> <div class="modal-content"> <button class="close-btn" onclick="closeModal('pin-modal')">✕</button> <label for="pin-input">Enter Taker pin</label> <input type="text" id="pin-input" placeholder="PIN"> <button onclick="validatePin('taker')">Submit</button> <p>NOTE: If you do not have a mid-enter-pin, it means you have not paid the fee for LendLink - Mid.</p> <p id="pin-error">Incorrect PIN.</p> </div> </div> <div class="modal" id="giver-pin-modal"> <div class="modal-content"> <button class="close-btn" onclick="closeModal('giver-pin-modal')">✕</button> <label for="giver-pin-input">Enter Giver PIN</label> <input type="text" id="giver-pin-input" placeholder="PIN" > <button onclick="validatePin('giver')">Submit</button> <p>NOTE: If you do not have a giver-pin, it means you have not registered as a giver.</p> <p id="giver-pin-error">Incorrect PIN.</p> </div> </div> <div class="modal" id="user-pin-modal"> <div class="modal-content"> <button class="close-btn" onclick="closeModal('user-pin-modal')">✕</button> <label for="user-pin-input">Enter User PIN</label> <input type="text" id="user-pin-input" placeholder="PIN" > <button onclick="validateUserPin()">Submit</button> <p id="user-pin-error">Incorrect PIN.</p> </div> </div> <div class="container"> <div class="user-icon" onclick="showUserPinModal()">👤</div> <div class="options"> <button class="option-btn" onclick="showPinModal('giver')">I'm a Giver</button> <button class="option-btn" onclick="showPinModal('taker')">I'm a Taker</button> </div> <div id="search-section"> <label for="search-amount">Enter amount (₹) here:</label> <input type="number" id="search-amount" placeholder="Amount" min="0"> <button onclick="searchGivers()">Search</button> </div> <div id="search-results"></div> <div id="user-details"></div> </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LendLink - Mid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
 
+        body {
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #17212B;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #FFFFFF;
+            overflow: auto;
+        }
 
-<div class="contents" style="display:none;"><!--[--><!--[--><!----><!--[!--><!----><main><section class="flex min-h-[60vh] flex-col items-center bg-bottom bg-repeat-x px-16" style="background-image: url(/_app/immutable/assets/hero-bg.DKvt885m.png);"><picture><source srcset="/_app/immutable/assets/logo.XQKC2TgN.avif 1024w, /_app/immutable/assets/logo.CdATeoar.avif 2048w" type="image/avif"><source srcset="/_app/immutable/assets/logo.IREqZiUB.webp 1024w, /_app/immutable/assets/logo.DZJ99DXF.webp 2048w" type="image/webp"><source srcset="/_app/immutable/assets/logo.BdQA5Sso.png 1024w, /_app/immutable/assets/logo.C0x5MTk1.png 2048w" type="image/png"><img src="/_app/immutable/assets/logo.C0x5MTk1.png" alt="Streamer University" class="absolute left-8 top-2 hidden size-24 sm:block" width="2048" height="1757"></picture> <nav class="flex items-center gap-8 p-8 font-bold"><a href="/">HOME</a> <a class="whitespace-nowrap" href="https://forms.gle/EnCn9sMzzJjzmnPM9">ENROLL NOW</a></nav> <div class="my-auto flex w-full max-w-screen-md flex-col items-center justify-between gap-16 lg:flex-row"><div><h1 class="text-4xl font-bold sm:text-5xl"><p>STREAMER</p> <p>UNIVERSITY</p></h1> <p class="mb-4 mt-6 text-lg font-bold sm:text-xl">Now Accepting Applications</p> <a href="https://forms.gle/EnCn9sMzzJjzmnPM9" class="group flex w-fit items-center gap-2 rounded-full border border-transparent px-2 py-1 text-sm font-medium transition-all hover:border-black"><!--[--><svg class="🟃r"><g id="🟃g3F" class="🟃l"><circle cx="12.1" cy="12.1" r="1"></circle></g></svg><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-5" viewBox="0 0 24 24"><use href="#🟃g3F"></use></svg><!----> <span class="whitespace-nowrap">ENROLL NOW</span> <!--[--><svg class="🟃r"><g id="🟃cAU" class="🟃l"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></g></svg><!--]--><svg class="🟃i transition-[width] group-hover:w-0" viewBox="0 0 24 24" style="--🟃s:20px"><use href="#🟃cAU"></use></svg><!----></a><!----> <a href="https://forms.gle/ovkvbU1vGwXRXfMR6" class="group flex w-fit items-center gap-2 rounded-full border border-transparent px-2 py-1 text-sm font-medium transition-all hover:border-black"><!--[!--><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-5" viewBox="0 0 24 24"><use href="#🟃g3F"></use></svg><!----> <span class="whitespace-nowrap">ENROLL AS PROFESSOR</span> <!--[!--><!--]--><svg class="🟃i transition-[width] group-hover:w-0" viewBox="0 0 24 24" style="--🟃s:20px"><use href="#🟃cAU"></use></svg><!----></a><!----></div> <picture><source srcset="/_app/immutable/assets/hero.CmZKsOy2.avif 375w, /_app/immutable/assets/hero.BgzeWwg4.avif 750w" type="image/avif"><source srcset="/_app/immutable/assets/hero.CmSQzHGI.webp 375w, /_app/immutable/assets/hero.DPnx1yWU.webp 750w" type="image/webp"><source srcset="/_app/immutable/assets/hero.DTce8e8O.png 375w, /_app/immutable/assets/hero.CFuATq0I.png 750w" type="image/png"><img src="/_app/immutable/assets/hero.CFuATq0I.png" alt="" class="size-64 shrink-0 sm:size-96" width="750" height="750"></picture></div></section> <section class="relative mx-auto max-w-screen-lg p-8 sm:p-16"><a href="https://www.youtube.com/watch?v=6cizwRaZJjM" target="_blank" class="absolute left-1/2 aspect-square w-[12%] shrink-0 -translate-x-1/2 rounded-full bg-white p-2"><div class="h-full w-full rounded-full bg-black"><!--[--><svg class="🟃r"><g id="🟃dVt" class="🟃l"><polygon points="6 3 20 12 6 21 6 3"></polygon></g></svg><!--]--><svg class="🟃i absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 text-white" viewBox="0 0 24 24"><use href="#🟃dVt"></use></svg><!----></div></a> <div class="flex items-center justify-center gap-4 text-xs font-bold sm:gap-8 sm:text-lg md:text-2xl"><p class="w-[200px] text-right">Since 2025</p> <div class="aspect-square w-[12%]"></div> <p class="w-[200px] whitespace-nowrap">150+ Creators</p></div> <picture><source srcset="/_app/immutable/assets/banner.RfFLDSuO.avif 1024w, /_app/immutable/assets/banner.iAMCLWsE.avif 2048w" type="image/avif"><source srcset="/_app/immutable/assets/banner.dMgdiB9D.webp 1024w, /_app/immutable/assets/banner.OWBloV4w.webp 2048w" type="image/webp"><source srcset="/_app/immutable/assets/banner.CCYVYQU0.png 1024w, /_app/immutable/assets/banner.DaHq0KI0.png 2048w" type="image/png"><img src="/_app/immutable/assets/banner.DaHq0KI0.png" alt="Streamer University 2025" class="-mt-[1%]" width="2048" height="823"></picture></section> <section class="bg-gradient-to-t from-[#eee] from-50% to-white to-50% p-8 sm:p-16"><div class="relative mx-auto flex max-w-screen-lg flex-col items-center justify-between gap-8 sm:flex-row"><div class="absolute -top-8 z-0 px-4 text-7xl font-bold text-[#ddd]">90,000+</div> <div class="relative z-[10] max-w-96 flex-1 basis-1/2"><p class="text-2xl font-bold">Now<br>Accepting<br>Applications</p> <p class="my-4 font-inter">At Streamer University, streamers of all backgrounds will have the
-					opportunity to showcase their personalities as students, alongside
-					both unrealized, upcoming and well-established creators.</p> <a href="https://forms.gle/EnCn9sMzzJjzmnPM9" class="group flex w-fit items-center gap-2 rounded-full border border-transparent px-2 py-1 text-sm font-medium transition-all hover:border-black"><!--[!--><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-5" viewBox="0 0 24 24"><use href="#🟃g3F"></use></svg><!----> <span class="whitespace-nowrap">ENROLL NOW</span> <!--[!--><!--]--><svg class="🟃i transition-[width] group-hover:w-0" viewBox="0 0 24 24" style="--🟃s:20px"><use href="#🟃cAU"></use></svg><!----></a><!----></div> <picture><source srcset="/_app/immutable/assets/gate.u8AKLlTr.avif 512w, /_app/immutable/assets/gate.B54nOoT4.avif 1024w" type="image/avif"><source srcset="/_app/immutable/assets/gate.wB64pw9f.webp 512w, /_app/immutable/assets/gate.C1YoylWc.webp 1024w" type="image/webp"><source srcset="/_app/immutable/assets/gate.DI_hQEvq.png 512w, /_app/immutable/assets/gate.Blxjx69o.png 1024w" type="image/png"><img src="/_app/immutable/assets/gate.Blxjx69o.png" class="w-96 max-w-full flex-1 basis-1/2" alt="Streamer University Gates" width="1024" height="683"></picture></div></section> <section class="min-h-[60vh] bg-black text-white"><div class="mx-auto w-full max-w-screen-xl p-16"><div class="text-6xl font-bold"><p class="outline-text svelte-1f46ixp">STEPS</p> <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center"><span class="text-[#aaa]">YOU TAKE</span> <p class="text-[24px]">STUDENT<br>PROCESS</p></div></div> <div class="flex flex-col items-center gap-2 pt-16 lg:flex-row"><div class="flex size-48 flex-col justify-between rounded-xl bg-[#1a1a1a] p-2 sm:size-64 sm:p-8"><p class="outline-text self-end text-2xl sm:text-4xl svelte-1f46ixp">01</p> <p class="text-sm font-bold sm:text-xl">Apply</p></div> <div class="flex size-48 flex-col justify-between rounded-xl bg-[#1a1a1a] p-2 sm:size-64 sm:p-8"><p class="outline-text self-end text-2xl sm:text-4xl svelte-1f46ixp">02</p> <p class="text-sm font-bold sm:text-xl">Wait For Acceptance Letters</p></div> <div class="flex size-48 flex-col justify-between rounded-xl bg-[#e9e9e9] p-2 text-black sm:size-64 sm:p-8"><p class="self-end text-2xl sm:text-4xl">03</p> <p class="text-sm font-bold sm:text-xl">Move-In Day + Orientation</p></div> <a href="https://forms.gle/EnCn9sMzzJjzmnPM9" class="mt-16 flex aspect-square flex-col justify-center self-center whitespace-nowrap rounded-full border border-neutral-500 p-4 text-center transition-colors hover:bg-white hover:text-black lg:ml-16 lg:mt-0">ENROLL NOW</a></div></div></section> <section class="bg-[#eee]"><div class="mx-auto w-full max-w-screen-xl px-8 pb-16 sm:px-16"><h2 class="sticky top-0 z-10 bg-[#eee] pt-16 text-4xl font-bold uppercase sm:text-7xl">Benefits Of Being A Streamer-U Student</h2> <div class="ml-auto flex max-w-[500px] flex-col gap-8 py-16"><div class="relative flex min-h-64 flex-col gap-8 rounded-xl bg-white p-8 pb-16 sm:flex-row sm:pb-8"><p class="outline-text-black absolute inset-x-0 bottom-0 m-6 text-right text-3xl font-bold sm:text-left svelte-1f46ixp">01</p> <p class="text-2xl font-bold">Showcase Your Student Life</p> <p class="self-end font-inter">Your academic story will be on display in front of not only your
-						audience, but many other audiences as well. At StreamerU, all
-						students and professors are creators. There will be cameras
-						everywhere, streaming to a variety of audiences of many different
-						platforms.</p></div> <div class="relative flex min-h-64 flex-col gap-4 rounded-xl bg-black p-8 pb-16 text-white sm:flex-row sm:pb-8"><p class="outline-text absolute inset-x-0 bottom-0 m-6 text-right text-3xl font-bold sm:text-left svelte-1f46ixp">02</p> <p class="text-2xl font-bold">Meet Other Creators</p> <p class="self-end font-inter">This entire event is a collaborative effort, involving many creative
-						peers, industry leaders and professionals. You will have the
-						opportunity to organically meet with everyone.</p></div> <div><div class="relative flex min-h-64 flex-col gap-4 rounded-xl bg-white p-8 pb-16 sm:flex-row sm:pb-8"><p class="outline-text-black absolute inset-x-0 bottom-0 m-6 text-right text-3xl font-bold sm:text-left svelte-1f46ixp">03</p> <p class="text-2xl font-bold">Actually Learn Useful Info</p> <p class="self-end font-inter">While most classes will be fun, entertaining, and collaborative,
-							some classes will actually provide quality information on how to
-							better yourself as creators. Your future success is important to
-							us!</p></div></div></div></div></section> <section class="bg-black text-white"><div class="mx-auto w-full max-w-screen-xl p-16 px-8 sm:px-16"><h2 class="text-4xl font-bold uppercase text-[#aaa] sm:text-7xl"><p class="outline-text svelte-1f46ixp">Notable</p> <p>Courses</p></h2> <ul class="select-none space-y-4 py-16 text-xl font-bold text-[#969696] sm:text-2xl md:text-3xl"><li class="group flex items-center gap-4 transition-colors hover:text-white"><!--[!--><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-6" viewBox="0 0 24 24" style="--🟃s:30px"><use href="#🟃g3F"></use></svg><!---->Sex
-					Education <span class="whitespace-nowrap font-inter text-base">/ Professor TBD</span></li> <li class="group flex items-center gap-4 transition-colors hover:text-white"><!--[!--><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-6" viewBox="0 0 24 24" style="--🟃s:30px"><use href="#🟃g3F"></use></svg><!---->Business Management <span class="whitespace-nowrap font-inter text-base">/ Professor TBD</span></li> <li class="group flex items-center gap-4 transition-colors hover:text-white"><!--[!--><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-6" viewBox="0 0 24 24" style="--🟃s:30px"><use href="#🟃g3F"></use></svg><!---->Music Production <span class="whitespace-nowrap font-inter text-base">/ Professor TBD</span></li> <li class="group flex items-center gap-4 transition-colors hover:text-white"><!--[!--><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-6" viewBox="0 0 24 24" style="--🟃s:30px"><use href="#🟃g3F"></use></svg><!---->Film
-					and Acting <span class="whitespace-nowrap font-inter text-base">/ Professor TBD</span></li> <li class="group flex items-center gap-4 transition-colors hover:text-white"><!--[!--><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-6" viewBox="0 0 24 24" style="--🟃s:30px"><use href="#🟃g3F"></use></svg><!---->MANY
-					MORE <span class="whitespace-nowrap font-inter text-base">/ Professor TBD</span></li></ul></div></section> <section class="flex flex-col items-center gap-4 py-16"><h2 class="text-center text-2xl font-bold">Want to Apply as a Professor?</h2> <a href="https://forms.gle/ovkvbU1vGwXRXfMR6" class="group flex w-fit items-center gap-2 rounded-full border border-transparent px-2 py-1 text-sm font-medium transition-all hover:border-black"><!--[!--><!--]--><svg class="🟃i !w-0 transition-[width] group-hover:!w-5" viewBox="0 0 24 24"><use href="#🟃g3F"></use></svg><!----> <span class="whitespace-nowrap">BECOME A PROFESSOR</span> <!--[!--><!--]--><svg class="🟃i transition-[width] group-hover:w-0" viewBox="0 0 24 24" style="--🟃s:20px"><use href="#🟃cAU"></use></svg><!----></a><!----></section> <section class="bg-[#881816]"><picture><source srcset="/_app/immutable/assets/banner.RfFLDSuO.avif 1024w, /_app/immutable/assets/banner.iAMCLWsE.avif 2048w" type="image/avif"><source srcset="/_app/immutable/assets/banner.dMgdiB9D.webp 1024w, /_app/immutable/assets/banner.OWBloV4w.webp 2048w" type="image/webp"><source srcset="/_app/immutable/assets/banner.CCYVYQU0.png 1024w, /_app/immutable/assets/banner.DaHq0KI0.png 2048w" type="image/png"><img src="/_app/immutable/assets/banner.DaHq0KI0.png" class="max-h-96 w-full object-contain" alt="Streamer University 2025" width="2048" height="823"></picture></section> <footer class="flex flex-col items-center gap-4 bg-black py-16 text-white"><div class="relative size-32"><svg viewBox="0 0 180 180" class="h-full w-full"><defs><path id="circlePath" d="M 90, 90 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "></path></defs><circle cx="90" cy="90" r="75" fill="none"></circle><g><use xlink:href="#circlePath" fill="none"></use><text class="origin-center fill-white text-[14.8px]"><textPath xlink:href="#circlePath"><tspan>| Streamer University | Streamer University</tspan></textPath> <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="10s" repeatCount="indefinite"></animateTransform></text></g></svg> <picture><source srcset="/_app/immutable/assets/logo.XQKC2TgN.avif 1024w, /_app/immutable/assets/logo.CdATeoar.avif 2048w" type="image/avif"><source srcset="/_app/immutable/assets/logo.IREqZiUB.webp 1024w, /_app/immutable/assets/logo.DZJ99DXF.webp 2048w" type="image/webp"><source srcset="/_app/immutable/assets/logo.BdQA5Sso.png 1024w, /_app/immutable/assets/logo.C0x5MTk1.png 2048w" type="image/png"><img src="/_app/immutable/assets/logo.C0x5MTk1.png" class="absolute left-1/2 top-1/2 w-16 -translate-x-1/2 -translate-y-1/2" alt="" width="2048" height="1757"></picture></div> <a class="font-bold hover:underline" href="https://twitch.tv/kaicenat" target="_blank">Twitch</a> <a class="font-bold hover:underline" href="https://www.youtube.com/@KaiCenatLive" target="_blank">YouTube</a> <a class="font-bold hover:underline" href="https://www.instagram.com/kaicenat" target="_blank">Instagram</a> <a class="font-bold hover:underline" href="https://www.tiktok.com/@kai_cenat" target="_blank">TikTok</a></footer></main><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
-			
-			  
+        .header {
+            width: 100%;
+            max-width: 600px;
+            padding: 16px;
+            text-align: center;
+            background-color: #2A3B47;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4FA8F5;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 10px 0;
+        }
+
+        .option-btn {
+            background-color: #4FA8F5;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-btn:hover {
+            background-color: #3E8ED0;
+            transform: scale(1.05);
+        }
+
+        .option-btn.active {
+            background-color: #2E7BB4;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #17212B;
+            margin: 0 10px;
+            min-height: calc(100vh - 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section {
+            display: none;
+            width: 100%;
+            padding: 16px;
+            background-color: #191919;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #4FA8F5;
+            margin-bottom: 12px;
+        }
+
+        .section p {
+                font-size: 13px;
+    color: #3fe9cb;
+    line-height: 20px;
+    margin-bottom: 16px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #2A3B47;
+            padding: 20px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            color: #FFFFFF;
+            animation: popup 0.2s ease-out;
+            position: relative;
+        }
+
+        @keyframes popup {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content label {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        .modal-content input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: none;
+            border-bottom: 1px solid #4FA8F5;
+            background-color: transparent;
+            color: #FFFFFF;
+            font-size: 14px;
+            text-align: center;
+            transition: border-color 0.2s ease;
+        }
+
+        .modal-content input:focus {
+            outline: none;
+            border-color: #3E8ED0;
+        }
+
+        .modal-content button {
+            background-color: transparent;
+            color: #FFFFFF;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        #search_btn button{
+            background-color: #2E7BB4;
+        }
+        .close-btn {
+            background-color: none;
+    position: absolute;
+    right: 10px;
+    text-align: end;
+    top: 1px;
+     color: #ffffff86;
+        }
+
+        .close-btn:hover {
+            color: #ffffff;
+            background: none;
+        }
+
+        #pin-error, #user-pin-error, #giver-pin-error {
+            color: #F06292;
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .modal-content p {
+            font-size: 12px;
+            color: #A5B1C2;
+            margin: 8px 0;
+        }
+
+        #search-section {
+            text-align: center;
+        }
+
+        #search-section label {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        #search-section input[type="number"] {
+            width: 100%;
+            max-width: 260px;
+            padding: 10px;
+            margin: 0 auto 16px;
+            border: none;
+            border-bottom: 1px solid #4FA8F5;
+            background-color: transparent;
+            color: #FFFFFF;
+            font-size: 14px;
+            text-align: center;
+            transition: border-color 0.2s ease;
+        }
+
+        #search-section input:focus {
+            outline: none;
+            border-color: #3E8ED0;
+        }
+
+        #search-section button {
+            background-color: #2E7BB4;
+            color: #FFFFFF;
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 260px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        #search-section button:hover {
+            background-color: #3E8ED0;
+            transform: scale(1.03);
+        }
+
+        #search-results, #user-details {
+            display: none;
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 12px;
+            background-color: #252525;
+        }
+
+        #search-results h2, #user-details h2 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #FFFFFF;
+        }
+
+        .giver-entry, .user-entry {
+            margin-bottom: 8px;
+            padding: 12px;
+            border-radius: 12px;
+            background-color: #191919;
+            font-size: 13px;
+            transition: background-color 0.2s ease;
+        }
+
+        .giver-entry:hover, .user-entry:hover {
+            background-color: #008fbe;
+        }
+
+        .giver-entry p, .user-entry p {
+            margin: 4px 0;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            background-color: #4FA8F5;
+            color: #FFFFFF;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: #3E8ED0;
+            transform: scale(1.03);
+        }
+
+        .copy-btn.copied {
+            background-color: #2E7BB4;
+        }
+
+        .availability {
+            color: #4CAF50;
+            font-weight: 400;
+        }
+
+        .not-available {
+            color: #F06292;
+            font-weight: 400;
+        }
+
+        @media (max-width: 600px) {
+            .header{
+                margin: auto;
+                padding: 12px;
+                max-width: 100%;
+            } 
+            
+            .container {
+                margin: auto;
+                max-width: 100%;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .options {
+                gap: 8px;
+            }
+
+            .option-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .modal-content {
+                margin: 8px;
+                padding: 16px;
+                max-width: 90%;
+                border-radius: 14px;
+            }
+
+            .copy-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">LendLink - Mid</div>
+        <div class="options">
+            <button class="option-btn" onclick="showPinModal('taker')">Taker</button>
+            <button class="option-btn" onclick="showPinModal('giver')">Giver</button>
+            <button class="option-btn" onclick="showPinModal('account')">Account</button>
+        </div>
+    </div>
+    <div class="container">
+        <div id="taker-section" class="section">
+            <div class="matter" style="text-align: center;">
+                <h2>Taker Dashboard</h2>
+                <p>Search for available givers to find financial support tailored to your needs. Enter the amount you require below to connect with potential givers.</p>
+            </div>
+            <div id="search-section">
+                <label for="search-amount">Enter amount (₹) here:</label>
+                <input type="number" id="search-amount" placeholder="Amount" min="0">
+                <button id="search_btn" onclick="searchGivers()">Search</button>
+            </div>
+            <div id="search-results"></div>
+        </div>
+        <div id="giver-section" class="section">
+            <h2>Giver Dashboard</h2>
+            <p>Contribute to the community by offering financial support. Register or manage your giving preferences.</p>
+        </div>
+        <div id="account-section" class="section">
+            <h2>Account Details</h2>
+            <p>View and manage your account information, including your borrowing history and contact details.</p>
+            <div id="user-details"></div>
+        </div>
+    </div>
+    <div class="modal" id="pin-modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('pin-modal')">✕</button>
+            <label for="pin-input">Enter Taker PIN</label>
+            <input type="text" id="pin-input" placeholder="PIN">
+            <button onclick="validatePin('taker')">Submit</button>
+            <p>NOTE: If you do not have a mid-enter-pin, it means you have not paid the fee for LendLink - Mid.</p>
+            <p id="pin-error">Incorrect PIN.</p>
+        </div>
+    </div>
+    <div class="modal" id="giver-pin-modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('giver-pin-modal')">✕</button>
+            <label for="giver-pin-input">Enter Giver PIN</label>
+            <input type="text" id="giver-pin-input" placeholder="PIN">
+            <button onclick="validatePin('giver')">Submit</button>
+            <p>NOTE: If you do not have a giver-pin, it means you have not registered as a giver.</p>
+            <p id="giver-pin-error">Incorrect PIN.</p>
+        </div>
+    </div>
+    <div class="modal" id="user-pin-modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('user-pin-modal')">✕</button>
+            <label for="user-pin-input">Enter User PIN</label>
+            <input type="text" id="user-pin-input" placeholder="PIN">
+            <button onclick="validateUserPin()">Submit</button>
+            <p id="user-pin-error">Incorrect PIN.</p>
+        </div>
+    </div>
     <script>
-        
-        document.addEventListener("DOMContentLoaded", () => {
-            const customMenu = document.querySelector(".custom-menu");
+        let currentOption = '';
+        let givers = [
+            { name: "Bhargav Akula", phone: "9747265868", amount: 10000, interest: 2000, availability: false },
+            { name: "Bharat", phone: "private", amount: 10000, interest: 2000, availability: false },
+            { name: "venkata siva", phone: "MFI member only", amount: 10000, interest: 2000, availability: false },
+            { name: "Siva yerramsetti", phone: "9394522389", amount: 20000, interest: 4000, availability: false },
+            { name: "Kiran tummu", phone: "9394522389", amount: 5000, interest: 1200, availability: false },
+            { name: "Gangadhar", phone: "9966934212", amount: 15000, interest: 2500, availability: false },
+        ];
+        let userDetails = {
+            name: "John Doe",
+            phone: "9876543210",
+            amountTaken: 10000,
+            interest: 2500,
+            takenfor: 25
+        };
 
-            document.addEventListener("contextmenu", (event) => {
-                event.preventDefault();
-                if (customMenu) {
-                    customMenu.style.display = "block";
-                    customMenu.style.top = `${event.pageY}px`;
-                    customMenu.style.left = `${event.pageX}px`;
-                }
-            });
+        const correctPin = '0112'; 
+        const correctGiverPin = 'TAK#12'; 
+        const correctUserPin = '0101';
 
-            document.addEventListener("click", () => {
-                if (customMenu) {
-                    customMenu.style.display = "none";
-                }
+        function showPinModal(type) {
+            currentOption = type;
+            const modal = type === 'giver' ? document.getElementById('giver-pin-modal') : 
+                         type === 'account' ? document.getElementById('user-pin-modal') : 
+                         document.getElementById('pin-modal');
+            modal.style.display = 'flex';
+            const input = document.getElementById(type === 'giver' ? 'giver-pin-input' : 
+                                                 type === 'account' ? 'user-pin-input' : 'pin-input');
+            input.value = '';
+            document.getElementById(type === 'giver' ? 'giver-pin-error' : 
+                                    type === 'account' ? 'user-pin-error' : 'pin-error').style.display = 'none';
+            input.focus();
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+            const error = document.getElementById(modalId === 'pin-modal' ? 'pin-error' : 
+                                                 modalId === 'giver-pin-modal' ? 'giver-pin-error' : 'user-pin-error');
+            error.style.display = 'none';
+        }
+
+        function validatePin(type) {
+            const pinInput = document.getElementById(type === 'giver' ? 'giver-pin-input' : 'pin-input');
+            const pinError = document.getElementById(type === 'giver' ? 'giver-pin-error' : 'pin-error');
+            const modal = document.getElementById(type === 'giver' ? 'giver-pin-modal' : 'pin-modal');
+            const pin = pinInput.value;
+
+            if (type === 'giver' && pin === correctGiverPin) {
+                modal.style.display = 'none';
+                pinInput.value = '';
+                pinError.style.display = 'none';
+                showSection('giver');
+                window.location.href = 'https://forms.gle/EBCovJmKfWdTVjRF6';
+            } else if (type === 'taker' && pin === correctPin) {
+                modal.style.display = 'none';
+                pinInput.value = '';
+                pinError.style.display = 'none';
+                showSection('taker');
+            } else {
+                pinError.style.display = 'block';
+                pinInput.value = '';
+                pinInput.focus();
+            }
+        }
+
+        function validateUserPin() {
+            const pin = document.getElementById('user-pin-input').value;
+            if (pin === correctUserPin) {
+                document.getElementById('user-pin-modal').style.display = 'none';
+                showSection('account');
+                displayUserDetails();
+            } else {
+                document.getElementById('user-pin-error').style.display = 'block';
+                document.getElementById('user-pin-input').value = '';
+                document.getElementById('user-pin-input').focus();
+            }
+        }
+
+        function showSection(type) {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+            
+            const section = document.getElementById(`${type}-section`);
+            section.classList.add('active');
+            document.querySelector(`.option-btn[onclick="showPinModal('${type}')"]`).classList.add('active');
+
+            if (type === 'taker') {
+                document.getElementById('search-section').style.display = 'block';
+                document.getElementById('search-results').style.display = 'none';
+                document.getElementById('user-details').style.display = 'none';
+            } else if (type === 'account') {
+                document.getElementById('search-section').style.display = 'none';
+                document.getElementById('search-results').style.display = 'none';
+            }
+        }
+
+        function displayUserDetails() {
+            const userDetailsDiv = document.getElementById('user-details');
+            userDetailsDiv.innerHTML = '<h2>User Details</h2>';
+            userDetailsDiv.innerHTML += `
+                <div class="user-entry">
+                    <p><strong>Name:</strong> ${userDetails.name}</p>
+                    <p><strong>Phone:</strong> ${userDetails.phone}
+                        <button class="copy-btn" onclick="copyToClipboard('${userDetails.phone}', this)" aria-label="Copy phone number">Copy</button>
+                    </p>
+                    <p><strong>Amount Taken:</strong> ₹${userDetails.amountTaken.toFixed(2)}</p>
+                    <p><strong>Interest:</strong> ₹${userDetails.interest.toFixed(2)}</p>
+                    <p><strong>Taken For:</strong> ${userDetails.takenfor} days</p>
+                </div>
+            `;
+            userDetailsDiv.style.display = 'block';
+        }
+
+        function copyToClipboard(phone, button) {
+            navigator.clipboard.writeText(phone).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy phone number.');
             });
+        }
+
+        function searchGivers() {
+            const searchAmount = parseFloat(document.getElementById('search-amount').value);
+            const searchResults = document.getElementById('search-results');
+
+            if (isNaN(searchAmount) || searchAmount < 0) {
+                alert('Please enter a valid positive amount.');
+                return;
+            }
+
+            const matchedGivers = givers.filter(giver => giver.amount === searchAmount);
+            searchResults.innerHTML = '<h2>Giver who have money</h2>';
+            if (matchedGivers.length === 0) {
+                searchResults.innerHTML += `<p>No Givers found for ₹${searchAmount.toFixed(2)}.</p>`;
+            } else {
+                matchedGivers.forEach(giver => {
+                    const status = giver.availability ? 'I will give amount right now' : 'I can`t give amount right now';
+                    const statusClass = giver.availability ? 'availability' : 'not-available';
+                    searchResults.innerHTML += `
+                        <div class="giver-entry">
+                            <p><strong>Name:</strong> ${giver.name}</p>
+                            <p><strong>Phone:</strong> ${giver.phone}
+                                <button class="copy-btn" onclick="copyToClipboard('${giver.phone}', this)" aria-label="Copy phone number">Copy</button>
+                            </p>
+                            <p><strong>Amount:</strong> ₹${giver.amount.toFixed(2)}</p>
+                            <p><strong>Interest:</strong> ₹${giver.interest.toFixed(2)}</p>
+                            <p><strong>Status:</strong> <span class="${statusClass}">${status}</span></p>
+                        </div>
+                    `;
+                });
+            }
+            searchResults.style.display = 'block';
+            document.getElementById('user-details').style.display = 'none';
+        }
+
+        document.getElementById('pin-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                validatePin('taker');
+            }
+        });
+
+        document.getElementById('giver-pin-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                validatePin('giver');
+            }
+        });
+
+        document.getElementById('user-pin-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                validateUserPin();
+            }
         });
     </script>
-
 </body>
 </html>
