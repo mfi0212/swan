@@ -18,9 +18,9 @@ let currentOption = '';
             lendedTill: "2025-08-15"
         };
 
-        const correctPin = '0112'; 
+        const correctPin = '01111'; 
         const correctGiverPin = 'PY#0212'; 
-        const correctUserPin = '0101';
+        const correctUserPin = '01011';
 
         function showPinModal(type) {
             currentOption = type;
