@@ -86,6 +86,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+
+        .welcome-text {
+            display: block;
+            position: absolute;
+            font-size: 32px;
+            font-weight: 700;
+            color: #4FA8F5;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+        }
+
+        .welcome-text.hidden {
+            display: none;
         }
 
         .section {
@@ -107,10 +123,31 @@
         }
 
         .section p {
-                font-size: 13px;
-    color: #3fe9cb;
-    line-height: 20px;
-    margin-bottom: 16px;
+            font-size: 13px;
+            color: #3fe9cb;
+            line-height: 20px;
+            margin-bottom: 16px;
+        }
+
+        .lend-btn {
+            background-color: #4FA8F5;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lend-btn:hover {
+            background-color: #3E8ED0;
+            transform: scale(1.03);
         }
 
         .modal {
@@ -188,16 +225,18 @@
             font-weight: 500;
             transition: background-color 0.2s ease, transform 0.1s ease;
         }
-        #search_btn button{
+
+        #search_btn button {
             background-color: #2E7BB4;
         }
+
         .close-btn {
             background-color: none;
-    position: absolute;
-    right: 10px;
-    text-align: end;
-    top: 1px;
-     color: #ffffff86;
+            position: absolute;
+            right: 10px;
+            text-align: end;
+            top: 1px;
+            color: #ffffff86;
         }
 
         .close-btn:hover {
@@ -258,7 +297,7 @@
             cursor: pointer;
             width: 100%;
             max-width: 260px;
-            font-size: 14px;
+            font-size: 14僚px;
             font-weight: 500;
             transition: background-color 0.2s ease, transform 0.1s ease;
         }
@@ -337,7 +376,8 @@
         }
 
         @media (max-width: 600px) {
-            .header{
+            
+            .header {
                 margin: auto;
                 padding: 12px;
                 max-width: 100%;
@@ -345,7 +385,7 @@
             
             .container {
                 margin: auto;
-                max-width: 100%;
+                max-width:100%;
             }
 
             .logo {
@@ -372,6 +412,11 @@
                 padding: 5px 10px;
                 font-size: 11px;
             }
+
+            .welcome-text {
+                font-size: 24px;
+                padding: 16px;
+            }
         }
     </style>
 </head>
@@ -385,6 +430,7 @@
         </div>
     </div>
     <div class="container">
+        <div class="welcome-text" id="welcome-text">Turn your money into income...!</div>
         <div id="taker-section" class="section">
             <div class="matter" style="text-align: center;">
                 <h2>Taker Dashboard</h2>
@@ -400,6 +446,7 @@
         <div id="giver-section" class="section">
             <h2>Giver Dashboard</h2>
             <p>Contribute to the community by offering financial support. Register or manage your giving preferences.</p>
+            <button class="lend-btn" onclick="window.location.href='https://forms.gle/EBCovJmKfWdTVjRF6'">Lend My Money Now</button>
         </div>
         <div id="account-section" class="section">
             <h2>Account Details</h2>
@@ -432,7 +479,7 @@
             <button class="close-btn" onclick="closeModal('user-pin-modal')">✕</button>
             <label for="user-pin-input">Enter User PIN</label>
             <input type="text" id="user-pin-input" placeholder="PIN">
-            <button onclick="validateUserPin()">Submit</button>
+            <button onclick="validateUserPin()">是是Submit</button>
             <p id="user-pin-error">Incorrect PIN.</p>
         </div>
     </div>
@@ -449,9 +496,11 @@
         let userDetails = {
             name: "John Doe",
             phone: "9876543210",
-            amountTaken: 10000,
+            status: "Giver",
+            amount: 15000,
             interest: 2500,
-            takenfor: 25
+            lendlinkShare: 500,
+            lendedTill: "2025-08-15"
         };
 
         const correctPin = '0112'; 
@@ -491,7 +540,6 @@
                 pinInput.value = '';
                 pinError.style.display = 'none';
                 showSection('giver');
-                window.location.href = 'https://forms.gle/EBCovJmKfWdTVjRF6';
             } else if (type === 'taker' && pin === correctPin) {
                 modal.style.display = 'none';
                 pinInput.value = '';
@@ -524,6 +572,9 @@
             const section = document.getElementById(`${type}-section`);
             section.classList.add('active');
             document.querySelector(`.option-btn[onclick="showPinModal('${type}')"]`).classList.add('active');
+            
+            // Hide welcome text when any section is active
+            document.getElementById('welcome-text').classList.add('hidden');
 
             if (type === 'taker') {
                 document.getElementById('search-section').style.display = 'block';
@@ -541,12 +592,14 @@
             userDetailsDiv.innerHTML += `
                 <div class="user-entry">
                     <p><strong>Name:</strong> ${userDetails.name}</p>
+                    <p><strong>Status:</strong> ${userDetails.status}</p>
                     <p><strong>Phone:</strong> ${userDetails.phone}
                         <button class="copy-btn" onclick="copyToClipboard('${userDetails.phone}', this)" aria-label="Copy phone number">Copy</button>
                     </p>
-                    <p><strong>Amount Taken:</strong> ₹${userDetails.amountTaken.toFixed(2)}</p>
+                    <p><strong>Amount:</strong> ₹${userDetails.amount.toFixed(2)}</p>
                     <p><strong>Interest:</strong> ₹${userDetails.interest.toFixed(2)}</p>
-                    <p><strong>Taken For:</strong> ${userDetails.takenfor} days</p>
+                    <p><strong>LendLink Share:</strong> ₹${userDetails.lendlinkShare.toFixed(2)}</p>
+                    <p><strong>Lended Till:</strong> ${userDetails.lendedTill}</p>
                 </div>
             `;
             userDetailsDiv.style.display = 'block';
