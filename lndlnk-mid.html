@@ -28,7 +28,6 @@
 
         .header {
             width: 100%;
-            max-width: 600px;
             padding: 16px;
             text-align: center;
             background-color: #2A3B47;
@@ -92,7 +91,7 @@
         .welcome-text {
             display: block;
             position: absolute;
-            font-size: 32px;
+            font-size: 65px;
             font-weight: 700;
             color: #4FA8F5;
             text-align: center;
@@ -109,6 +108,8 @@
             width: 100%;
             padding: 16px;
             background-color: #191919;
+                height: -webkit-fill-available;
+
         }
 
         .section.active {
@@ -132,7 +133,7 @@
         .lend-btn {
             background-color: #4FA8F5;
             color: #FFFFFF;
-            padding: 12px 24px;
+            padding: 6px 24px;
             border: none;
             border-radius: 20px;
             cursor: pointer;
@@ -297,7 +298,7 @@
             cursor: pointer;
             width: 100%;
             max-width: 260px;
-            font-size: 14僚px;
+            font-size: 14px;
             font-weight: 500;
             transition: background-color 0.2s ease, transform 0.1s ease;
         }
@@ -376,7 +377,6 @@
         }
 
         @media (max-width: 600px) {
-            
             .header {
                 margin: auto;
                 padding: 12px;
@@ -385,7 +385,7 @@
             
             .container {
                 margin: auto;
-                max-width:100%;
+                max-width: 100%;
             }
 
             .logo {
@@ -414,8 +414,8 @@
             }
 
             .welcome-text {
-                font-size: 24px;
-                padding: 16px;
+                font-size: 65px;
+        text-align: left;
             }
         }
     </style>
@@ -479,7 +479,7 @@
             <button class="close-btn" onclick="closeModal('user-pin-modal')">✕</button>
             <label for="user-pin-input">Enter User PIN</label>
             <input type="text" id="user-pin-input" placeholder="PIN">
-            <button onclick="validateUserPin()">是是Submit</button>
+            <button onclick="validateUserPin()">Submit</button>
             <p id="user-pin-error">Incorrect PIN.</p>
         </div>
     </div>
