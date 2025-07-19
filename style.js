@@ -19,7 +19,7 @@ let currentOption = '';
         };
 
         const correctPin = '0112'; 
-        const correctGiverPin = 'TAK#12'; 
+        const correctGiverPin = 'PY#0212'; 
         const correctUserPin = '0101';
 
         function showPinModal(type) {
