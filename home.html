@@ -62,15 +62,15 @@ body {
     }
 
     .apply-button {
-          bottom: 45px;
+             bottom: 45px;
     padding: 8px 20px;
-      background-color: #ffffff00;
-      color: #ffffff;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      position: fixed;
-      border: solid 2px #ffffff61;
+    color: #000000;
+    border-radius: 50px;
+    font-size: 14px;
+    cursor: pointer;
+    position: fixed;
+    border: none;
+    background: #ffffff26;
     }
  button:hover{
   background:  rgba(255, 255, 255, 0.326);
@@ -180,13 +180,12 @@ outline: none;
             
         color: #00ddff;
         border: none;
-        border-radius: 30px 30px 0px 0px;
+        border-radius: 25px;
         text-align: center;
-        font-size: 13px;
-        background: linear-gradient(180deg, #0000005e, #00199a00);
+        font-size: 12px;
+        background: #ffffff1f;
         font-weight: 500;
-        width: 88%;
-
+        width: 85%;
     }
     }
     .bottom:hover{
@@ -295,7 +294,7 @@ outline: none;
   <!-- Job Card -->
   <div class="job-card" style="position: fixed;
     bottom: 80px">
-    <span style="    font-size: 15px;">After filling wait few hours..!</span>
+    <span style="font-size: 15px;">After filling wait few hours..!</span>
     <br><br>
     To provide the fund, we need to collect the amount first. It takes few hours to arrange the fund, so be patience during this time to get the fund.<br><br><br><span>
       <a class="presave" style="    text-decoration: none;" href="https://forms.gle/rtcayowFYw48u94PA">Apply for Pre-saver</a></span>
@@ -350,13 +349,18 @@ outline: none;
         animation: color-move 3s linear infinite;
     }
     .option {
-    display: flex
+display: flex
 ;
     gap: 10px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     font-size: 20px;
+    position: fixed;
+    bottom: 290px;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    background: transparent;
 }
 .option a{
   display: contents;
