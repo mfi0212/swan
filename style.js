@@ -1,26 +1,27 @@
 let currentOption = '';
         let givers = [
-            { name: "Bhargav Akula", phone: "MFI member only", amount: 10000, interest: 2000, availability: false },
-            { name: "Bharat", phone: "Private", amount: 10000, interest: 2000, availability: false },
-            { name: "venkata siva", phone: "MFI member only", amount: 10000, interest: 2000, availability: false },
-            { name: "Siva yerramsetti", phone: "9394522389", amount: 20000, interest: 4000, availability: false },
-            { name: "Kiran tummu", phone: "MFI member only", amount: 5000, interest: 1200, availability: false },
-            { name: "Gangadhar", phone: "Private", amount: 15000, interest: 2500, availability: false },
+            { name: "Bhargav Akula", phone: "MFI member only", amount: 0, interest: 2000, availability: false },
+            { name: "Bharat", phone: "Private", amount: 0, interest: 0, availability: false },
+            { name: "venkata siva", phone: "MFI member only", amount: 0, interest: 2000, availability: false },
+            { name: "Siva yerramsetti", phone: "9394522389", amount: 0, interest: 4000, availability: false },
+            { name: "Kiran tummu", phone: "MFI member only", amount: 0, interest: 1200, availability: false },
+            { name: "Gangadhar", phone: "Private", amount: 0, interest: 2500, availability: false },
         ];
         // account 
         let userDetails = {
             name: "Jainu kalyan",
             phone: "Private",
             status: "Giver",
-            amount: 15000,
-            interest: 2500,
-            lendlinkShare: 500,
-            lendedTill: "2025-08-15"
-        };
+            amount: 0,
+            interest:0,
+            lendlinkShare: "650/month",
+            ActiveFor:"0 months",
+            SharePaidtill:" Paid for 0 months"
+        }; 
 
-        const correctPin = '01111'; 
-        const correctGiverPin = 'PY#0212'; 
-        const correctUserPin = '01011';
+        const correctPin = 'TAK#12'; 
+        const correctGiverPin = 'GIV#12'; 
+        const correctUserPin = 'ACC#12';
 
         function showPinModal(type) {
             currentOption = type;
@@ -106,6 +107,7 @@ let currentOption = '';
             userDetailsDiv.innerHTML = '<h2>User Details</h2>';
             userDetailsDiv.innerHTML += `
                 <div class="user-entry">
+                    <h5>Giver Info</h5>
                     <p><strong>Name:</strong> ${userDetails.name}</p>
                     <p><strong>Status:</strong> ${userDetails.status}</p>
                     <p><strong>Phone:</strong> ${userDetails.phone}
@@ -113,8 +115,11 @@ let currentOption = '';
                     </p>
                     <p><strong>Amount:</strong> ₹${userDetails.amount.toFixed(2)}</p>
                     <p><strong>Interest:</strong> ₹${userDetails.interest.toFixed(2)}</p>
-                    <p><strong>LendLink Share:</strong> ₹${userDetails.lendlinkShare.toFixed(2)}</p>
-                    <p><strong>Lended Till:</strong> ${userDetails.lendedTill}</p>
+                    <hr>
+                    <h5>Premium Info</h5>
+                    <p><strong>Share Type:</strong> ₹${userDetails.lendlinkShare}</p>
+                    <p><strong>Active For:</strong> ${userDetails.ActiveFor}</p>
+                    <p><strong>Paid For:</strong> ${userDetails.SharePaidtill}</p>
                 </div>
             `;
             userDetailsDiv.style.display = 'block';
