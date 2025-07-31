@@ -540,14 +540,6 @@
                 Pay ₹650 fixed monthly, regardless of whether you lend or not<br>
                 (or)<br>
                 Pay 50% of the returns earned from lending interest.</p>
-            <p style="font-size: 10px;
-    font-weight: 500;
-    background: no-repeat;
-    color: white;
-    line-height: 18px;
-    padding: 0px;
-    font-weight: 400;
-    margin: 0px;">Note: If you choose to lend an amount with an interest rate higher than the LendLink standard limit, you are required to pay a share to LendLink. This share is calculated as ₹20 for every ₹100 of interest earned, as displayed in the LendLink Share section.</p>
             <div class="amount-options">
                 <button class="amount-btn" onclick="selectAmount(5000)">₹5,000</button>
                 <button class="amount-btn" onclick="selectAmount(10000)">₹10,000</button>
@@ -561,7 +553,16 @@
                 <span class="interest-display" id="interest-display">Select an amount to see interest</span>
                 <button class="control-btn" onclick="adjustInterest(100)">+</button>
             </div>
-            <p id="lendlink-share">LendLink Share: ₹0 (₹20 for every ₹100 of interest)</p>
+            <p id="lendlink-share">LendLink Share: ₹0 (₹20 for every ₹100)<br><br>
+            <p style="font-size: 10px;
+    font-weight: 500;
+    background: no-repeat;
+    color: white;
+    line-height: 18px;
+    padding: 0px;
+    font-weight: 400;
+    margin: 0px;">NOTE : If you choose to lend an amount with an interest rate higher than the LendLink standard limit, you are required to pay a share to LendLink. This share is calculated as ₹20 for every ₹100 of interest earned, as displayed in the LendLink Share section.</p>
+            </p>
             <div id="share-chart"></div>
             <button class="lend-btn" onclick="window.location.href='https://forms.gle/EBCovJmKfWdTVjRF6'">Lend My Money Now</button>
         </div>
