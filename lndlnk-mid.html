@@ -118,18 +118,19 @@
             font-weight: 500;
             color: #4FA8F5;
             margin-bottom: 25px;
+            text-align: center;
         }
 
         .section p {
-                font-size: 11px;
-    color: #00b898;
-    line-height: 20px;
-    margin: 25px 0px;
-    text-align: center;
-    line-height: 16px;
-    background: black;
-    padding: 18px;
-    font-weight: 400;
+            font-size: 11px;
+            color: #00b898;
+            line-height: 20px;
+            margin: 25px 0px;
+            text-align: center;
+            line-height: 16px;
+            background: black;
+            padding: 18px;
+            font-weight: 400;
         }
 
         .lend-btn {
@@ -352,7 +353,10 @@
             font-weight: 400;
             letter-spacing: 0.3px;
         }
-
+.search {
+    WIDTH: 100%;
+    text-align: center;
+}
         .copy-btn {
             background-color: #4FA8F5;
             color: #FFFFFF;
@@ -393,7 +397,7 @@
         }
 
         .amount-btn {
-            background-color: #4FA8F5;
+            background-color: #9c9c9c38;
             color: #FFFFFF;
             padding: 8px 16px;
             border: none;
@@ -410,21 +414,34 @@
         }
 
         .amount-btn.active {
-            background-color: #2E7BB4;
+            background-color: WHITE;
+            COLOR: BLACK;
+            font-weight: 600;
         }
 
-        .interest-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: center;
+        .amount-btn.disabled {
+            display: none;
+        }
+
+        .interest-display {
+            font-size: 16px;
+            font-weight: 500;
+            color: #FFFFFF;
+            text-align: center;
             margin: 20px 0;
         }
 
-        .control-btn {
-            background-color: #4FA8F5;
+        .plan-options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .plan-btn {
+            background-color: transparent;
             color: #FFFFFF;
-            padding: 8px 12px;
+            padding: 8px 16px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
@@ -433,17 +450,19 @@
             transition: background-color 0.2s ease, transform 0.1s ease;
         }
 
-        .control-btn:hover {
-            background-color: #3E8ED0;
+        .plan-btn:hover {
+            background-color: #0000002c;
             transform: scale(1.03);
         }
 
-        .interest-display {
-            font-size: 16px;
-            font-weight: 500;
-            color: #FFFFFF;
+        .plan-btn.active {
+            background-color: BLACK;
+            COLOR: #4fa8f5;
+            font-weight: 900;
         }
-
+        .NONEED{
+            display: none;
+        }
         #lendlink-share {
             display: none;
             font-size: 14px;
@@ -452,12 +471,75 @@
             text-align: center;
         }
 
+        .interest-comparison {
+            margin: 15px 0;
+            font-size: 13px;
+            color: #FFFFFF;
+            text-align: center;
+            background: #252525;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .interest-comparison p {
+            margin: 8px 0;
+    background: none;
+    padding: 0;
+    line-height: 30PX;
+    font-size: 16px;
+        }
+
         #share-chart {
             margin-top: 20px;
             max-width: 100%;
             background-color: #252525;
             padding: 10px;
             border-radius: 12px;
+        }
+
+        .days-input {
+            width: 100%;
+            max-width: 260px;
+            padding: 10px;
+            margin: 10px auto;
+            border: none;
+            border-bottom: 1px solid #4FA8F5;
+            background-color: transparent;
+            color: #FFFFFF;
+            font-size: 14px;
+            text-align: center;
+            transition: border-color 0.2s ease;
+        }
+
+        .days-input:focus {
+            outline: none;
+            border-color: #3E8ED0;
+        }
+
+        .plan-info {
+            font-size: 12px;
+            color: #A5B1C2;
+            margin: 15px 0;
+            text-align: center;
+            background: #252525;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .plan-info p {
+            margin: 8px 0;
+            background: none;
+            padding: 0;
+            line-height: 18px;
+            font-size: 12px;
+            color: #A5B1C2;
+        }
+
+        .warning {
+            color: #ff0000;
+            font-size: 12px;
+            margin-top: 10px;
+            text-align: center;
         }
 
         @media (max-width: 600px) {
@@ -504,6 +586,15 @@
                 font-size: 12px;
             }
 
+            .interest-comparison, .plan-info {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .days-input {
+                max-width: 200px;
+            }
+
             #share-chart {
                 padding: 8px;
             }
@@ -535,11 +626,18 @@
             <div id="search-results"></div>
         </div>
         <div id="giver-section" class="section">
-            <h2>Giver Notice</h2>
-            <p>SELECT AN PLANS :<br><br>
-                Pay ₹650 fixed monthly, regardless of whether you lend or not<br>
-                (or)<br>
-                Pay 50% of the returns earned from lending interest.</p>
+            <h2>Giver Dashboard</h2>
+            <div class="plan-info">
+                <p><strong>₹650/month Plan:</strong> 14% annual interest, lend up to ₹15,000, once per month.</p>
+                <p><strong>50-50 Share Plan:</strong> 25% annual interest, no amount limit, up to 3 times per month.</p>
+                <p><strong>Note:</strong> Amounts above ₹15,000 automatically use the 50-50 share plan.</p>
+            </div>
+            <p>Select a payment plan:</p>
+            <div class="plan-options">
+                <button class="plan-btn" onclick="selectPlan('fixed')">₹650/month</button>
+                <button class="plan-btn" onclick="selectPlan('share')">50-50 Interest Share</button>
+            </div>
+            <p>SELECT AN AMOUNT:</p>
             <div class="amount-options">
                 <button class="amount-btn" onclick="selectAmount(5000)">₹5,000</button>
                 <button class="amount-btn" onclick="selectAmount(10000)">₹10,000</button>
@@ -548,23 +646,26 @@
                 <button class="amount-btn" onclick="selectAmount(25000)">₹25,000</button>
                 <button class="amount-btn" onclick="selectAmount(30000)">₹30,000</button>
             </div>
-            <div class="interest-control">
-                <button class="control-btn" onclick="adjustInterest(-100)">-</button>
-                <span class="interest-display" id="interest-display">Select an amount to see interest</span>
-                <button class="control-btn" onclick="adjustInterest(100)">+</button>
+            <div class="search">
+                <label for="days-input">Enter lending duration (days):</label>
+                <input type="number" id="days-input" class="days-input" placeholder="Days" min="1" max="365" oninput="updateInterestDisplay()">
             </div>
-            <p id="lendlink-share">LendLink Share: ₹0 (₹20 for every ₹100)<br><br>
-            <p style="font-size: 10px;
-    font-weight: 500;
-    background: no-repeat;
-    color: white;
-    line-height: 18px;
-    padding: 0px;
-    font-weight: 400;
-    margin: 0px;">NOTE : If you choose to lend an amount with an interest rate higher than the LendLink standard limit, you are required to pay a share to LendLink. This share is calculated as ₹20 for every ₹100 of interest earned, as displayed in the LendLink Share section.</p>
+            <div class="interest-display" id="interest-display">Select an amount and days to see interest</div>
+            <div class="interest-comparison" id="interest-comparison" style="display: none;">
+                <p class="NONEED">With ₹650/month you get interest: ₹<span id="fixed-interest">0</span></p>
+                <p class="NONEED">With 50-50 share you get interest: ₹<span id="share-interest">0</span></p>
+                <p id="total-interest" style="display: none;COLOR: #00ffbb;">Total Interest: ₹<span id="total-interest-amount">0</span></p>
+                <p id="your-profit" style="display: none;COLOR: #00ff00;">Your Profit: ₹<span id="your-profit-amount">0</span></p>
+                <p id="lendlink-share-amount" style="display: none;    COLOR: #ff4500;">LendLink Share: ₹<span id="lendlink-share-value">0</span></p>
+            </div>
+            <p id="lendlink-share" class="warning">LendLink Share: ₹0 (₹20 for every ₹100 above standard interest)<br>
+                <span style="font-size: 10px; font-weight: 400; background: none; color: white; line-height: 18px; padding: 0; margin: 0;">
+                    NOTE: If you choose an interest rate higher than the standard (14% for ₹650/month, 25% for 50-50 share), you pay ₹20 for every ₹100 of extra interest.
+                </span>
             </p>
             <div id="share-chart"></div>
-            <button class="lend-btn" onclick="window.location.href='https://forms.gle/EBCovJmKfWdTVjRF6'">Lend My Money Now</button>
+            <p id="plan-warning" class="warning"></p>
+            <button class="lend-btn" onclick="lendMoney()">Lend My Money Now</button>
         </div>
         <div id="account-section" class="section">
             <h2>Account Details</h2>
@@ -601,341 +702,29 @@
             <p id="user-pin-error">Incorrect PIN.</p>
         </div>
     </div>
-    <script>
-        // document.addEventListener("DOMContentLoaded", () => {
-        //     const customMenu = document.querySelector(".custom-menu");
-
-        //     document.addEventListener("contextmenu", (event) => {
-        //         event.preventDefault();
-        //         if (customMenu) {
-        //             customMenu.style.display = "block";
-        //             customMenu.style.top = `${event.pageY}px`;
-        //             customMenu.style.left = `${event.pageX}px`;
-        //         }
-        //     });
-
-        //     document.addEventListener("click", () => {
-        //         if (customMenu) {
-        //             customMenu.style.display = "none";
-        //         }
-        //     });
-        // });
-
-        let currentOption = '';
-        let givers = [
-            { name: "Bhargav Akula", phone: "MFI member only", amount: 0, interest: 2000, availability: false },
-            { name: "Bharat", phone: "Private", amount: 0, interest: 0, availability: false },
-            { name: "venkata siva", phone: "MFI member only", amount: 0, interest: 2000, availability: false },
-            { name: "Siva yerramsetti", phone: "9394522389", amount: 0, interest: 4000, availability: false },
-            { name: "Kiran tummu", phone: "MFI member only", amount: 0, interest: 1200, availability: false },
-            { name: "Gangadhar", phone: "Private", amount: 0, interest: 2500, availability: false },
-        ];
-
-        let userDetails = {
-            name: "Jainu kalyan",
-            phone: "Private",
-            status: "Giver",
-            amount: 0,
-            interest: 0,
-            lendlinkShare: "650/month",
-            ActiveFor: "0 months",
-            SharePaidtill: "Paid for 0 months"
-        }; 
-
-        const correctPin = 'TAK#12'; 
-        const correctGiverPin = 'GIV#12'; 
-        const correctUserPin = 'ACC#12';
-
-        const amountInterestMap = {
-            5000: 700,
-            10000: 1400,
-            15000: 2100,
-            20000: 2800,
-            25000: 3500,
-            30000: 4200
-        };
-
-        let selectedAmount = 0;
-        let currentInterest = 0;
-
-        function showPinModal(type) {
-            currentOption = type;
-            const modal = type === 'giver' ? document.getElementById('giver-pin-modal') : 
-                         type === 'account' ? document.getElementById('user-pin-modal') : 
-                         document.getElementById('pin-modal');
-            modal.style.display = 'flex';
-            const input = document.getElementById(type === 'giver' ? 'giver-pin-input' : 
-                                                 type === 'account' ? 'user-pin-input' : 'pin-input');
-            input.value = '';
-            document.getElementById(type === 'giver' ? 'giver-pin-error' : 
-                                    type === 'account' ? 'user-pin-error' : 'pin-error').style.display = 'none';
-            input.focus();
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'none';
-            const error = document.getElementById(modalId === 'pin-modal' ? 'pin-error' : 
-                                                 modalId === 'giver-pin-modal' ? 'giver-pin-error' : 'user-pin-error');
-            error.style.display = 'none';
-        }
-
-        function validatePin(type) {
-            const pinInput = document.getElementById(type === 'giver' ? 'giver-pin-input' : 'pin-input');
-            const pinError = document.getElementById(type === 'giver' ? 'giver-pin-error' : 'pin-error');
-            const modal = document.getElementById(type === 'giver' ? 'giver-pin-modal' : 'pin-modal');
-            const pin = pinInput.value;
-
-            if (type === 'giver' && pin === correctGiverPin) {
-                modal.style.display = 'none';
-                pinInput.value = '';
-                pinError.style.display = 'none';
-                showSection('giver');
-            } else if (type === 'taker' && pin === correctPin) {
-                modal.style.display = 'none';
-                pinInput.value = '';
-                pinError.style.display = 'none';
-                showSection('taker');
-            } else {
-                pinError.style.display = 'block';
-                pinInput.value = '';
-                pinInput.focus();
-            }
-        }
-
-        function validateUserPin() {
-            const pin = document.getElementById('user-pin-input').value;
-            if (pin === correctUserPin) {
-                document.getElementById('user-pin-modal').style.display = 'none';
-                showSection('account');
-                displayUserDetails();
-            } else {
-                document.getElementById('user-pin-error').style.display = 'block';
-                document.getElementById('user-pin-input').value = '';
-                document.getElementById('user-pin-input').focus();
-            }
-        }
-
-        function showSection(type) {
-            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
-            
-            const section = document.getElementById(`${type}-section`);
-            section.classList.add('active');
-            document.querySelector(`.option-btn[onclick="showPinModal('${type}')"]`).classList.add('active');
-            
-            document.getElementById('welcome-text').classList.add('hidden');
-
-            if (type === 'taker') {
-                document.getElementById('search-section').style.display = 'block';
-                document.getElementById('search-results').style.display = 'none';
-                document.getElementById('user-details').style.display = 'none';
-            } else if (type === 'account') {
-                document.getElementById('search-section').style.display = 'none';
-                document.getElementById('search-results').style.display = 'none';
-            } else if (type === 'giver') {
-                selectedAmount = 0;
-                currentInterest = 0;
-                updateInterestDisplay();
-            }
-        }
-
-        function displayUserDetails() {
-            const userDetailsDiv = document.getElementById('user-details');
-            userDetailsDiv.innerHTML = '<h2>User Details</h2>';
-            userDetailsDiv.innerHTML += `
-                <div class="user-entry">
-                    <h5>Giver Info</h5>
-                    <p><strong>Name:</strong> ${userDetails.name}</p>
-                    <p><strong>Status:</strong> ${userDetails.status}</p>
-                    <p><strong>Phone:</strong> ${userDetails.phone}
-                        <button class="copy-btn" onclick="copyToClipboard('${userDetails.phone}', this)" aria-label="Copy phone number">Copy</button>
-                    </p>
-                    <p><strong>Amount:</strong> ₹${userDetails.amount.toFixed(2)}</p>
-                    <p><strong>Interest:</strong> ₹${userDetails.interest.toFixed(2)}</p>
-                    <hr>
-                    <h5>Premium Info</h5>
-                    <p><strong>Share Type:</strong> ₹${userDetails.lendlinkShare}</p>
-                    <p><strong>Active For:</strong> ${userDetails.ActiveFor}</p>
-                    <p><strong>Paid For:</strong> ${userDetails.SharePaidtill}</p>
-                </div>
-            `;
-            userDetailsDiv.style.display = 'block';
-        }
-
-        function copyToClipboard(phone, button) {
-            navigator.clipboard.writeText(phone).then(() => {
-                button.textContent = 'Copied!';
-                button.classList.add('copied');
-                setTimeout(() => {
-                    button.textContent = 'Copy';
-                    button.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                alert('Failed to copy phone number.');
-            });
-        }
-
-        function searchGivers() {
-            const searchAmount = parseFloat(document.getElementById('search-amount').value);
-            const searchResults = document.getElementById('search-results');
-
-            if (isNaN(searchAmount) || searchAmount < 0) {
-                alert('Please enter a valid positive amount.');
-                return;
-            }
-
-            const matchedGivers = givers.filter(giver => giver.amount === searchAmount);
-            searchResults.innerHTML = '<h2>Giver who have money</h2>';
-            if (matchedGivers.length === 0) {
-                searchResults.innerHTML += `<p>No Givers found for ₹${searchAmount.toFixed(2)}.</p>`;
-            } else {
-                matchedGivers.forEach(giver => {
-                    const status = giver.availability ? 'I will give amount right now' : 'I can`t give amount right now';
-                    const statusClass = giver.availability ? 'availability' : 'not-available';
-                    searchResults.innerHTML += `
-                        <div class="giver-entry">
-                            <p><strong>Name:</strong> ${giver.name}</p>
-                            <p><strong>Phone:</strong> ${giver.phone}
-                                <button class="copy-btn" onclick="copyToClipboard('${giver.phone}', this)" aria-label="Copy phone number">Copy</button>
-                            </p>
-                            <p><strong>Amount:</strong> ₹${giver.amount.toFixed(2)}</p>
-                            <p><strong>Interest:</strong> ₹${giver.interest.toFixed(2)}</p>
-                            <p><strong>Status:</strong> <span class="${statusClass}">${status}</span></p>
-                        </div>
-                    `;
-                });
-            }
-            searchResults.style.display = 'block';
-            document.getElementById('user-details').style.display = 'none';
-        }
-
-        function selectAmount(amount) {
-            selectedAmount = amount;
-            currentInterest = amountInterestMap[amount] || 0;
-            updateInterestDisplay();
-            document.querySelectorAll('.amount-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`.amount-btn[onclick="selectAmount(${amount})"]`).classList.add('active');
-        }
-
-        function adjustInterest(change) {
-            if (selectedAmount === 0) {
-                alert('Please select an amount first.');
-                return;
-            }
-            currentInterest = Math.max(0, currentInterest + change);
-            updateInterestDisplay();
-        }
-
-        function updateInterestDisplay() {
-            const interestDisplay = document.getElementById('interest-display');
-            const lendlinkShare = document.getElementById('lendlink-share');
-            
-            if (selectedAmount === 0) {
-                interestDisplay.textContent = 'Select an amount to see interest';
-                lendlinkShare.style.display = 'none';
-                document.getElementById('share-chart').style.display = 'none';
-            } else {
-                interestDisplay.textContent = `Interest: ₹${currentInterest.toFixed(2)}`;
-                const standardInterest = amountInterestMap[selectedAmount] || 0;
-                const isExtraInterest = currentInterest > standardInterest;
-                lendlinkShare.style.display = isExtraInterest ? 'block' : 'none';
-                if (isExtraInterest) {
-                    const shareAmount = Math.floor(currentInterest / 100) * 20;
-                    lendlinkShare.textContent = `LendLink Share: ₹${shareAmount.toFixed(2)} (₹20 for every ₹100 of interest)`;
-                    updateShareChart(currentInterest);
-                    document.getElementById('share-chart').style.display = 'block';
-                } else {
-                    lendlinkShare.textContent = `LendLink Share: ₹0 (₹20 for every ₹100 of interest)`;
-                    document.getElementById('share-chart').style.display = 'none';
-                }
-            }
-        }
-
-        function updateShareChart(interest) {
-            const increments = [100, 200, 300, 400, 500];
-            const shares = increments.map(inc => Math.floor(inc / 100) * 20);
-            const chartData = {
-                type: 'bar',
-                data: {
-                    labels: increments.map(inc => `₹${inc}`),
-                    datasets: [{
-                        label: 'LendLink Share (₹)',
-                        data: shares,
-                        backgroundColor: '#4FA8F5',
-                        borderColor: '#3E8ED0',
-                        borderWidth: 1
-                    }, {
-                        label: 'Current Share (₹)',
-                        data: increments.map(inc => inc === Math.ceil(interest / 100) * 100 ? Math.floor(interest / 100) * 20 : 0),
-                        backgroundColor: '#FF0000',
-                        borderColor: '#CC0000',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'LendLink Share (₹)',
-                                color: '#FFFFFF'
-                            },
-                            ticks: {
-                                color: '#FFFFFF'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Interest Amount (₹)',
-                                color: '#FFFFFF'
-                            },
-                            ticks: {
-                                color: '#FFFFFF'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#FFFFFF'
-                            }
-                        },
-                        title: {
-                            display: true,
-                            text: 'LendLink Share Analysis',
-                            color: '#FFFFFF'
-                        }
-                    }
-                }
-            };
-
-            document.getElementById('share-chart').innerHTML = `<canvas id="shareChartCanvas"></canvas>`;
-            new Chart(document.getElementById('shareChartCanvas'), chartData);
-        }
-
-        document.getElementById('pin-input').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                validatePin('taker');
-            }
-        });
-
-        document.getElementById('giver-pin-input').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                validatePin('giver');
-            }
-        });
-
-        document.getElementById('user-pin-input').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                validateUserPin();
-            }
-        });
+    <script src="style.js">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
