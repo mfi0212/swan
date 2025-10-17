@@ -1,61 +1,89 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS/MFI | Program X</title> <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png"> <style> @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap'); * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Red Hat Display", sans-serif; } body { background: linear-gradient(100deg, #d61500, #ff4f00); display: flex; justify-content: center; align-items: center; margin: 0; color: white; font-weight: 600; line-height: 40px; background-repeat: no-repeat; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .offer-container { width: 650px; border-radius: 12px; text-align: center; padding: 50px 0px; display: none; } .offer-title { color: #ffffff; font-size: 36px; font-weight: 900; margin-bottom: 25px; letter-spacing: 1px; font-style: italic; } .offer-details { text-align: left; padding: 0 20px; } .highlight { color: #000000; font-weight: 800; background: white; padding: 2px 11px; border-radius: 29px; font-size: 12px; white-space: nowrap; } .highlight:hover { font-size: 15px; padding: 4px 15px; cursor: pointer; background-color: #000000; color: white; } .fee-list { list-style-type: none; padding-left: 0; } .fee-list li { margin: 10px 0; } .fee-list ul { list-style-type: disc; padding-left: 20px; } .button { background-color: white; color: black; padding: 8px 20px; cursor: pointer; font-size: 16px; font-weight: 500; transition: background-color 0.3s ease; border: none; border-radius: 50px; cursor: pointer; } .button:hover { background-color: #ffffff84; } .button.disabled { background-color: #cccccc; color: #666666; cursor: not-allowed; pointer-events: none; } .disclaimer { font-size: 12px; color: #ffffff; margin-top: 15px; font-style: italic; } a { text-decoration: none; color: white; } hr { background: #ffffff; height: 1.5px; border: none; margin: 25px 0px; } .interest-calculator { text-align: center; background: #000000b0; padding: 30px; border-radius: 20px; margin: 21px 5px -25px 5px; color: white; } .interest-calculator input { padding: 10px; font-size: 16px; border: none; border-radius: 13px; background: #ffffff30; color: #ffffff; margin: 10px 25px 40px 10px; width: 85%; outline: none; text-align: center; } .interest-result { margin-top: 15px; font-size: 15px; background: #0000005e; padding: 15px; border-radius: 20px; margin: 30px 0px 10px; color: #ff5800; text-align: left; } ::placeholder { color: white; } .expired-message { color: #ff0000; font-weight: 600; margin-top: 10px; font-size: 14px; } label { color: black; font-weight: 900; font-size: 18px; } .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #2c2c2c; display: flex ; justify-content: center; align-items: center; color: white; font-weight: 400; text-align: center; z-index: 1000; flex-direction: column; line-height: 11px; letter-spacing: 0.5px; font-size: 11px; } </style> </head> <body> <div class="popup" id="popup"><span style=" color: #00beff; margin: 10px; ">No offer available in</span><span style=" font-size: 40px; font-weight: 800; font-style: oblique;">ProgramX</span><span style=" color: #00beff; margin: 15px 0px 0px 35px; ">currently</span><powerbybs style="position: fixed;bottom: 20px;">Powered by BS/MFI Programs</powerbybs ></div> <div class="offer-container" id="offerContainer"> <p style="text-align: center; color: yellow; font-weight: 600; font-size: 16px; text-decoration: underline;">Program X & Split Pay</p> <div class="offer-title">#Hapy6Mon</div> <div class="offer-details"> <label>Offer:</label> <ul class="fee-list"> <li>The members who uses <span class="highlight">Slipt Pay</span> and <span class="highlight">Clear there amounts in slipts</span> will get a <span class="highlight">30% off</span> on the both <span class="highlight"> Interest and Split Pay Fee</span> for the amount you <span class="highlight">Slipted</span>. You only have to <span class="highlight">pay</span> the remaining <span class="highlight">70%</span> of the interest.</li> </ul> <label>Fee Information:</label> <ul class="fee-list"> <li>&rightarrow; Fees will be charged based on the <span class="highlight">Amount</span> you are spliting.</li> </ul> <hr> <div class="mainfeepart" style="background: #000000b0; padding: 13px; text-align: center; line-height: 26px; border-radius: 20px; color: white;"> <p>Application Fee for this offer:<br> <span class="highlight" id="appFee">Auto-updates with interest</span></p> <p style="margin-top: 15px; font-size: 13px; color: #ff5800; line-height: 22px; font-weight: 400; letter-spacing: 0.4px;">Note: You must pay the "Application Fee" before applying.</p> </div> <p style="text-align: center; margin-top: 30px; font-size: 13px;">Click "Apply Now" to apply for the offer above.</p> </div> <button style="background-color: white; cursor: pointer;" class="button" id="applyButton"><a style="color: black; cursor: pointer;" href="https://forms.gle/8WP3DU4VZNhFHwNu7" id="applyLink">Apply Now</a></button> <div class="expired-message" id="expiredMessage" style="display: none; color: rgb(255 0 0); background: rgb(255 255 255); border-radius: 15px; padding: 15px; margin: 7px; font-weight: 600; line-height: 20px;">The offer has expired. Applications are no longer accepted.</div> <hr> <div class="interest-calculator"> <p>Interest on amount</p> <input type="number" id="interestInput" placeholder="Enter interest here..."> <button class="button" onclick="calculateDiscount()">Calculate 30% Discount</button> <div class="interest-result" id="result"></div> </div> </div>
-    <script>
-        function calculateDiscount() {
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS/MFI | Program X</title> <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png"> <style> @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap'); * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Red Hat Display", sans-serif; } body { background: linear-gradient(0deg, #ffef00, #ff4f00); display: flex; justify-content: center; align-items: center; margin: 0; color: white; font-weight: 600; line-height: 40px; background-repeat: no-repeat; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .offer-container { width: 650px; border-radius: 12px; text-align: center; padding: 50px 0px; display: none; } .offer-title { color: #ffffff; font-size: 36px; font-weight: 900; margin-bottom: 25px; letter-spacing: 1px; font-style: italic; } .offer-details { text-align: left; padding: 0 20px; } .highlight { color: #000000; font-weight: 800; background: white; padding: 2px 11px; border-radius: 29px; font-size: 12px; white-space: nowrap; } .highlight:hover { font-size: 15px; padding: 4px 15px; cursor: pointer; background-color: #000000; color: white; } .fee-list { list-style-type: none; padding-left: 0; } .fee-list li { margin: 10px 0; } .fee-list ul { list-style-type: disc; padding-left: 20px; } .button { background-color: white; color: black; padding: 8px 20px; cursor: pointer; font-size: 16px; font-weight: 500; transition: background-color 0.3s ease; border: none; border-radius: 50px; cursor: pointer; } .button:hover { background-color: #ffffff84; } .button.disabled { background-color: #cccccc; color: #666666; cursor: not-allowed; pointer-events: none; } .disclaimer { font-size: 12px; color: #ffffff; margin-top: 15px; font-style: italic; } a { text-decoration: none; color: white; } hr { background: #ffffff; height: 1.5px; border: none; margin: 25px 0px; } .interest-calculator { text-align: center; background: #000000b0; padding: 30px; border-radius: 20px; margin: 21px 5px -25px 5px; color: white; } .interest-calculator input { padding: 10px; font-size: 16px; border: none; border-radius: 13px; background: #ffffff30; color: #ffffff; margin: 10px 25px 40px 10px; width: 85%; outline: none; text-align: center; } .interest-result { margin-top: 15px; font-size: 15px; background: #0000005e; padding: 15px; border-radius: 20px; margin: 30px 0px 10px; color: #ffef00; text-align: left; } ::placeholder { color: white; } .expired-message { color: #ff0000; font-weight: 600; margin-top: 10px; font-size: 14px; } label { color: black; font-weight: 900; font-size: 18px; } .popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #2c2c2c; display: flex; justify-content: center; align-items: center; color: white; font-weight: 400; text-align: center; z-index: 1000; flex-direction: column; line-height: 11px; letter-spacing: 0.5px; font-size: 11px; } html { scroll-behavior: smooth; } </style> </head> <body> <div class="popup" id="popup"> <span style="color: #00beff; margin: 10px;">No offer available in</span> <span style="font-size: 40px; font-weight: 800; font-style: oblique;">ProgramX</span> <span style="color: #00beff; margin: 15px 0px 0px 35px;">currently</span> <powerbybs style="position: fixed; bottom: 20px;">Powered by BS/MFI Programs</powerbybs> </div> <div class="offer-container" id="offerContainer"> <p style="text-align: center; color: yellow; font-weight: 600; font-size: 16px; text-decoration: underline;">ProgramX & PayMine</p> <div class="offer-title">#Diwali25%Off</div> <div class="offer-details"> <label>Offer:</label> <ul class="fee-list"> <li>The members who have re-pay total amount <span class="highlight">more than 45,000+</span> are only <span class="highlight">eligible</span> for this offer by which members can get <span class="highlight">25% off</span> on the <span class="highlight">total interest</span>, And they have pay only the <span class="highlight">remaining 75%</span> interest from the total.</li> </ul> <label>Fee Information:</label> <ul class="fee-list"> <li>&rightarrow; Fees will be charged based on the <span class="highlight">Amount</span> you are entering.</li> </ul> <hr> <div class="mainfeepart" style="background: #000000b0; padding: 13px; text-align: center; line-height: 26px; border-radius: 20px; color: white;"> <p>Application Fee for this offer:<br> <a href="#scrollhere"><span class="highlight" id="appFee">Auto-updates with interest</span></a></p> <p style="margin-top: 15px; font-size: 13px; color: #ffef00; line-height: 22px; font-weight: 400; letter-spacing: 0.4px;">Note: You must pay the "Application Fee" before applying.</p> </div> <p style="text-align: center; margin-top: 30px; font-size: 13px;">Click "Apply Now" to apply for the offer above.</p> </div> <button style="background-color: white; cursor: pointer;" class="button" id="applyButton"> <a style="color: black; cursor: pointer;" href="https://forms.gle/8WP3DU4VZNhFHwNu7" id="applyLink">Apply Now</a> </button> <div class="expired-message" id="expiredMessage" style="display: none; color: rgb(255 0 0); background: rgb(255 255 255); border-radius: 15px; padding: 15px; margin: 7px; font-weight: 600; line-height: 20px;">The offer has expired. Applications are no longer accepted.</div> <hr> <div class="interest-calculator" id="scrollhere"> <p>Interest on amount</p> <input type="number" id="interestInput" placeholder="Enter amount here..."> <a href="#scrollhere"><button class="button" onclick="calculateDiscount()">Calculate 25% Discount</button></a> <div class="interest-result" id="result"></div> </div> </div>
+<script>
+         function calculateDiscount() {
             const interestInput = document.getElementById('interestInput').value;
             const interest = parseFloat(interestInput);
 
             if (isNaN(interest) || interest <= 0) {
-                document.getElementById('result').innerHTML = 'Please enter a valid interest amount';
-                document.getElementById('appFee').innerHTML = 'Enter interest to calculate';
-                return;
+               document.getElementById('result').innerHTML = 'Enter a valid interest amount';
+               document.getElementById('appFee').innerHTML = 'Enter interest to calculate';
+               return;
             }
 
-            const discount = interest * 0.30;
+            // Calculate 25% discount
+            const discount = interest * 0.266;
             const finalAmount = interest - discount;
-            const fee = Math.ceil(interest / 10000) * 430;
+
+            // Dynamic fee calculation based on input ranges
+            let fee;
+            if (interest < 35000) {
+               // Below 35k: scale fee proportionally up to 2000
+               fee = (interest / 35000) * 2000;
+            } else if (interest >= 35000 && interest < 37000) {
+               // 35k–37k: interpolate between 2000 and 3000
+               fee = 2000 + ((interest - 35000) / 2000) * 1000;
+            } else if (interest >= 37000 && interest < 39000) {
+               // 37k–39k: interpolate between 3000 and 4000
+               fee = 3000 + ((interest - 37000) / 2000) * 1000;
+            } else if (interest >= 39000 && interest < 41000) {
+               // 39k–41k: interpolate between 4000 and 5000
+               fee = 4000 + ((interest - 39000) / 2000) * 1000;
+            } else if (interest >= 41000 && interest < 43000) {
+               // 41k–43k: interpolate between 5000 and 6000
+               fee = 5000 + ((interest - 41000) / 2000) * 1000;
+            } else if (interest >= 43000 && interest <= 45000) {
+               // 43k–45k: interpolate between 6000 and 7000
+               fee = 6000 + ((interest - 43000) / 2000) * 1000;
+            } else {
+               // Above 45k: scale fee proportionally starting from 7000
+               fee = 7000 + ((interest - 45000) / 10000) * 630; // Scale similar to original logic
+            }
+
+            // Ensure fee is at least 100 for very small inputs
+            fee = Math.max(100, Math.ceil(fee));
 
             document.getElementById('appFee').innerHTML = `₹${fee.toFixed(2)}`;
             document.getElementById('result').innerHTML = `
-                Original Interest: <span class="highlight">₹${interest.toFixed(2)}</span><br>
-                30% Discount amount: <span class="highlight">₹${discount.toFixed(2)}</span><br>
-                You have to pay remaining 70% Interest + Delayit fee : <span class="highlight">₹${finalAmount.toFixed(2)}</span>
+               Original Interest: <span class="highlight">₹${interest.toFixed(2)}</span><br>
+               25% Discount amount: <span class="highlight">₹${discount.toFixed(2)}</span><br>
+               You have to pay remaining 75% Interest: <span class="highlight" id="scrollhere">₹${finalAmount.toFixed(2)}</span>
             `;
-        }
+         }
 
-        function checkOfferValidity() {
+         function checkOfferValidity() {
             const currentDate = new Date();
-            const startDate = new Date('2025-10-09T22:15:00'); // Example start date: October 12, 2025, at 22:15:00
-            const endDate = new Date('2025-10-09T23:15:00'); // End date: October 12, 2025, at 23:15:00const applyButton = document.getElementById('applyButton');
+const startDate = new Date('2025-10-18T12:01:00'); // Example start date
+const endDate = new Date('2025-10-20T24:00:00'); // Example end date
+
             const applyButton = document.getElementById('applyButton');
             const applyLink = document.getElementById('applyLink');
             const expiredMessage = document.getElementById('expiredMessage');
             const popup = document.getElementById('popup');
             const offerContainer = document.getElementById('offerContainer');
 
-            if (currentDate < startDate) {
-                popup.style.display = 'flex';
-                offerContainer.style.display = 'none';
+            if (currentDate < startDate || currentDate > endDate) {
+               popup.style.display = 'flex';
+               offerContainer.style.display = 'none';
+            } else {
+               popup.style.display = 'none';
+               offerContainer.style.display = 'block';
             }
-             else {
-                popup.style.display = 'none';
-                offerContainer.style.display = 'block';
-                if (currentDate > endDate) {
-                    popup.style.display = 'flex';
-                offerContainer.style.display = 'none';
-                    // applyButton.classList.add('disabled');
-                    // applyLink.removeAttribute('href');
-                    // expiredMessage.innerHTML = 'The offer has expired. Applications are no longer accepted.';
-                    // expiredMessage.style.display = 'block';
-                }
-            }
-        }
+         }
 
-        window.onload = function() {
+         window.onload = function() {
             checkOfferValidity();
             console.log("Page loaded successfully");
-        };
+         };
 
-        document.addEventListener("DOMContentLoaded", () => {
+         document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+            document.addEventListener("click", () => {
+               if (customMenu) {
+                  customMenu.style.display = "none";
+               }
+            });
+         });
+          document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
 
             document.addEventListener("contextmenu", (event) => {
@@ -73,6 +101,6 @@
                 }
             });
         });
-    </script>
-</body>
+      </script>
+   </body>
 </html>
