@@ -1,192 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>BS&MFI Programs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-    <style>
-         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>BS&MFI Programs</title> <link rel="icon" href="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" /> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/> <style> @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap'); :root { --user-accent: #00aaff; --telegram-accent: #00aeff; } * { -webkit-tap-highlight-color: transparent; font-family: 'Poppins', sans-serif; box-sizing: border-box; margin: 0; padding: 0; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } :root { --gold: #d4af37; --dark: #000000; --gray: #1a1a1a; --light: #f0f0f0; } * { margin:0; padding:0; box-sizing:border-box; } body { font-family: 'Inter', sans-serif; background: var(--dark); color: white; line-height: 1.6; } .container { max-width: 1200px; margin: 0 auto; padding:40px 10px; } /* Hero */ .hero { text-align: center; padding: 45px 0px; background: linear-gradient(to top, #11111100, #2d425d 100%); } .hero h1 { font-size: 80px; font-weight: 800; margin-bottom: 25px; line-height: 65px; } .hero p { font-size: 1.3rem; opacity: 0.8; max-width: 600px; margin: 0 auto; } .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; } .card { background: #2c405b; padding: 25px; border-radius: 16px; text-align: center; } .card i { font-size: 3rem; color: var(--gold); } .card h3 { font-size: 1.8rem; margin: 15px 0; color: var(--gold); } .btn { display: inline-block; background: var(--gold); color: #000; padding: 10px 30px; border-radius: 50px; font-weight: 600; text-decoration: none; margin-top: 20px; transition: 0.3s; } .btn:hover { background: #e0c050; transform: translateY(-3px); } /* Offers */ .offers { background: #000; } .tag { background: var(--gold); color: #000; padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: inline-block; } .amount { font-size: 1.8rem; font-weight: 800; color: var(--gold); margin: 15px 0; } /* Footer */ footer { text-align: center; padding: 4px 20px; border-top: 1px solid rgba(212, 175, 55, 0.2); font-size: 12px; background: linear-gradient(to top, #2c405a, transparent); } /* Responsive */ @media (max-width: 768px) { .hero h1 { font-size: 3.2rem;} .hero p { font-size: 1.1rem; } .grid { grid-template-columns: 1fr; } } </style> </head> <body> <section class="hero"> <div class="container"> <h1>BS&MFI<br>Programs</h1> <p>Power by BS&MFI</p> </div> </section> <section class="section"> <div class="container"> <h2 style="text-align:center; font-size:2.5rem; margin-bottom:50px; color:var(--gold);"> Our Services </h2> <div class="grid"> <div class="card"> <i class="fas fa-crown"></i> <h3>Solutions</h3> <p>Services help for BS&MFI members amoung all the services that are from BS&MFI.</p> <a href="https://mfi0212.github.io/swan/offer/solution" class="btn">Explore</a> </div> </div> </div> </section> <section class="section offers"> <div class="container"> <h2 style="text-align:center; font-size:2.5rem; margin-bottom:50px; color:var(--gold);"> Our Collaboration Services </h2> <div class="grid"> <div class="card"> <div class="tag">Direct Program</div> <div class="amount">Program X</div> <p>Our direct-access service</p> <a href="https://mfi0212.github.io/swan/offer/programx" class="btn">Explore</a> </div> <div class="card"> <div class="tag">LendLink × BS&MFI</div> <div class="amount">LendLink-Mid</div> <p>Offer lending partnership service</p> <a href="https://mfi0212.github.io/swan/lndlnk-mid" class="btn">Explore</a> </div> </div> </div> </section> <footer> <div class="container"> <p>© 2025 BS&MFI Programs. All rights reserved.</p> </div> </footer>
+<script>
+      document.addEventListener("DOMContentLoaded", () => {
+    const customMenu = document.querySelector(".custom-menu");
 
-        :root {
-            --user-accent: #00aaff;
-            --telegram-accent: #00aeff;
-        }
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        customMenu.style.display = "block";
+        customMenu.style.top = `${event.pageY}px`;
+        customMenu.style.left = `${event.pageX}px`;
+    });
 
-        * {
-            -webkit-tap-highlight-color: transparent;
-            font-family: 'Poppins', sans-serif;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        :root {
-            --gold: #d4af37;
-            --dark: #000000;
-            --gray: #1a1a1a;
-            --light: #f0f0f0;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--dark);
-            color: white;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding:40px 10px;
-        }
-
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 45px 0px;
-            background: linear-gradient(to top, #11111100, #2d425d 100%);
-        }
-        .hero h1 {
-                font-size: 80px;
-    font-weight: 800;
-    margin-bottom: 25px;
-    line-height: 65px;
-
-        }
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        .card {
-            background: #2c405b;
-    padding: 25px;
-    border-radius: 16px;
-    text-align: center;
-        }
-        .card i {
-            font-size: 3rem;
-            color: var(--gold);
-        }
-        .card h3 {
-            font-size: 1.8rem;
-            margin: 15px 0;
-            color: var(--gold);
-        }
-        .btn {
-            display: inline-block;
-            background: var(--gold);
-            color: #000;
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background: #e0c050;
-            transform: translateY(-3px);
-        }
-
-        /* Offers */
-        .offers {
-            background: #000;
-        }
-        .tag {
-            background: var(--gold);
-            color: #000;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .amount {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--gold);
-            margin: 15px 0;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-    padding: 4px 20px;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    font-size: 12px;
-    background: linear-gradient(to top, #2c405a, transparent);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3.2rem;}
-            .hero p { font-size: 1.1rem; }
-            .grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <section class="hero">
-        <div class="container">
-            <h1>BS&MFI<br>Programs</h1>
-            <p>Power by BS&MFI</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2 style="text-align:center; font-size:2.5rem; margin-bottom:50px; color:var(--gold);">
-                Our Services
-            </h2>
-            <div class="grid">
-                <div class="card">
-                    <i class="fas fa-crown"></i>
-                    <h3>Solutions</h3>
-                    <p>Services help for BS&MFI members amoung all the services that are from BS&MFI.</p>
-                    <a href="https://mfi0212.github.io/swan/offer/solution" class="btn">Explore</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section offers">
-        <div class="container">
-            <h2 style="text-align:center; font-size:2.5rem; margin-bottom:50px; color:var(--gold);">
-                Our Collaboration Services
-            </h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="tag">Direct Program</div>
-                    <div class="amount">Program X</div>
-                    <p>Our direct-access service</p>
-                    <a href="https://mfi0212.github.io/swan/offer/programx" class="btn">Explore</a>
-                </div>
-                <div class="card">
-                    <div class="tag">LendLink × BS&MFI</div>
-                    <div class="amount">LendLink-Mid</div>
-                    <p>Offer lending partnership service</p>
-                    <a href="https://mfi0212.github.io/swan/lndlnk-mid" class="btn">Explore</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>© 2025 BS&MFI Programs. All rights reserved.</p>
-        </div>
-    </footer>
-
+    // Hide the menu when clicking elsewhere
+    document.addEventListener("click", () => {
+        customMenu.style.display = "none";
+    });
+});
+</script>
 </body>
 </html>
