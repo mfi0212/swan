@@ -1,48 +1,34 @@
 <!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>STO | Waiting</title> <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"> <style> * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; font-weight: 300; } body { background-color: #000000; color: #fff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; letter-spacing: 0.2px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .timer { padding: 10px 20px; margin: 10px; border-radius: 12px; text-align: center; font-size: 14px; position: fixed; top: 10px; color: #ff00edcf; font-weight: 600; } .button { background-color: #0042ff; color: #ffffff; padding: 8px 30px; margin: 10px; border: none; border-radius: 100px; cursor: pointer; font-size: 15px; transition: background-color 0.3s; font-weight: 400; } .button:hover { background-color: #0033ff; } .button.disabled { background-color: #555; cursor: not-allowed; } .note { background-color: #181818; padding: 8px 20px; margin: 10px; border-radius: 8px; font-size: 12px; font-style: italic; color: white; text-align: center; font-weight: 100; } .cooldown-timer { background-color: #333; padding: 8px 16px; margin: 10px; border-radius: 5px; font-size: 14px; display: none; } .cooldown-timer.active { display: block; } .fro { position: fixed; bottom: 0px; font-size: 9px; color: rgba(255, 255, 255, 0.57); background: black; z-index: 0; width: 100%; text-align: center; padding: 13px; } </style> </head> <body> <div class="timer" id="timer">BS/MFI</div> <div style="display: flex; align-items: center;"> <button class="button" id="formButton" onclick="redirectToForm()">Apply Now</button> </div> <div class="note" id="clickMessage">Don't click for 50 sec if onces clicked</div> <div class="cooldown-timer" id="cooldownTimer">Wait for : 0:50</div> <div class="fro">From BsLends</div>
-    <script>
+  <script>
         let formButton = document.getElementById('formButton');
         let clickMessage = document.getElementById('clickMessage');
         let timer = document.getElementById('timer');
         let cooldownTimer = document.getElementById('cooldownTimer');
-
-        // Time settings in IST (24-hour format) for March 24, 2025
         const OFFER_START_HOUR_IST = 22;
         const OFFER_START_MINUTE_IST = 15;
-
-        const OFFER_END_HOUR_IST = 22;// 10:25 IST
+        const OFFER_END_HOUR_IST = 22;
         const OFFER_END_MINUTE_IST = 30;
-
-        const IST_OFFSET_MINUTES = 330; // IST is UTC+5:30 (5 hours * 60 + 30 minutes)
-        const COOLDOWN_DURATION_MS = 50000; // 50 seconds in milliseconds
-        const OFFER_DATE = new Date('2025-12-01T00:00:00Z'); // March 24, 2025 UTC
-        const OFFER_START_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_START_HOUR_IST * 3600 + OFFER_START_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC start time
-        const OFFER_END_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_END_HOUR_IST * 3600 + OFFER_END_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); // UTC end time
-
-        // Load last click timestamp from localStorage
+        const IST_OFFSET_MINUTES = 330; 
+        const COOLDOWN_DURATION_MS = 50000;
+        const OFFER_DATE = new Date('2025-12-01T00:00:00Z');
+        const OFFER_START_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_START_HOUR_IST * 3600 + OFFER_START_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); 
+        const OFFER_END_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_END_HOUR_IST * 3600 + OFFER_END_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60);
         let lastClickTime = localStorage.getItem('lastClickTime') ? parseInt(localStorage.getItem('lastClickTime')) : 0;
         let canClick = checkCooldown();
         let cooldownInterval;
         let offerInterval;
-
-        // Check if 50 seconds have passed since the last click
         function checkCooldown() {
             if (lastClickTime === 0) return true;
             const timeElapsed = Date.now() - lastClickTime;
             return timeElapsed >= COOLDOWN_DURATION_MS;
         }
-
-        // Get current UTC time in seconds since epoch
         function getUTCSeconds() {
             return Math.floor(Date.now() / 1000);
         }
-
-        // Check if current time is within the offer window for March 24, 2025
         function isOfferValid() {
             const utcSeconds = getUTCSeconds();
             return utcSeconds >= OFFER_START_SECONDS_UTC && utcSeconds < OFFER_END_SECONDS_UTC;
         }
-
-        // Update offer timer
         function updateOfferTimer() {
             const utcSeconds = getUTCSeconds();
             const remainingSeconds = Math.max(0, OFFER_END_SECONDS_UTC - utcSeconds);
@@ -58,8 +44,6 @@
                 clearInterval(offerInterval);
             }
         }
-
-        // Update cooldown timer
         function updateCooldownTimer() {
             const timeElapsed = Date.now() - lastClickTime;
             const remainingTime = Math.max(0, COOLDOWN_DURATION_MS - timeElapsed);
@@ -82,7 +66,6 @@
         }
         function redirectToForm() {
             const utcSeconds = getUTCSeconds();
-
             if (utcSeconds >= OFFER_END_SECONDS_UTC) {
                 alert("No offers available.");
                 timer.textContent = "Offer expired";
@@ -91,29 +74,23 @@
                 clearInterval(offerInterval);
                 return;
             }
-
             if (!isOfferValid()) {
                 alert("The offer is not valid yet or has expired.");
                 return;
             }
-
             if (!canClick) {
                 alert("Wait until the countdown ends.");
                 return;
             }
-
             window.location.href = "https://forms.gle/s97PTXytwSTJqSBP8";
-
             canClick = false;
             formButton.classList.add('disabled');
             clickMessage.style.color = "red";
             lastClickTime = Date.now();
             localStorage.setItem('lastClickTime', lastClickTime);
-
             cooldownTimer.classList.add('active');
             updateCooldownTimer();
             cooldownInterval = setInterval(updateCooldownTimer, 1000);
-
             setTimeout(() => {
                 canClick = true;
                 cooldownTimer.classList.remove('active');
@@ -124,17 +101,14 @@
                 }
                 clickMessage.style.color = "#fff";
                 localStorage.removeItem('lastClickTime');
-            }, COOLDOWN_DURATION_MS); // 50 seconds
+            }, COOLDOWN_DURATION_MS);
         }
-
-        // Initial state based on cooldown and offer validity
         if (!canClick && lastClickTime > 0) {
             formButton.classList.add('disabled');
             clickMessage.style.color = "#ff5555";
             cooldownTimer.classList.add('active');
             cooldownInterval = setInterval(updateCooldownTimer, 1000);
         }
-
         if (isOfferValid()) {
             updateOfferTimer();
             offerInterval = setInterval(updateOfferTimer, 1000);
@@ -143,11 +117,8 @@
             formButton.classList.add('disabled');
             formButton.textContent = "Offer Expired";
         }
-
         document.addEventListener("DOMContentLoaded", () => {
             const customMenu = document.querySelector(".custom-menu");
-
-            // Show custom menu on right-click
             document.addEventListener("contextmenu", (event) => {
                 event.preventDefault();
                 if (customMenu) {
@@ -156,8 +127,6 @@
                     customMenu.style.left = `${event.pageX}px`;
                 }
             });
-
-            // Hide the menu when clicking elsewhere
             document.addEventListener("click", () => {
                 if (customMenu) customMenu.style.display = "none";
             });
