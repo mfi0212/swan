@@ -10,7 +10,7 @@
         const OFFER_END_MINUTE_IST = 30;
         const IST_OFFSET_MINUTES = 330; 
         const COOLDOWN_DURATION_MS = 50000;
-        const OFFER_DATE = new Date('2025-11-30T00:00:00Z');
+        const OFFER_DATE = new Date('2025-12-02T00:00:00Z');
         const OFFER_START_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_START_HOUR_IST * 3600 + OFFER_START_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); 
         const OFFER_END_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_END_HOUR_IST * 3600 + OFFER_END_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60);
         let lastClickTime = localStorage.getItem('lastClickTime') ? parseInt(localStorage.getItem('lastClickTime')) : 0;
@@ -134,6 +134,7 @@
     </script>
 </body>
 </html>
+
 
 
 
