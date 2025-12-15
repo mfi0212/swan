@@ -1,245 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BS/MFI | Split pay</title>
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Orbitron:wght@400..900&family=Red+Hat+Display:ital,wght@0,300..900&family=Strait&display=swap');
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Red Hat Display", sans-serif;
-        } * {
-  -webkit-tap-highlight-color: transparent;
-}
-body {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            color: #8B4513;
-            line-height: 1.6;
-            letter-spacing: 0.4px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 15px;
-        }
-        .instructions {
-            margin: 30px 0px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 6px;
-            border: 2px solid #8B4513;
-            font-size: 14px;
-        }
-        .apply-link {
-            display: block;
-            margin: 20px 0;
-            text-align: center;
-        }
-        a {
-            background-color: #8B4513;
-            color: white;
-            padding: 6px 20px;
-            border: none;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            display: inline-block;
-        }
-        a:hover {
-            background-color: #6B2E0E;
-        }
-        .calculator {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border: 2px solid #8B4513;
-        }
-        h2 {
-            color: #8B4513;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #8B4513;
-        }
-        p {
-            color: #8B4513;
-            margin: 5px 0;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #8B4513;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 16px;
-            background-color: #f9f9f9;
-            color: #8B4513;
-        }
-        input:focus {
-            outline: none;
-            border-color: #6B2E0E;
-            box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
-        }
-        button {
-            background-color: #8B4513;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #6B2E0E;
-        }
-        #result {
-            margin-top: 25px;
-            padding: 20px;
-            border: 2px solid #8B4513;
-            border-radius: 6px;
-            display: none;
-            background-color: #f9f9f9;
-        }
-        #result h3 {
-            color: #8B4513;
-            margin-top: 0;
-            font-size: 20px;
-        }
-        #result p {
-            margin: 10px 0;
-            font-size: 16px;
-        }
-        span {
-            font-weight: bold;
-            color: #6B2E0E;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="logo">
-            <h1 style="text-align: center; font-style: italic; font-weight: 900; font-size: 40px; margin: 20px;">SPLIT PAY</h1>
-        </div>
-        <div class="instructions">
-            <p><strong>How to Use:</strong> You can now split your repayment into smaller amounts, making it easier to pay back in a way that suits you</p>
-        </div>
-        <div class="apply-link">
-            <a href="https://forms.gle/ujs36QQpBpMPBRPu6">Apply now</a>
-        </div>
-        <div class="instructions">
-            <p><strong>NOTE :</strong> You Have to pay the fee before applying for the split pay</p>
-        </div>
-        <div class="calculator" id="calculator">
-            <div class="form-group">
-                <label for="loanAmount">Amount you are splitting:</label>
-                <input type="number" id="loanAmount" min="1" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="loanTenure">No. of splits you like to do:</label>
-                <input type="number" id="loanTenure" min="1" required>
-            </div>
-
-            <button onclick="calculateEMI()">Calculate</button>
-
-            <div id="result">
-                <h3>Details:</h3>
-                <p>Split amount: ₹<span id="emiResult"></span></p>
-                <p>Split fee per month: ₹<span id="totalInterest"></span></p>
-                <br>
-                <p>With split fee: ₹<span id="totalAmount"></span></p>
-            </div>
-        </div>
-        <div class="instructions">
-            <p><strong>CUTS IN :</strong> After applying and starting the split payment, the amount will be deducted directly.</p>
-        </div>
-    </div>
-
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>BS/MFI | Split Pay</title> <link rel="icon" type="image/x-icon" href="https://i.ibb.co/gW8Py0B/BS.png"> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"> <style> * { margin: 0; padding: 0; box-sizing: border-box; }body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } body { font-family: 'Montserrat', sans-serif; background-color: #faf8f5; color: #5c3a21; line-height: 1.7; letter-spacing: 0.4px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; } .container { max-width: 900px; margin: 50px auto; padding: 3px; border-radius: 12px; } header { text-align: center; margin-bottom: 60px; } h1 { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700; letter-spacing: 3px; color: #8B4513; margin-bottom: 12px; } .subtitle { font-size: 19px; color: #8B4513; font-weight: 400; opacity: 0.9; } .section { margin-bottom: 70px; padding: 10px; background-color: #fdfaf7; border: 1px solid #e8d4c1; border-radius: 10px; } .section h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 25px; color: #8B4513; text-align: center; font-weight: 600; } .instructions p { font-size: 16px; color: #6b4e31; text-align: center; max-width: 800px; margin: 0 auto 20px; } .apply-link { text-align: center; margin: 50px 0; } a.btn { display: inline-block; background-color: #8B4513; color: #ffffff; padding: 16px 50px; font-size: 17px; font-weight: 600; text-decoration: none; letter-spacing: 1.5px; border-radius: 8px; transition: background-color 0.4s ease, transform 0.2s; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2); } a.btn:hover { background-color: #6b3a0d; transform: translateY(-2px); } .calculator { background-color: #ffffff; padding: 50px 20px; text-align: center; border: 2px solid #d4b89a; border-radius: 12px; box-shadow: 0 8px 30px rgba(139, 69, 19, 0.1); } .form-group { margin-bottom: 35px; max-width: 450px; margin-left: auto; margin-right: auto; text-align: left; } label { display: block; margin-bottom: 12px; font-weight: 600; color: #8B4513; font-size: 17px; } input { width: 100%; padding: 16px; border: 2px solid #d4b89a; border-radius: 8px; font-size: 17px; background-color: #fdfaf7; color: #5c3a21; transition: border-color 0.3s; } input:focus { outline: none; border-color: #8B4513; box-shadow: 0 0 10px rgba(139, 69, 19, 0.2); } button { background-color: #8B4513; color: #ffffff; padding: 16px 50px; border: none; border-radius: 8px; cursor: pointer; font-size: 17px; font-weight: 600; letter-spacing: 1.5px; transition: background-color 0.4s, transform 0.2s; width: 100%; max-width: 450px; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2); } button:hover { background-color: #6b3a0d; transform: translateY(-2px); } #result { margin-top: 50px; padding: 35px; border: 2px solid #d4b89a; border-radius: 10px; display: none; background-color: #fdfaf7; max-width: 550px; margin-left: auto; margin-right: auto; } #result h3 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 25px; color: #8B4513; } #result p { font-size: 19px; margin: 18px 0; color: #5c3a21; } span { font-weight: 700; color: #8B4513; } .additional-info { font-size: 16px; color: #6b4e31; text-align: center; max-width: 800px; margin: 0 auto; } .fee-table { width: 100%; max-width: 700px; margin: 40px auto; border-collapse: separate; border-spacing: 0; font-size: 16px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1); } .fee-table th, .fee-table td { padding: 18px; text-align: center; border-bottom: 1px solid #e8d4c1; } .fee-table th { background-color: #8B4513; color: #ffffff; font-weight: 600; } .fee-table tr:last-child td { border-bottom: none; } .fee-table td { background-color: #fdfaf7; } footer { text-align: center; font-size: 13px; padding: 0px 0px 40px 0px; } </style> </head> <body> <div class="container"> <header> <h1>SPLIT PAY</h1> <p class="subtitle">Flexible & Convenient Repayment Solution</p> </header> <div class="section instructions"> <h2>How Split Pay Works</h2> <p>With Split Pay, you can now divide your total outstanding amount into smaller, more manageable installments. This feature is designed to provide you with greater financial flexibility while ensuring smooth repayment.</p> <p>Calculate your preferred split using the tool below, pay the required fee upfront, and submit your application. Once approved, your installments will be automatically deducted over the selected period.</p> </div> <div class="apply-link"> <a href="https://forms.gle/ujs36QQpBpMPBRPu6" class="btn">Apply Now</a> </div> <div class="section instructions"> <h2>Important Note</h2> <p><strong>The split fee must be paid before applying.</strong> The fee is charged per installment and varies based on your outstanding amount.</p> <h2 style="font-size:30px; margin-top:50px;">Split Fee Structure</h2> <table class="fee-table"> <thead> <tr> <th>Amount Range</th> <th>Fee Per Split</th> </tr> </thead> <tbody> <tr><td>Below ₹1,000</td><td>₹49</td></tr> <tr><td>₹1,000 – ₹5,000</td><td>₹89</td></tr> <tr><td>₹5,001 – ₹10,000</td><td>₹129</td></tr> <tr><td>₹10,001 – ₹15,000</td><td>₹169</td></tr> <tr><td>Above ₹15,000</td><td>₹219</td></tr> </tbody> </table> </div> <div class="section calculator" id="calculator"> <h2>Calculate Your Split Payment</h2> <div class="form-group"> <label for="loanAmount">Amount you are splitting (₹)</label> <input type="number" id="loanAmount" min="1" required> </div> <div class="form-group"> <label for="loanTenure">Number of splits</label> <input type="number" id="loanTenure" min="1" required> </div> <button onclick="calculateEMI()">Calculate</button> <div id="result"> <h3>Your Split Details</h3> <p>Per installment amount: ₹<span id="emiResult"></span></p> <p>Total split fee: ₹<span id="totalInterest"></span></p> <p><strong>Total amount to repay: ₹<span id="totalAmount"></span></strong></p> </div> </div> <div class="section instructions additional-info"> <h2>Additional Information</h2> <p>Once your split payment plan is active, each installment will be automatically deducted on the scheduled dates for your convenience.</p> <p>This feature is intended to support you during temporary financial needs. Please use it responsibly and ensure timely fee payment for smooth processing.</p> <p>For any queries or assistance, our support team is always ready to help.</p> </div> </div> <footer> BS&MFI Solutions. All Rights Reserved. </footer>
     <script>
         function calculateEMI() {
             const loanAmount = parseFloat(document.getElementById('loanAmount').value);
             const loanTenure = parseFloat(document.getElementById('loanTenure').value);
 
-            // Determine fee per split based on amount range
-            let feePerSplit;
-            if (loanAmount < 1000) {
-                feePerSplit = 49; // Below 1k
-            } else if (loanAmount >= 1000 && loanAmount <= 5000) {
-                feePerSplit = 89; // 1k - 5k
-            } else if (loanAmount > 5000 && loanAmount <= 10000) {
-                feePerSplit = 129; // 5k - 10k
-            } else if (loanAmount > 10000 && loanAmount <= 15000) {
-                feePerSplit = 169; // 10k - 15k
-            } else {
-                feePerSplit = 219; // Above 15k
+            if (isNaN(loanAmount) || isNaN(loanTenure) || loanAmount <= 0 || loanTenure <= 0) {
+                alert('Please enter valid amounts and number of splits!');
+                return;
             }
 
-            // Calculate total fee (fee per split * number of splits)
+            let feePerSplit;
+            if (loanAmount < 1000) {
+                feePerSplit = 49;
+            } else if (loanAmount <= 5000) {
+                feePerSplit = 89;
+            } else if (loanAmount <= 10000) {
+                feePerSplit = 129;
+            } else if (loanAmount <= 15000) {
+                feePerSplit = 169;
+            } else {
+                feePerSplit = 219;
+            }
+
             const totalFee = feePerSplit * loanTenure;
-
-            // Split amount (loan amount divided by number of splits)
             const splitAmount = loanAmount / loanTenure;
-
-            // Total amount (loan amount + total fee)
             const totalAmount = loanAmount + totalFee;
 
-            // Display results
             document.getElementById('emiResult').textContent = splitAmount.toFixed(2);
             document.getElementById('totalInterest').textContent = totalFee.toFixed(2);
             document.getElementById('totalAmount').textContent = totalAmount.toFixed(2);
             document.getElementById('result').style.display = 'block';
-
-            // Validate inputs
-            if (isNaN(splitAmount) || splitAmount <= 0 || isNaN(loanTenure) || loanTenure <= 0) {
-                alert('Enter valid amounts and number of splits!');
-                document.getElementById('result').style.display = 'none';
-            }
         }
-                document.addEventListener("DOMContentLoaded", () => {
-    const customMenu = document.querySelector(".custom-menu");
-
-    // Show custom menu on right-click
-    document.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        customMenu.style.display = "block";
-        customMenu.style.top = `${event.pageY}px`;
-        customMenu.style.left = `${event.pageX}px`;
-    });
-
-    // Hide the menu when clicking elsewhere
-    document.addEventListener("click", () => {
-        customMenu.style.display = "none";
-    });
-});
+        document.addEventListener("DOMContentLoaded", () => {
+            const customMenu = document.querySelector(".custom-menu");
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+                if (customMenu) {
+                    customMenu.style.display = "block";
+                    customMenu.style.top = `${event.pageY}px`;
+                    customMenu.style.left = `${event.pageX}px`;
+                }
+            });
+            document.addEventListener("click", () => {
+                if (customMenu) {
+                    customMenu.style.display = "none";
+                }
+            });
+        });
     </script>
 </body>
 </html>
