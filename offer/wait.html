@@ -1,16 +1,16 @@
 <!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>STO | Waiting</title> <link rel="icon" href="https://i.ibb.co/ZpVQQ2Kp/mfi-logo.png" /> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"> <style> * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; font-weight: 300; } body { background-color: #000000; color: #fff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; letter-spacing: 0.2px; } * { -webkit-tap-highlight-color: transparent; } body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .timer { padding: 10px 20px; margin: 10px; border-radius: 12px; text-align: center; font-size: 14px; position: fixed; top: 10px; color: #ff00edcf; font-weight: 600; } .button { background-color: #0042ffa1; color: #ffffff; padding: 8px 30px; margin: 10px; border: none; border-radius: 100px; cursor: pointer; font-size: 15px; transition: background-color 0.3s; font-weight: 400; box-shadow: inset 0 0.5px 0 #ffffff21, inset 0 -4px 9px #ffffff57; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;} .button:hover{ transform: scale(1.02); } .button:active{ transform: scale(0.95); } .button:hover { background-color: #0044ffd3; } .button.disabled { background-color: #55555521; cursor: not-allowed; } .note { background-color: #18181894; padding: 8px 20px; margin: 10px; border-radius: 52px; font-size: 12px; font-style: italic; color: white; text-align: center; font-weight: 500; box-shadow: inset 0 0.5px 0 #ffffff21, inset 0 -4px 9px #ffffff57; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;position: fixed; bottom: 65px;} .note:hover{ transform: scale(1.02); } .note:active{ transform: scale(0.95); } .cooldown-timer { background-color: #33333300; padding: 8px 16px; margin: 10px; border-radius: 33px; font-size: 14px; display: none; box-shadow: inset 0 0.5px 0 #ffffff21, inset 0 -4px 9px #ffffff57; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;position: fixed; bottom: 125px; } .cooldown-timer:hover{ transform: scale(1.02); } .cooldown-timer:active{ transform: scale(0.95); } .cooldown-timer.active { display: block; } .fro { position: fixed; bottom: 0px; font-size: 9px; color: rgba(255, 255, 255, 0.57); background: black; z-index: 0; width: 100%; text-align: center; padding: 13px; } </style> </head> <body> <div class="timer" id="timer">BS/MFI</div> <div style="display: flex; align-items: center;"> <button class="button" id="formButton" onclick="redirectToForm()">Apply Now</button> </div> <div class="note" id="clickMessage">Don't click for 50 sec if onces clicked</div> <div class="cooldown-timer" id="cooldownTimer">Wait for : 0:50</div> <div class="fro">Power by STO</div>
-    <script>
+<script>
         let formButton = document.getElementById('formButton');
         let clickMessage = document.getElementById('clickMessage');
         let timer = document.getElementById('timer');
         let cooldownTimer = document.getElementById('cooldownTimer');
-        const OFFER_START_HOUR_IST = 23;
-        const OFFER_START_MINUTE_IST = 30;
-        const OFFER_END_HOUR_IST = 23;
-        const OFFER_END_MINUTE_IST = 55;
+        const OFFER_START_HOUR_IST = 18;
+        const OFFER_START_MINUTE_IST = 0;
+        const OFFER_END_HOUR_IST = 19;
+        const OFFER_END_MINUTE_IST = 0;
+        const OFFER_DATE = new Date('2025-12-31T00:00:00Z');
         const IST_OFFSET_MINUTES = 330; 
         const COOLDOWN_DURATION_MS = 50000;
-        const OFFER_DATE = new Date('2025-12-02T00:00:00Z');
         const OFFER_START_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_START_HOUR_IST * 3600 + OFFER_START_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60); 
         const OFFER_END_SECONDS_UTC = (OFFER_DATE.getTime() / 1000) + (OFFER_END_HOUR_IST * 3600 + OFFER_END_MINUTE_IST * 60) - (IST_OFFSET_MINUTES * 60);
         let lastClickTime = localStorage.getItem('lastClickTime') ? parseInt(localStorage.getItem('lastClickTime')) : 0;
@@ -134,4 +134,3 @@
     </script>
 </body>
 </html>
-
