@@ -1,3 +1,10 @@
+         document.addEventListener("DOMContentLoaded", () => {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            setTimeout(() => {
+                loadingOverlay.classList.add("hidden");
+            }, 5000);
+        });
+
         let currentOption = '';
         let selectedPlan = 'fixed'; // Default plan
         let selectedAmount = 0;
@@ -7,11 +14,6 @@
 
         let givers = [
             { name: "Bhargav Akula", phone: "MFI member only", amount: 0, interest: 2000, availability: false },
-            { name: "Bharat", phone: "Private", amount: 0, interest: 0, availability: false },
-            { name: "venkata siva", phone: "MFI member only", amount: 0, interest: 2000, availability: false },
-            { name: "Siva yerramsetti", phone: "9394522389", amount: 0, interest: 4000, availability: false },
-            { name: "Kiran tummu", phone: "MFI member only", amount: 0, interest: 1200, availability: false },
-            { name: "Gangadhar", phone: "Private", amount: 0, interest: 2500, availability: false },
         ];
 
         let userDetails = {
