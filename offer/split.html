@@ -8,7 +8,7 @@ function calculateFee() {
     const extending = parseFloat(document.getElementById('extendingAmount').value);
 
     if (isNaN(paying) || isNaN(extending) || paying < 0 || extending < 0) {
-        alert('Please enter valid non-negative amounts');
+        alert('Enter valid non-negative amounts');
         return;
     }
     const feePaying   = paying   * 0.050;
