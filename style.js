@@ -6,11 +6,11 @@
         });
 
         let currentOption = '';
-        let selectedPlan = 'fixed'; // Default plan
+        let selectedPlan = 'fixed';
         let selectedAmount = 0;
         let currentInterest = 0;
         let days = 0;
-        let lendCount = { fixed: 0, share: 0 }; // Track lending frequency per plan
+        let lendCount = { fixed: 0, share: 0 };
 
         let givers = [
             { name: "Bhargav Akula", phone: "MFI member only", amount: 0, interest: 2000, availability: false },
@@ -31,11 +31,11 @@
         const correctGiverPin = 'GIV#12'; 
         const correctUserPin = 'ACC#12';
 
-        const FIXED_INTEREST_RATE = 1.4; // 14% annual
-        const SHARE_INTEREST_RATE = 2.5; // 25% annual
+        const FIXED_INTEREST_RATE = 1.4;
+        const SHARE_INTEREST_RATE = 2.5;
         const MAX_FIXED_AMOUNT = 15000;
-        const FIXED_LEND_LIMIT = 1; // Once per month
-        const SHARE_LEND_LIMIT = 3; // Up to 3 times per month
+        const FIXED_LEND_LIMIT = 1;
+        const SHARE_LEND_LIMIT = 3;
 
         function selectPlan(plan) {
             selectedPlan = plan;
@@ -44,7 +44,7 @@
             updateAmountButtons();
             updateUserDetails();
             if (selectedAmount !== 0) {
-                selectAmount(selectedAmount); // Update interest for selected amount
+                selectAmount(selectedAmount);
             }
         }
 
@@ -245,10 +245,9 @@
 
         function calculateInterest(amount, days, plan) {
             const rate = plan === 'fixed' ? FIXED_INTEREST_RATE : SHARE_INTEREST_RATE;
-            // Simple interest: Interest = Principal * Rate * Time (in years)
             const timeInYears = days / 365;
             let interest = amount * rate * timeInYears;
-            return plan === 'share' ? interest / 2 : interest; // 50-50 share splits interest
+            return plan === 'share' ? interest / 2 : interest;
         }
 
         function updateInterestDisplay() {
@@ -274,11 +273,9 @@
                 lendlinkShareAmount.style.display = 'none';
                 return;
             }
-
-            // Calculate standard interest for the selected plan
             currentInterest = calculateInterest(selectedAmount, days, selectedPlan);
             if (selectedPlan === 'share') {
-                const totalInterestAmount = currentInterest * 2; // Total interest before split
+                const totalInterestAmount = currentInterest * 2;
                 interestDisplay.textContent = '';
                 totalInterest.style.display = 'block';
                 yourProfit.style.display = 'block';
@@ -292,15 +289,11 @@
                 yourProfit.style.display = 'none';
                 lendlinkShareAmount.style.display = 'none';
             }
-
-            // Update comparison interest values
             const fixedInterest = selectedAmount <= MAX_FIXED_AMOUNT ? calculateInterest(selectedAmount, days, 'fixed') : 0;
             const shareInterest = calculateInterest(selectedAmount, days, 'share');
             fixedInterestSpan.textContent = fixedInterest.toFixed(2);
             shareInterestSpan.textContent = shareInterest.toFixed(2);
             interestComparison.style.display = 'block';
-
-            // Check if interest is above standard limit
             const standardRate = selectedPlan === 'fixed' ? FIXED_INTEREST_RATE : SHARE_INTEREST_RATE;
             const standardInterestForPlan = selectedAmount * standardRate * (days / 365);
             const isExtraInterest = currentInterest > (selectedPlan === 'share' ? standardInterestForPlan / 2 : standardInterestForPlan);
@@ -317,7 +310,6 @@
                 document.getElementById('share-chart').style.display = 'none';
             }
         }
-
         function updateShareChart(extraInterest) {
             const increments = [100, 200, 300, 400, 500];
             const shares = increments.map(inc => Math.floor(inc / 100) * 20);
@@ -398,13 +390,9 @@
                 alert('You have reached the lending limit for the 50-50 share plan (3 times per month).');
                 return;
             }
-
-            // Update lend count
             lendCount[selectedPlan]++;
             userDetails.amount = selectedAmount;
             userDetails.interest = currentInterest;
-
-            // For demo purposes, redirect to form
             window.location.href = 'https://forms.gle/EBCovJmKfWdTVjRF6';
         }
 
@@ -425,6 +413,4 @@
                 validateUserPin();
             }
         });
-
-        // Set default plan to fixed
         selectPlan('fixed');
