@@ -83,19 +83,19 @@
             }
 
             if (days < 15 || days > 30 || isNaN(days)) {
-                resultDiv.innerHTML = '<span style="color: #ff3b30;">Extension period must be 15–30 days.</span>';
+                resultDiv.innerHTML = '<span style="color: #ff3b30;">Period must be 15–30 days.</span>';
                 return;
             }
 
             const dailyFeeRate = totalFeeRate / referenceDays;
             const fee = amount * dailyFeeRate * days;
 
-            let feeDisplay = `Extension Fee: <span class="highlight">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+            let feeDisplay = `Process Fee: <span class="highlight">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
 
             if (currentDate >= OFFER_START_DATE && currentDate <= OFFER_END_DATE) {
                 const discountedFee = fee * 0.8;
                 feeDisplay = `
-                    Extension Fee: 
+                    Process Fee: 
                     <span class="strikethrough">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
                     <span class="offer">₹${discountedFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                 `;
