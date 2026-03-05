@@ -3,7 +3,7 @@
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = '<i class="fa-regular fa-sun"></i>';
         const moonIcon = '<i class="fa-regular fa-moon"></i>';
-        document.addEventListener('contextmenu', e => e.preventDefault());
+         document.addEventListener('contextmenu', e => e.preventDefault());
         function setTheme(isLight) {
             if (isLight) {
                 document.body.classList.add('light');
@@ -90,12 +90,12 @@
             const dailyFeeRate = totalFeeRate / referenceDays;
             const fee = amount * dailyFeeRate * days;
 
-            let feeDisplay = `Extension Fee: <span class="highlight">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+            let feeDisplay = `Process Fee: <span class="highlight">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
 
             if (currentDate >= OFFER_START_DATE && currentDate <= OFFER_END_DATE) {
                 const discountedFee = fee * 0.8;
                 feeDisplay = `
-                    Extension Fee: 
+                    Process Fee: 
                     <span class="strikethrough">₹${fee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
                     <span class="offer">₹${discountedFee.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                 `;
