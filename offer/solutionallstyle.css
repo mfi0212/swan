@@ -79,7 +79,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.25s ease;
-    box-shadow: inset -2px -1px 0px -1px rgb(108 108 108 / 86%), inset 2px 1px 0px -1px rgb(108 108 108 / 84%);
+    box-shadow: inset -2px -2px 0px -1.5px rgb(130 130 130 / 47%), inset 2px 2px 0px -1.5px rgb(130 130 130 / 47%);
     background: #1b1b1b5e;
     color: white;
     border-radius: 100px;
@@ -278,7 +278,7 @@
     background: #181818;
     color: white;
     border-radius: 25px;
-    box-shadow: inset -2px -2px 1px -1px rgb(119 119 119 / 41%), inset 2px 2px 1px -1px rgb(124 124 124 / 44%);
+    box-shadow: inset -2px -2px 1px -1.5px rgb(130 130 130 / 47%), inset 2px 2px 1px -1.5px rgb(130 130 130 / 47%);
  }
 
         body.light .section {
