@@ -3,7 +3,7 @@
     let currentTab = 0;
     let isDarkMode = true;
     const tabNames = ["Delay It Calculater", "Split Pay Calculater", "Buy Limit Calculater", "Pre-Saver", "Lendlink - Mid"];
-    const fees = [4.5, 5.2, 6.2, null, null];
+    const fees = [4.5, 5.0, 5.5, null, null];
     const googleFormUrl = "https://forms.gle/YOUR_GOOGLE_FORM_LINK_HERE";
     document.addEventListener('contextmenu', e => e.preventDefault());
     const tabContents = {
@@ -43,7 +43,9 @@
             <div>
               <label style="display:block; font-size:0.75rem; text-align: center; color:var(--text2); margin-bottom:1rem; letter-spacing:1px;">AMOUNT TO PROCESS</label>
               <div class="amount-box">
-                <span style="font-size:2.25rem; color:#888;">$</span>
+                <span style="font-size: 2rem;
+    color: #888;
+    white-space: nowrap;">$l₹</span>
                 <input id="amount-input" type="number" placeholder='Amount...'
                        style="flex:1; background:transparent; border: none; font-size:1.5rem; font-weight:500; outline:none; padding:0 1rem; color:var(--text);">
               </div>
